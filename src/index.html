@@ -7,8 +7,25 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1976d2">
 </head>
 <body>
   <app-root></app-root>
+
+  <script>
+    (function () {
+      var html = document.documentElement;
+
+      function onWindowResize() {
+        html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
+      }
+
+      window.addEventListener('resize', onWindowResize);
+      onWindowResize();
+    })();
+
+
+  </script>
 </body>
 </html>
