@@ -23,7 +23,6 @@ body{background:#fff;}
 a,a:hover{color:#333;}
 
 
-
 $ue-width: 375; /* ue图的宽度 */
 $base-rem: $ue-width/10;
 
@@ -32,7 +31,9 @@ $base-rem: $ue-width/10;
   @return ($px/$rem) + rem;
 }
 
-
+body{
+  font-size: rem(12) !important;
+}
 
 
 

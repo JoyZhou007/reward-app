@@ -1,0 +1,93 @@
+<app-header [title]="'悬赏问答'">
+  <div class="left" routerLink="/reward-home">
+    <span class="icon-cheveron-left">
+    </span>
+  </div>
+  <div class="right">
+    <i class="iconfont icon-fenxiang"></i>
+  </div>
+</app-header>
+
+<main>
+  <div class="top">
+    <span>全部悬赏问答</span>
+    <div class="btn-wrap">
+      <a href="javascript:;" routerLink="/reward-home">查看</a>
+    </div>
+  </div>
+  <div class="topic">
+    <h3>第十五期：宏观面迎利好，钢价上涨的基础夯实了吗？</h3>
+    <div class="body">
+      <section class="content">
+        <span>
+          {{newStr}}
+        </span>
+        <div class="operate">
+          <span class="icon-cheveron-down" *ngIf="!showMore" (click)="clickExpend($event)"></span>
+          <span class="icon-cheveron-up" *ngIf="showMore" (click)="clickExpend($event)"></span>
+        </div>
+
+      </section>
+
+    </div>
+    <div class="foot">
+      <div class="left-foot">
+        <span class="txt-ctrl">距结束</span>
+        <span class="time">5天2小时</span>
+      </div>
+      <div class="right-foot">
+        <span class="comment">评论赢赏金</span>
+        <span class="more">
+          <i class="iconfont icon-prompt_fill"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <section class="box">
+    <h3><i class="icon-square"></i> 选择观点</h3>
+
+    <ul class="vote">
+      <li>
+          <h6>已经夯实</h6>
+          <span>20%已支持</span>
+      </li>
+      <li>
+        <span class="btn-vote">投票</span>
+      </li>
+      <li>
+          <h6>不牢固</h6>
+          <span>20%已支持</span>
+      </li>
+      <li>
+        <span class="btn-vote">投票</span>
+
+      </li>
+    </ul>
+  </section>
+  <section class="box">
+    <h3><i class="icon-square"></i>精彩评论</h3>
+    <div class="detail-content">
+      <header>
+        <div class="avatar"><img src="../../../assets/icons/icon-72x72.png" alt=""></div>
+        <div class="name">
+          <h6>张先生</h6>
+          <span>2018-05-08 8.29</span>
+        </div>
+      </header>
+      <section class="main-comment">
+        <span>【我认为：已经夯实】</span>
+        真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
+      </section>
+      <section class="origin-comment">
+        <span>朱亮</span>：说的有道理
+      </section>
+      <footer>
+        <i class="iconfont icon-praise"></i>
+        <i class="iconfont icon-message"></i>
+      </footer>
+    </div>
+  </section>
+</main>
+
+

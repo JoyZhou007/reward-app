@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://api.yourdomai.com",
+    "target": "https://www.easy-mock.com/mock/5b2a0651beb98e5814a5c7bd/reward",
     "secure": false
   }
 }

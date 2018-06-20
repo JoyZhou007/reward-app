@@ -1,0 +1,207 @@
+@import "../../../styles";
+
+main {
+  margin-top: rem(66);
+  .top {
+    height: rem(35);
+    background-color: #eee;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 rem(15);
+    align-items: center;
+    span {
+      flex: 1;
+    }
+    .btn-wrap {
+      flex: 1;
+      padding-right: rem(10);
+      display: flex;
+      justify-content: flex-end;
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: rem(55);
+        height: rem(20);
+        line-height: rem(20);
+        border-radius: rem(10);
+        border: rem(1) solid #999;
+        background-color: #fff;
+      }
+    }
+  }
+
+  .topic {
+    margin-top: rem(15);
+    border-bottom: rem(1) solid #ddd;
+    h3 {
+      padding: 0 rem(10);
+      color: black;
+      font-size: rem(14);
+    }
+    .body {
+      margin: rem(10) 0 rem(10) 0;
+      padding: 0 rem(10) rem(10) 0;
+      .avator {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        img {
+          width: rem(30);
+          margin-right: rem(8);
+        }
+        span {
+          flex: 2;
+        }
+      }
+      .content {
+        margin-top: rem(5);
+        line-height: rem(20);
+        padding-left: rem(25);
+        font-size: rem(14);
+        .operate {
+          position: relative;
+          display: inline-block;
+          margin-left: rem(3);
+          span {
+            position: absolute;
+            top: rem(-16);
+            font-size: rem(24);
+          }
+        }
+      }
+
+    }
+    .foot {
+      display: flex;
+      height: rem(30);
+      .left-foot,
+      .right-foot {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .left-foot {
+        .progress {
+          color: red;
+          font-weight: bold;
+        }
+        .txt-ctrl {
+          padding-left: rem(25);
+          text-align: center;
+        }
+        .time {
+          padding-left: rem(10);
+          text-align: left;
+          flex: 1;
+        }
+      }
+      .right-foot {
+        padding-right: rem(10);
+        .comment {
+          flex: 1;
+          text-align: right;
+          padding-right: rem(10);
+          color: red;
+        }
+        .more {
+          text-align: center;
+          i {
+            position: relative;
+            top: rem(-2);
+            color: yellowgreen;
+            font-size: rem(25);
+          }
+
+        }
+      }
+    }
+  }
+
+  .box {
+    h3 {
+      margin-top: rem(10);
+      height: rem(30);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .icon-square {
+        display: inline-block;
+        width: rem(10);
+        height: rem(20);
+        margin-right: rem(5);
+        background-color: #333333;
+      }
+    }
+    .vote {
+      display: grid;
+      grid-template-rows: rem(50) rem(50);
+      grid-template-columns: repeat(2, 1fr);
+      border-bottom: rem(1) solid #ddd;
+      padding-bottom: rem(10);
+      li {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h6 {
+          font-size: rem(14);
+          line-height: rem(25);
+        }
+        .btn-vote {
+          color: blue;
+        }
+      }
+    }
+
+    .detail-content{
+      header{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .avatar{
+          img{
+            height: rem(40);
+          }
+        }
+        .name{
+          padding-left: rem(10);
+          h6{
+            font-size: rem(14);
+          }
+          span{
+            color: #999999;
+          }
+        }
+      }
+
+      .main-comment{
+        padding-left: rem(50);
+        line-height: rem(18);
+      }
+      .origin-comment{
+        display: flex;
+        align-items: center;
+        margin-left: rem(50);
+        height: rem(50);
+        background-color: #eee;
+        padding-left: rem(10);
+        span{
+          color: #449fdb;
+        }
+      }
+      footer{
+        display: flex;
+        margin-top: rem(8);
+        justify-content: flex-end;
+        i{
+          font-size: rem(22);
+          margin-right: rem(15);
+        }
+      }
+    }
+  }
+
+}

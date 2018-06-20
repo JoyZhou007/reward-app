@@ -1,0 +1,43 @@
+@import "../../../../styles";
+
+header {
+  display: flex;
+  justify-content: space-around;
+  height: rem(66);
+  background-color: #666;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  .mid {
+    font-size: rem(18);
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  /deep/ .left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: rem(10);
+    span {
+      font-size: rem(35);
+      color: #fff;
+    }
+  }
+  /deep/ .right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: rem(10);
+    i {
+      font-size: rem(30);
+      color: #fff;
+    }
+  }
+}
