@@ -40,4 +40,16 @@ header {
       color: #fff;
     }
   }
+
+  .share{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: rem(10);
+    i {
+      font-size: rem(30);
+      color: #fff;
+    }
+  }
 }

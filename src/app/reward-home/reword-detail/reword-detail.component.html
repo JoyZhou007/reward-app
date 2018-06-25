@@ -1,4 +1,4 @@
-<app-header [title]="'悬赏问答'">
+<!--<app-header [title]="'悬赏问答'" >
   <div class="left" routerLink="/reward-home">
     <span class="icon-cheveron-left">
     </span>
@@ -6,11 +6,11 @@
   <div class="right">
     <i class="iconfont icon-fenxiang"></i>
   </div>
-</app-header>
+</app-header>-->
 
 <main>
   <div class="top">
-    <span>全部悬赏问答</span>
+    <span>- 全部悬赏问答 -</span>
     <div class="btn-wrap">
       <a href="javascript:;" routerLink="/reward-home">查看</a>
     </div>
@@ -32,14 +32,18 @@
     </div>
     <div class="foot">
       <div class="left-foot">
-        <span class="txt-ctrl">距结束</span>
+        <i class="iconfont icon-systemprompt"></i>
+        <span class="txt-ctrl">
+
+          距结束</span>
         <span class="time">5天2小时</span>
       </div>
       <div class="right-foot">
-        <span class="comment">评论赢赏金</span>
-        <span class="more">
-          <i class="iconfont icon-prompt_fill"></i>
-        </span>
+
+        <div class="comment">
+          <img src="../../../assets/icons/icon/money.png" class="icon-money"/>
+          <span>评论赢赏金</span>
+        </div>
       </div>
     </div>
   </div>
@@ -49,15 +53,15 @@
 
     <ul class="vote">
       <li>
-          <h6>已经夯实</h6>
-          <span>20%已支持</span>
+        <h6>已经夯实</h6>
+        <span>20%已支持</span>
       </li>
       <li>
         <span class="btn-vote">投票</span>
       </li>
       <li>
-          <h6>不牢固</h6>
-          <span>20%已支持</span>
+        <h6>不牢固</h6>
+        <span>20%已支持</span>
       </li>
       <li>
         <span class="btn-vote">投票</span>
@@ -65,29 +69,78 @@
       </li>
     </ul>
   </section>
+
   <section class="box">
+    <header class="input">
+      <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+      <input type="text" placeholder="说说我的想法">
+    </header>
     <h3><i class="icon-square"></i>精彩评论</h3>
     <div class="detail-content">
       <header>
-        <div class="avatar"><img src="../../../assets/icons/icon-72x72.png" alt=""></div>
+        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
         <div class="name">
-          <h6>张先生</h6>
+          <h6>张先生 <em>我选：夯实</em></h6>
           <span>2018-05-08 8.29</span>
         </div>
       </header>
       <section class="main-comment">
-        <span>【我认为：已经夯实】</span>
+
         真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
       </section>
+      <footer>
+        <div class="praise">
+          <i class="iconfont icon-praise_fill active"></i>
+          <span>1</span>
+        </div>
+        <div class="praise">
+          <i class="iconfont icon-message"></i>
+          <span>2</span>
+        </div>
+
+      </footer>
       <section class="origin-comment">
         <span>朱亮</span>：说的有道理
       </section>
+
+    </div>
+
+    <h3><i class="icon-square"></i>全部评论</h3>
+    <div class="detail-content">
+      <header>
+        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+        <div class="name">
+          <h6>张先生 <em>我选：夯实</em></h6>
+          <span>2018-05-08 8.29</span>
+        </div>
+      </header>
+      <section class="main-comment">
+
+        真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
+      </section>
       <footer>
-        <i class="iconfont icon-praise"></i>
-        <i class="iconfont icon-message"></i>
+        <div class="praise">
+          <i class="iconfont icon-praise_fill active"></i>
+          <span>1</span>
+        </div>
+        <div class="praise">
+          <i class="iconfont icon-message"></i>
+          <span>2</span>
+        </div>
+
       </footer>
+      <section class="origin-comment">
+        <span>朱亮</span>：说的有道理
+      </section>
+
     </div>
   </section>
 </main>
+
+<footer class="footer">
+  <span>获奖名单</span>
+  <div class="line"></div>
+  <span>百家之言</span>
+</footer>
 
 

@@ -1,44 +1,50 @@
-<app-header [title]="'悬赏问答'">
-  <div class="left">
-    <span class="icon-cheveron-left">
-    </span>
-  </div>
-  <div class="right">
-    <i class="iconfont icon-fenxiang"></i>
-  </div>
-</app-header>
+<!--<app-header [title]="'悬赏问答'">-->
+  <!--<div class="left">-->
+    <!--<span class="icon-cheveron-left">-->
+    <!--</span>-->
+  <!--</div>-->
+  <!--<div class="right">-->
+    <!--<i class="iconfont icon-fenxiang"></i>-->
+  <!--</div>-->
+<!--</app-header>-->
+<div class="container">
+  <main>
+    <section class="describe">
+    关注钢铁行业话题 <br> 等你来辩
+    </section>
 
-<main>
-  <section class="describe">
-    关注钢铁行业话题，等你来辩
-  </section>
+    <section class="article-wrap">
+      <ul class="article">
+        <li *ngFor="let topic of topicList">
+          <h3><i class="icon-square"></i>第十五期：宏观面迎利好，钢价上涨的基础夯实了吗？</h3>
+          <div class="body">
+            <header>
+              <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+              <div class="name">
+                <h6>张先生 <em>我选：夯实</em></h6>
+              </div>
+            </header>
+            <section class="content" (click)="clickOpenDetail($event)">
+              <span>真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？</span>
+            </section>
 
-  <ul class="article">
-    <li *ngFor="let topic of topicList">
-      <h3>第十五期：宏观面迎利好，钢价上涨的基础夯实了吗？</h3>
-      <div class="body">
-        <header class="avator">
-          <img src="../../assets/icons/icon-72x72.png" alt="">
-          <span>张先生</span>
-        </header>
-        <section class="content" (click)="clickOpenDetail($event)">
-          <em>【我认为：已经夯实】</em>
-          <span>真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？</span>
-        </section>
+          </div>
+          <div class="foot">
+            <div class="left-foot">
+              <span class="time">05月03日 15.30</span>
+              <span class="progress">进行中</span>
+            </div>
+            <div class="right-foot">
+              <span class="comment">56条评论</span>
+              <span class="more">百家之言</span>
+            </div>
+          </div>
+        </li>
 
-      </div>
-      <div class="foot">
-        <div class="left-foot">
-          <span class="time">05月03日 15.30</span>
-          <span class="progress">进行中</span>
-        </div>
-        <div class="right-foot">
-          <span class="comment">56条评论</span>
-          <span class="more">百家之言</span>
-        </div>
-      </div>
-    </li>
+      </ul>
+    </section>
 
-  </ul>
 
-</main>
+  </main>
+</div>
+

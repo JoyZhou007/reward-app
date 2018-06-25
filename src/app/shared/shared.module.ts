@@ -7,6 +7,7 @@ import {TypeService} from './service/type.service';
 import {HttpService} from './service/http.service';
 import {RewardModelService} from '../reward-home/service/reward-model.service';
 import {HttpClientModule} from '@angular/common/http';
+import {UserService} from './service/user.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         {provide: HttpService, useClass: HttpService},
-        {provide: RewardModelService, useClass: RewardModelService}
+        {provide: RewardModelService, useClass: RewardModelService},
+        {provide: UserService, useClass: UserService}
       ]
     };
 

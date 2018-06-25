@@ -1,14 +1,22 @@
 @import "../../../styles";
 
 main {
-  margin-top: rem(66);
+  padding: 0 rem(15);
+  //margin-top: rem(66);
   .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: rem(35);
-    background-color: #eee;
+    background-color: $blue-normal;
     display: flex;
+    color: $white;
     justify-content: flex-start;
     padding: 0 rem(15);
     align-items: center;
+    font-size: rem(14);
+    z-index: 1;
     span {
       flex: 1;
     }
@@ -22,26 +30,27 @@ main {
         justify-content: center;
         align-items: center;
         width: rem(55);
-        height: rem(20);
-        line-height: rem(20);
-        border-radius: rem(10);
-        border: rem(1) solid #999;
-        background-color: #fff;
+        height: rem(25);
+        color: $white;
+        font-size: rem(14);
+        line-height: rem(25);
+        border-radius: rem(15);
+        border: rem(1) solid $white;
       }
     }
   }
 
   .topic {
-    margin-top: rem(15);
-    border-bottom: rem(1) solid #ddd;
+    margin-top: rem(50);
+    //border-bottom: rem(1) solid #ddd;
     h3 {
-      padding: 0 rem(10);
+      //padding: 0 rem(10);
       color: black;
-      font-size: rem(14);
+      font-size: rem(18);
     }
     .body {
-      margin: rem(10) 0 rem(10) 0;
-      padding: 0 rem(10) rem(10) 0;
+      margin: rem(10) 0 0 0;
+      padding: 0 rem(10) 0 0;
       .avator {
         display: flex;
         justify-content: flex-start;
@@ -57,7 +66,6 @@ main {
       .content {
         margin-top: rem(5);
         line-height: rem(20);
-        padding-left: rem(25);
         font-size: rem(14);
         .operate {
           position: relative;
@@ -87,14 +95,19 @@ main {
           color: red;
           font-weight: bold;
         }
+        i {
+          font-size: rem(26);
+          color: $gray-normal;
+        }
         .txt-ctrl {
-          padding-left: rem(25);
+          color: $gray-normal;
           text-align: center;
         }
         .time {
           padding-left: rem(10);
           text-align: left;
           flex: 1;
+          color: $gray-normal;
         }
       }
       .right-foot {
@@ -104,42 +117,65 @@ main {
           text-align: right;
           padding-right: rem(10);
           color: red;
-        }
-        .more {
-          text-align: center;
-          i {
-            position: relative;
-            top: rem(-2);
-            color: yellowgreen;
-            font-size: rem(25);
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          span {
+            padding-left: rem(5);
           }
+        }
 
+        .icon-money {
+          height: rem(20);
         }
       }
     }
   }
 
   .box {
+    margin-top: rem(30);
+    .input {
+      display: flex;
+      align-items: center;
+      .avatar {
+        padding-right: rem(10);
+        img {
+          height: rem(40);
+        }
+      }
+      input {
+        flex: 1;
+        height: rem(20);
+        border: rem(1) solid $blue-light;
+        border-radius: rem(5);
+        padding: rem(5) rem(10);
+        background-color: $white-1;
+      }
+    }
     h3 {
       margin-top: rem(10);
       height: rem(30);
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      font-size: rem(16);
       .icon-square {
         display: inline-block;
-        width: rem(10);
+        width: rem(5);
         height: rem(20);
         margin-right: rem(5);
-        background-color: #333333;
+        background-color: $blue-normal;
       }
     }
     .vote {
       display: grid;
       grid-template-rows: rem(50) rem(50);
       grid-template-columns: repeat(2, 1fr);
-      border-bottom: rem(1) solid #ddd;
       padding-bottom: rem(10);
+      border: rem(1) solid #eee;
+      border-radius: rem(10);
+      box-shadow: 0 2px rem(2);
+      margin-top: rem(10);
       li {
         height: 100%;
         display: flex;
@@ -156,52 +192,105 @@ main {
       }
     }
 
-    .detail-content{
-      header{
+    .detail-content {
+      header {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        .avatar{
-          img{
+        .avatar {
+          img {
             height: rem(40);
           }
         }
-        .name{
+        .name {
           padding-left: rem(10);
-          h6{
-            font-size: rem(14);
+          h6 {
+            display: flex;
+            align-items: center;
+            font-size: rem(16);
+            margin-bottom: rem(8);
+            color: $blue-normal;
           }
-          span{
+          span {
             color: #999999;
+          }
+          em {
+            display: inline-block;
+            padding: rem(3) rem(5);
+            margin-left: rem(10);
+            color: $white;
+            font-size: rem(12);
+            font-weight: normal;
+            background-color: $blue-normal;
           }
         }
       }
 
-      .main-comment{
+      .main-comment {
+        margin-top: rem(5);
         padding-left: rem(50);
         line-height: rem(18);
+        font-size: rem(14);
       }
-      .origin-comment{
+      .origin-comment {
         display: flex;
         align-items: center;
         margin-left: rem(50);
-        height: rem(50);
-        background-color: #eee;
-        padding-left: rem(10);
-        span{
+        padding: rem(10);
+        background-color: $blue-1;
+        span {
           color: #449fdb;
         }
       }
-      footer{
+      footer {
         display: flex;
         margin-top: rem(8);
         justify-content: flex-end;
-        i{
-          font-size: rem(22);
-          margin-right: rem(15);
+        margin-bottom: rem(15);
+        .praise {
+          display: flex;
+          align-items: center;
+          margin-right: rem(8);
+          border: rem(1) solid #d0d7dd;
+          padding: rem(3) rem(12);
+          border-radius: rem(20);
+        }
+        i {
+          font-size: rem(20);
+          margin-right: rem(5);
+
+        }
+        .active {
+          color: $orange-normal;
         }
       }
     }
   }
 
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: #333;
+  height: rem(50);
+  color: $white;
+  align-items: center;
+  span{
+    flex: 1;
+    //height: rem(50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //border-right: rem(1) solid #ddd;
+
+  }
+  .line{
+    width: 1px;
+    height: rem(25);
+    background-color: $white;
+  }
 }

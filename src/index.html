@@ -13,21 +13,59 @@
   <link rel="stylesheet" type="text/css" href="assets/font-icon/iconfont.css">
 </head>
 <body>
-  <app-root></app-root>
+<app-root></app-root>
 
-  <script>
-    (function () {
-      var html = document.documentElement;
+<script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  (function () {
+    var html = document.documentElement;
 
-      function onWindowResize() {
-        html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
-      }
+    function onWindowResize() {
+      html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
+    }
 
-      window.addEventListener('resize', onWindowResize);
-      onWindowResize();
-    })();
+    window.addEventListener('resize', onWindowResize);
+    onWindowResize();
+  })();
 
 
-  </script>
+</script>
+
+<script>
+  //分享
+  const shareData = {
+    title: "我的钢铁网Mysteel会议中心",
+    desc: "最全的大宗商品领域会议信息，支持在线报名支付，参会从未如此便捷",
+    link: "https://m.mysteel.com/huizhan/index.htm",//分享链接，按需求修改
+    imgUrl: 'https://www.steelphone.com/2016/mysteel_calculator/images/logo.jpg'//分享图标，按需求修改
+  };
+  wx.ready(function () {
+    wx.onMenuShareAppMessage(shareData);
+    wx.onMenuShareTimeline(shareData);
+    wx.onMenuShareQQ(shareData);
+  });
+</script>
+
+<!-- *手机版后台分享*-->
+<script type="text/javascript">
+  if (window.mysteeljs || window.webkit) {
+    const id = "";//分享id
+    const type = "19";//分享类型
+    const title = "会议中心";//分享标题按
+    const desc = "最全的大宗商品领域会议信息，支持在线报名支付，参会从未如此便捷";//分享描述
+    const link = "https://m.mysteel.com/huizhan/index.htm";//分享链接
+    const imgUrl = 'https://m.steelphone.com/share.png';//分享图标
+
+    if (window.mysteeljs) {
+      window.mysteeljs && window.mysteeljs.hideShareMenu(false);
+      window.mysteeljs.share(title, desc, link, imgUrl, id, type);
+    }
+    else if (window.webkit.messageHandlers && window.webkit.messageHandlers && window.webkit.messageHandlers.hideShareMenu) {
+      window.webkit.messageHandlers.hideShareMenu.postMessage("false");
+      const shareData = [title, desc, link, imgUrl, id, type];
+      window.webkit.messageHandlers.share.postMessage(shareData);
+    }
+  }
+</script>
 </body>
 </html>
