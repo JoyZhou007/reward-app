@@ -1,0 +1,45 @@
+<div class="winning-container">
+  <div class="header">
+    <div class="tit-wrap">
+      <section class="describe">
+        每个人对市场的注解都不尽相同 <br> 而你——是最有深度的那位
+      </section>
+      <section class="note">
+        我们的客服会在每周一，逐一联系中奖用户，送出红包奖励哦~
+      </section>
+    </div>
+    <img class="back-img" src="../../../assets/img/banner-2.png" alt="" width="100%">
+
+  </div>
+
+  <main>
+    <div class="reward-box">
+      <section class="steel-box">
+        <h3 class="tit">
+          <img class="icon-steel" src="../../../assets/icons/icon/logo.png"/>
+          我的钢铁APP 留言获奖名单
+        </h3>
+        <ul class="steel-list">
+          <li *ngFor="let steelObj of steelList">
+            <span class="name">{{steelObj.tplName}}</span>
+            <span class="phone">{{steelObj.tplPhone}}</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="steel-box">
+        <h3 class="tit">
+          <img class="icon-steel" src="../../../assets/icons/icon/wechat.png"/>
+          我的钢铁网 微信公众号 留言获奖名单
+        </h3>
+        <ul class="steel-list">
+          <li *ngFor="let steelObj of steelList">
+            <span class="name">{{steelObj.tplName}}</span>
+            <span class="phone">{{steelObj.tplPhone}}</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+  </main>
+</div>

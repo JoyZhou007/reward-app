@@ -15,28 +15,29 @@
 
     <section class="article-wrap">
       <ul class="article">
-        <li *ngFor="let topic of topicList">
-          <h3><i class="icon-square"></i>第十五期：宏观面迎利好，钢价上涨的基础夯实了吗？</h3>
-          <div class="body">
+        <li *ngFor="let articleObj of topicList">
+          <h3 (click)="clickOpenDetail($event,articleObj)"><i class="icon-square"></i>{{articleObj?.title}}</h3>
+          <div class="body" (click)="clickOpenDetail($event,articleObj)">
             <header>
-              <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+              <div class="avatar"><img [src]="articleObj.faceIco" alt=""></div>
               <div class="name">
-                <h6>张先生 <em>我选：夯实</em></h6>
+                <h6>{{articleObj?.name}} <em *ngIf="!!articleObj.optionName">我选：{{articleObj?.optionName}}</em></h6>
               </div>
             </header>
-            <section class="content" (click)="clickOpenDetail($event)">
-              <span>真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？</span>
+            <section class="content" >
+              <span>{{articleObj.content}}</span>
             </section>
 
           </div>
           <div class="foot">
             <div class="left-foot">
-              <span class="time">05月03日 15.30</span>
-              <span class="progress">进行中</span>
+              <span class="time">{{articleObj.date}} {{articleObj.time}}</span>
+              <span class="progress" *ngIf="articleObj.isDoing">进行中</span>
             </div>
             <div class="right-foot">
-              <span class="comment">56条评论</span>
-              <span class="more">百家之言</span>
+              <span class="comment" (click)="clickOpenDetail($event,articleObj)">{{articleObj.comments}}条评论</span>
+              <a class="more" *ngIf="!!articleObj.replyArticleURL"
+                 href="{{articleObj.replyArticleURL}}">百家之言</a>
             </div>
           </div>
         </li>

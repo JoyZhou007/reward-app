@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 import {RewardHomeComponent} from './reward-home/reward-home.component';
 import {RewordDetailComponent} from './reward-home/reword-detail/reword-detail.component';
+import {WinningComponent} from './reward-home/winning/winning.component';
 
 
 export const appRoutes: Routes = [
@@ -15,6 +16,10 @@ export const appRoutes: Routes = [
   {
     path: 'reward-home',
     component: RewardHomeComponent
+  },
+  {
+    path: 'winning/:id',
+    component: WinningComponent
   },
   {
     path: '**',

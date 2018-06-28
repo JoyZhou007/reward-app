@@ -5,7 +5,8 @@
   <title>RewardApp</title>
   <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
@@ -18,7 +19,7 @@
 <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
   (function () {
-    var html = document.documentElement;
+    let html = document.documentElement;
 
     function onWindowResize() {
       html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';

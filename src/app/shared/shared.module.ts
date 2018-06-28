@@ -6,8 +6,11 @@ import {Provider} from '@angular/core/src/di/provider';
 import {TypeService} from './service/type.service';
 import {HttpService} from './service/http.service';
 import {RewardModelService} from '../reward-home/service/reward-model.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UserService} from './service/user.service';
+import {DateFormatService} from './service/date-format.service';
+import {HandleInterceptor} from './service/handle-interceptor';
+import {EscapeHtmlService} from './service/escape-html.service';
 
 @NgModule({
   imports: [
@@ -26,7 +29,10 @@ export class SharedModule {
       providers: [
         {provide: HttpService, useClass: HttpService},
         {provide: RewardModelService, useClass: RewardModelService},
-        {provide: UserService, useClass: UserService}
+        {provide: UserService, useClass: UserService},
+        {provide: DateFormatService, useClass: DateFormatService},
+        {provide: EscapeHtmlService, useClass: EscapeHtmlService},
+        {provide: HTTP_INTERCEPTORS, useClass: HandleInterceptor, multi: true },
       ]
     };
 

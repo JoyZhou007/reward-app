@@ -28,4 +28,25 @@ export class TypeService {
     if (strLength > len) newStr = newStr + flow;
     return newStr;
   }
+
+  /**
+   * 手机号码中间部分替换成星号
+   * @param phone
+   * @returns {string}
+   */
+  public formatPhone(phone: any): string {
+    if (typeof phone == 'number') {
+      phone = phone.toString();
+    }
+    return phone.substr(0, 3) + '****' + phone.substr(7, 11);
+  }
+
+  /**
+   * 名字中间部分替换成星号
+   * @param {string} str
+   * @returns {string}
+   */
+  public formatName(str: string): string {
+    return new Array(str.length).join('*') + str.substr(-1);
+  }
 }

@@ -1,0 +1,96 @@
+@import "../../../styles";
+
+.winning-container {
+  position: relative;
+  //background-color: $pink-normal;
+  height: 100vh;
+
+  .header {
+    background-color: $pink-normal;
+    .tit-wrap {
+      padding-top: rem(25);
+      background-color: $pink-normal;
+      //position: absolute;
+      //top: rem(80);
+    }
+    .back-img {
+      height: 100%;
+      position: relative;
+      top: rem(-50);
+      z-index: 1;
+    }
+    .describe {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: rem(22);
+      margin-bottom: rem(10);
+      color: $white;
+      text-align: center;
+      line-height: rem(28);
+      padding-top: rem(20);
+    }
+
+    .note {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $white;
+      line-height: rem(18);
+      padding: rem(15);
+    }
+  }
+
+  main {
+    position: relative;
+    top: rem(-65);
+    padding: 0 rem(15);
+    background-size: 100%;
+    box-sizing: border-box;
+
+    .reward-box {
+      @include clearfix;
+      //margin-top: rem(52);
+      .steel-box {
+        float: left;
+        width: 100%;
+        border-radius: rem(10);
+        box-sizing: border-box;
+        padding: rem(18) rem(15);
+        box-shadow: 0 rem(3) rem(10);
+        margin-bottom: rem(20);
+        background-color: $white;
+        h3 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: rem(17);
+          color: $orange-normal;
+          font-weight: normal;
+          .icon-steel {
+            display: inline-block;
+            width: rem(20);
+            height: rem(20);
+            margin-right: rem(5);
+          }
+        }
+
+        .steel-list {
+          margin-top: rem(15);
+          li {
+            float: left;
+            width: 50%;
+            text-align: center;
+            color: #333;
+            font-size: rem(13);
+            line-height: rem(18);
+            .name {
+              margin-right: rem(10);
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

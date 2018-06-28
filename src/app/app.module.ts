@@ -9,12 +9,14 @@ import {appRoutes} from './app.route';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from './shared/shared.module';
 import { RewordDetailComponent } from './reward-home/reword-detail/reword-detail.component';
+import { WinningComponent } from './reward-home/winning/winning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RewardHomeComponent,
     RewordDetailComponent,
+    WinningComponent,
   ],
   imports: [
     BrowserModule,

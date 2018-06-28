@@ -8,139 +8,161 @@
   </div>
 </app-header>-->
 
-<main>
+<div class="detail-container">
   <div class="top">
     <span>- 全部悬赏问答 -</span>
     <div class="btn-wrap">
       <a href="javascript:;" routerLink="/reward-home">查看</a>
     </div>
   </div>
-  <div class="topic">
-    <h3>第十五期：宏观面迎利好，钢价上涨的基础夯实了吗？</h3>
-    <div class="body">
-      <section class="content">
-        <span>
-          {{newStr}}
-        </span>
+
+  <main #scrollContainer>
+
+    <div class="topic">
+      <h3>{{articleDetailObj?.title}}</h3>
+      <div class="body">
+        <section class="content" [class.hide-more]="!showMore">
+          <div [innerHTML]="articleDetailObj?.body">
+          </div>
+
+
+        </section>
+
+      </div>
+      <div class="foot">
         <div class="operate">
-          <span class="icon-cheveron-down" *ngIf="!showMore" (click)="clickExpend($event)"></span>
-          <span class="icon-cheveron-up" *ngIf="showMore" (click)="clickExpend($event)"></span>
+          <span class="icon-cheveron-down" *ngIf="!showMore" (click)="showMore=true"></span>
+          <span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>
         </div>
+        <div class="left-foot">
+          <i class="iconfont icon-systemprompt"></i>
+          <ng-container *ngIf="articleDetailObj.showCountdown">
+            <span class="txt-ctrl">距结束</span>
+            <span class="time">{{articleDetailObj.countDownStr}}</span>
+          </ng-container>
+          <ng-container *ngIf="articleDetailObj.showEnd">
+            <span class="txt-ctrl">已结束</span>
+            <span class="time"></span>
+          </ng-container>
+          <ng-container *ngIf="articleDetailObj.showDoing">
+            <span class="txt-ctrl progress">进行中</span>
+            <span class="time"></span>
+          </ng-container>
 
-      </section>
 
-    </div>
-    <div class="foot">
-      <div class="left-foot">
-        <i class="iconfont icon-systemprompt"></i>
-        <span class="txt-ctrl">
+        </div>
+        <div class="right-foot">
 
-          距结束</span>
-        <span class="time">5天2小时</span>
+          <div class="comment" *ngIf="articleDetailObj?.showReward==='yes'">
+            <img src="../../../assets/icons/icon/money.png" class="icon-money"/>
+            <span>评论赢赏金</span>
+          </div>
+        </div>
       </div>
-      <div class="right-foot">
+    </div>
 
-        <div class="comment">
-          <img src="../../../assets/icons/icon/money.png" class="icon-money"/>
-          <span>评论赢赏金</span>
-        </div>
+    <section class="box">
+      <h3><i class="icon-square"></i> 选择观点</h3>
+
+      <ul class="vote">
+        <li>
+          <h6>已经夯实</h6>
+          <span>20%已支持</span>
+        </li>
+        <li>
+          <span class="btn-vote">投票</span>
+        </li>
+        <li>
+          <h6>不牢固</h6>
+          <span>20%已支持</span>
+        </li>
+        <li>
+          <span class="btn-vote">投票</span>
+
+        </li>
+      </ul>
+    </section>
+
+    <section class="box">
+      <header class="input">
+        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+        <input type="text" placeholder="说说我的想法">
+      </header>
+      <h3><i class="icon-square"></i>精彩评论</h3>
+      <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList;">
+        <header>
+          <div class="avatar"><img [src]="wonderReply.faceIco" alt=""></div>
+          <div class="name">
+            <h6>{{wonderReply.name}} <em *ngIf="!!wonderReply.optionName">我选：{{wonderReply.optionName}}</em></h6>
+            <span>{{wonderReply.createTime}}</span>
+          </div>
+        </header>
+        <section class="main-comment">
+
+          {{wonderReply.content}}
+        </section>
+        <footer>
+          <div class="praise">
+            <ng-container *ngIf="wonderReply.isDigg==='yes'">
+              <i class="iconfont icon-praise_fill active"></i>
+              <span>{{wonderReply.digg}}</span>
+            </ng-container>
+
+            <ng-container *ngIf="wonderReply.isDigg==='no'">
+              <i class="iconfont icon-praise_fill"></i>
+            </ng-container>
+
+          </div>
+          <div class="praise">
+            <i class="iconfont icon-message"></i>
+            <span>2</span>
+          </div>
+
+        </footer>
+        <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
+          <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
+        </section>
+
       </div>
-    </div>
-  </div>
 
-  <section class="box">
-    <h3><i class="icon-square"></i> 选择观点</h3>
+      <h3><i class="icon-square"></i>全部评论</h3>
+      <div class="detail-content">
+        <header>
+          <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+          <div class="name">
+            <h6>张先生 <em>我选：夯实</em></h6>
+            <span>2018-05-08 8.29</span>
+          </div>
+        </header>
+        <section class="main-comment">
 
-    <ul class="vote">
-      <li>
-        <h6>已经夯实</h6>
-        <span>20%已支持</span>
-      </li>
-      <li>
-        <span class="btn-vote">投票</span>
-      </li>
-      <li>
-        <h6>不牢固</h6>
-        <span>20%已支持</span>
-      </li>
-      <li>
-        <span class="btn-vote">投票</span>
+          真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
+        </section>
+        <footer>
+          <div class="praise">
+            <i class="iconfont icon-praise_fill active"></i>
+            <span>1</span>
+          </div>
+          <div class="praise">
+            <i class="iconfont icon-message"></i>
+            <span>2</span>
+          </div>
 
-      </li>
-    </ul>
-  </section>
+        </footer>
+        <section class="origin-comment">
+          <span>朱亮</span>：说的有道理
+        </section>
 
-  <section class="box">
-    <header class="input">
-      <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
-      <input type="text" placeholder="说说我的想法">
-    </header>
-    <h3><i class="icon-square"></i>精彩评论</h3>
-    <div class="detail-content">
-      <header>
-        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
-        <div class="name">
-          <h6>张先生 <em>我选：夯实</em></h6>
-          <span>2018-05-08 8.29</span>
-        </div>
-      </header>
-      <section class="main-comment">
+      </div>
+    </section>
+  </main>
 
-        真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
-      </section>
-      <footer>
-        <div class="praise">
-          <i class="iconfont icon-praise_fill active"></i>
-          <span>1</span>
-        </div>
-        <div class="praise">
-          <i class="iconfont icon-message"></i>
-          <span>2</span>
-        </div>
+  <footer class="footer" *ngIf="articleDetailObj.showEnd">
+    <span (click)="clickGoToWin($event)">获奖名单</span>
+    <div class="line"></div>
+    <a href="{{articleDetailObj.replyArticleURL}}">百家之言</a>
+  </footer>
+</div>
 
-      </footer>
-      <section class="origin-comment">
-        <span>朱亮</span>：说的有道理
-      </section>
-
-    </div>
-
-    <h3><i class="icon-square"></i>全部评论</h3>
-    <div class="detail-content">
-      <header>
-        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
-        <div class="name">
-          <h6>张先生 <em>我选：夯实</em></h6>
-          <span>2018-05-08 8.29</span>
-        </div>
-      </header>
-      <section class="main-comment">
-
-        真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
-      </section>
-      <footer>
-        <div class="praise">
-          <i class="iconfont icon-praise_fill active"></i>
-          <span>1</span>
-        </div>
-        <div class="praise">
-          <i class="iconfont icon-message"></i>
-          <span>2</span>
-        </div>
-
-      </footer>
-      <section class="origin-comment">
-        <span>朱亮</span>：说的有道理
-      </section>
-
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <span>获奖名单</span>
-  <div class="line"></div>
-  <span>百家之言</span>
-</footer>
 
 

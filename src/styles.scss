@@ -111,5 +111,15 @@ $gray-normal: #6b6f73;
 
 $orange-normal: #ff6936;
 
+$pink-normal: #f17f94;
 
+
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
 

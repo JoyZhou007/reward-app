@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --disable-host-check --open --host 0.0.0.0 --proxy-config proxy.conf.json --hmr",
+    "start": "ng serve --disable-host-check --open --host 0.0.0.0 --proxy-config proxy-prod.conf.json --hmr",
     "build": "ng build --service-worker --prod --build-optimizer",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@angular/router": "^6.0.0",
     "@angular/service-worker": "^6.0.0",
     "core-js": "^2.5.4",
+    "dateformat": "^3.0.3",
     "rxjs": "^6.0.0",
     "vconsole": "^3.2.0",
     "zone.js": "^0.8.26"

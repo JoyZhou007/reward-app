@@ -112,7 +112,7 @@
               flex: 1;
               display: flex;
               align-items: center;
-              justify-content: space-around;
+              justify-content: flex-start;
             }
             .left-foot{
               .progress{
@@ -121,6 +121,7 @@
               }
               .time{
                 color: $gray-normal;
+                margin-right: rem(10);
               }
             }
             .right-foot{
