@@ -20,9 +20,9 @@
           我的钢铁APP 留言获奖名单
         </h3>
         <ul class="steel-list">
-          <li *ngFor="let steelObj of steelList">
-            <span class="name">{{steelObj.tplName}}</span>
-            <span class="phone">{{steelObj.tplPhone}}</span>
+          <li *ngFor="let steelObj of appList">
+            <span class="name">{{steelObj.tplUserName}}</span>
+            <span class="phone">{{steelObj.tplNumber}}</span>
           </li>
         </ul>
       </section>
@@ -33,9 +33,9 @@
           我的钢铁网 微信公众号 留言获奖名单
         </h3>
         <ul class="steel-list">
-          <li *ngFor="let steelObj of steelList">
-            <span class="name">{{steelObj.tplName}}</span>
-            <span class="phone">{{steelObj.tplPhone}}</span>
+          <li *ngFor="let steelObj of wxList">
+            <span class="name">{{steelObj.tplUserName}}</span>
+            <span class="phone">{{steelObj.tplNumber}}</span>
           </li>
         </ul>
       </section>

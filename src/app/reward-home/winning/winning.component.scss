@@ -77,15 +77,21 @@
 
         .steel-list {
           margin-top: rem(15);
+          display: flex;
+          flex-wrap: wrap;
           li {
-            float: left;
-            width: 50%;
-            text-align: center;
+            flex: 0 0 50%;
             color: #333;
             font-size: rem(13);
             line-height: rem(18);
+            display: flex;
             .name {
+              flex: 0 0 40%;
+              text-align: center;
               margin-right: rem(10);
+            }
+            .phone{
+              text-align: center;
             }
           }
         }

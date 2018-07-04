@@ -5,6 +5,9 @@ import {DateFormatService} from '../../shared/service/date-format.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ReplyEntity, RewardDetailEntity} from '../entity/reward-entity';
 import {EscapeHtmlService} from '../../shared/service/escape-html.service';
+import {DialogService} from '../../shared/service/dialog.service';
+import {promise} from 'selenium-webdriver';
+import {PKComponent} from '../pk/pk.component';
 
 @Component({
   selector: 'app-reword-detail',
@@ -15,27 +18,28 @@ export class RewordDetailComponent implements OnInit {
   public titStr: string;
   public newStr: string;
   public showMore: boolean = false;
+  public commentValue: string;
 
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   public articleDetailObj: RewardDetailEntity = RewardDetailEntity.init();
   public articleId: string | null;
   public wonderReplyList: ReplyEntity[] = [];
+  public allReplyList: ReplyEntity[] = [];
+  private pageNum: number = 1;
+  private currentReplyPeople: string = '';
+
+  @ViewChild(PKComponent) PKComponent: PKComponent;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
               public router: Router,
+              public dialogService: DialogService,
               public dateFormatService: DateFormatService,
               public activatedRoute: ActivatedRoute,
               public rewardModelService: RewardModelService) {
-    this.titStr = '测试测试测试测试测试测试测试测试测试测试测试测试测试测试' +
-      '测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试\' +\n' +
-      '测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试';
-    this.newStr = this.typeService.substring(this.titStr, 150);
   }
 
   ngOnInit() {
-    let date = this.dateFormatService.formatLocal(new Date());
-    console.log('date', date);
 
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
@@ -43,6 +47,7 @@ export class RewordDetailComponent implements OnInit {
 
     });
 
+    // this.dialogService.openWinnerDialog();
   }
 
   /**
@@ -60,22 +65,13 @@ export class RewordDetailComponent implements OnInit {
   }
 
 
-  @HostListener('scroll', ['$event'])
-  doSomething(event) {
-    console.log('event', event, this.scrollContainer);
-    let wrapper = this.scrollContainer.nativeElement;
-    console.log('wrapper.scrollTop', wrapper.scrollTop, 'window.innerHeight', window.innerHeight, 'wrapper.scrollHeight', wrapper.scrollHeight);
-    if (wrapper.scrollTop + window.innerHeight >= wrapper.scrollHeight) {
-      console.log('reached bottom!');
-    }
-  }
-
   private getDetail(): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.rewardModelService.getDetail(this.articleId).subscribe(data => {
         this.articleDetailObj = RewardDetailEntity.init();
         this.checkCountdown(data);
         Object.assign(this.articleDetailObj, data);
+        this.PKComponent.articleDetailObj = this.articleDetailObj;
         this.getReplyList();
       });
     }));
@@ -122,15 +118,139 @@ export class RewordDetailComponent implements OnInit {
     return new Promise<any>((resolve, reject) => {
       this.rewardModelService.getReplyList({
         id: this.articleDetailObj.id,
-        channelId: this.articleDetailObj.channelId
+        channelId: this.articleDetailObj.channelId,
+        pageNum: this.pageNum
       }).subscribe(data => {
-        let wonderList = data.wonderFulReply;
+        // if (this.pageNum === 1) {
+        //
+        // }
+
+        let wonderList = data.wonderFulReply || [];
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
           this.wonderReplyList.push(replyObj);
         });
+
+        let allReplyList = data.allReply || [];
+        if (!allReplyList.length) {
+          if (this.pageNum !== 1) {
+            this.dialogService.openTipDialog({
+              content: '已经是最后一页了'
+            });
+          }
+          this.pageNum = -1;
+
+        } else {
+          allReplyList.forEach(reply => {
+            let replyObj = ReplyEntity.init();
+            Object.assign(replyObj, reply);
+            //将精彩评论和全部评论对象关联
+            for (let i = 0, len = this.wonderReplyList.length; i < len; i++) {
+              if (this.wonderReplyList[i].id === replyObj.id) {
+                console.log('相同');
+                this.wonderReplyList[i] = replyObj;
+              }
+            }
+            this.allReplyList.push(replyObj);
+          });
+        }
+
+
       });
     });
   }
+
+  /**
+   * 点赞/取消赞
+   * @param {MouseEvent} event
+   * @param {ReplyEntity} reply
+   */
+  public clickPraise(event: MouseEvent, reply: ReplyEntity): void {
+    event.stopPropagation();
+    this.rewardModelService.praise({
+      replyId: reply.id
+    }).subscribe(data => {
+      console.log('reply.isDigg', reply.isDigg);
+      if (reply.isDigg === 'yes') {
+        reply.isDigg = 'no';
+      } else {
+        reply.isDigg = 'yes';
+      }
+      reply.digg = data.digNum;
+
+    });
+  }
+
+  /**
+   * 发送评论
+   * @param {Event} event
+   */
+  public async sendComment(event: Event): Promise<any> {
+    console.log(event);
+    if (this.commentValue.trim() !== '') {
+      let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
+      let topicId = await this.getTopicId();
+      console.log('topic', topicId);
+      let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
+      let formData = {
+        topicId: topicId,
+        channlId: this.articleDetailObj.channelId,
+        objectType: this.articleDetailObj.type,
+        objectId: this.articleDetailObj.id,
+        objectTitle: this.articleDetailObj.title,
+        content: content,
+        replyId: replyId
+      };
+      this.rewardModelService.doComment(formData).subscribe(data => {
+        this.allReplyList = [];
+        this.wonderReplyList = [];
+        this.pageNum = 1;
+        this.commentValue = '';
+        this.getReplyList();
+      });
+    }
+
+  }
+
+
+  @HostListener('window:scroll', ['$event'])
+  doSomething(event) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      // you're at the bottom of the page
+      console.log('bottom');
+      if (this.pageNum !== -1) {
+        this.pageNum++;
+        this.getReplyList();
+      } else {
+        // this.dialogService.openTipDialog({
+        //   content: '已经是最后一页了'
+        // });
+      }
+    }
+  }
+
+  /**
+   * 获取topicId
+   * @returns {promise<any>}
+   */
+  private getTopicId(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.rewardModelService.getTopicId({
+        id: this.articleDetailObj.id,
+        type: this.articleDetailObj.type
+      }).subscribe(data => {
+        let topicId = data.topicId || '';
+        resolve(topicId);
+      });
+    });
+  }
+
+  public clickCommentReply(event: MouseEvent, ipt: HTMLElement, reply: ReplyEntity): void {
+    ipt.focus();
+    this.commentValue = `@${reply.name} `;
+    this.currentReplyPeople = reply.id;
+  }
+
+
 }

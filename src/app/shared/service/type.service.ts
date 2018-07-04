@@ -49,4 +49,24 @@ export class TypeService {
   public formatName(str: string): string {
     return new Array(str.length).join('*') + str.substr(-1);
   }
+
+  /**
+   * 采用节流实现限制回调函数调用频率
+   * @param fn
+   * @param time
+   * @returns {(...args) => undefined}
+   */
+  public ttrottle(fn,time){
+    let isNeedInvoke = true;
+    return function(...args){
+      if(!isNeedInvoke)return;
+      let context = this;
+      let _arguments = args;
+      isNeedInvoke = false;
+      setTimeout(()=>{
+        fn.apply(context,_arguments);
+        isNeedInvoke = true;
+      },time);
+    };
+  };
 }

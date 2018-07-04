@@ -10,6 +10,17 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from './shared/shared.module';
 import { RewordDetailComponent } from './reward-home/reword-detail/reword-detail.component';
 import { WinningComponent } from './reward-home/winning/winning.component';
+import { DialogComponent } from './dialog/dialog.component';
+import {FormsModule} from '@angular/forms';
+import { PKComponent } from './reward-home/pk/pk.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+import { ProgressbarModule } from 'ngx-bootstrap';
+
+registerLocaleData(zh);
 
 @NgModule({
   declarations: [
@@ -17,16 +28,23 @@ import { WinningComponent } from './reward-home/winning/winning.component';
     RewardHomeComponent,
     RewordDetailComponent,
     WinningComponent,
+    DialogComponent,
+    PKComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes,
     ),
     SharedModule.forRoot(),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    NgZorroAntdModule,
+    ProgressbarModule.forRoot()
   ],
-  providers: [],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,14 +17,14 @@
       <ul class="article">
         <li *ngFor="let articleObj of topicList">
           <h3 (click)="clickOpenDetail($event,articleObj)"><i class="icon-square"></i>{{articleObj?.title}}</h3>
-          <div class="body" (click)="clickOpenDetail($event,articleObj)">
+          <div class="body" (click)="clickOpenDetail($event,articleObj)" *ngIf="!!articleObj.content">
             <header>
               <div class="avatar"><img [src]="articleObj.faceIco" alt=""></div>
               <div class="name">
                 <h6>{{articleObj?.name}} <em *ngIf="!!articleObj.optionName">我选：{{articleObj?.optionName}}</em></h6>
               </div>
             </header>
-            <section class="content" >
+            <section class="content">
               <span>{{articleObj.content}}</span>
             </section>
 
@@ -32,7 +32,7 @@
           <div class="foot">
             <div class="left-foot">
               <span class="time">{{articleObj.date}} {{articleObj.time}}</span>
-              <span class="progress" *ngIf="articleObj.isDoing">进行中</span>
+              <span class="my-progress" *ngIf="articleObj.isDoing">进行中</span>
             </div>
             <div class="right-foot">
               <span class="comment" (click)="clickOpenDetail($event,articleObj)">{{articleObj.comments}}条评论</span>

@@ -6,7 +6,8 @@
   <base href="/">
 
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-  <meta id="viewport" name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
+  <meta id="viewport" name="viewport"
+        content="width=device-width; initial-scale=1.0; maximum-scale=1; user-scalable=no;">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1976d2">
@@ -25,7 +26,24 @@
       html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
     }
 
-    window.addEventListener('resize', onWindowResize);
+    //采用节流实现限制回调函数调用频率
+    function ttrottle(fn,time){
+      let isNeedInvoke = true;
+      return function(...args){
+        if(!isNeedInvoke)return;
+        let context = this;
+        let _arguments = args;
+        isNeedInvoke = false;
+        setTimeout(()=>{
+          fn.apply(context,_arguments);
+          isNeedInvoke = true;
+        },time);
+      };
+    };
+
+    window.onresize = ttrottle(onWindowResize,500);
+
+    // window.addEventListener('resize', onWindowResize);
     onWindowResize();
   })();
 

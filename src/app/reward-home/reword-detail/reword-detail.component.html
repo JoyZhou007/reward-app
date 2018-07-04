@@ -45,7 +45,7 @@
             <span class="time"></span>
           </ng-container>
           <ng-container *ngIf="articleDetailObj.showDoing">
-            <span class="txt-ctrl progress">进行中</span>
+            <span class="txt-ctrl my-progress">进行中</span>
             <span class="time"></span>
           </ng-container>
 
@@ -61,35 +61,17 @@
       </div>
     </div>
 
-    <section class="box">
-      <h3><i class="icon-square"></i> 选择观点</h3>
-
-      <ul class="vote">
-        <li>
-          <h6>已经夯实</h6>
-          <span>20%已支持</span>
-        </li>
-        <li>
-          <span class="btn-vote">投票</span>
-        </li>
-        <li>
-          <h6>不牢固</h6>
-          <span>20%已支持</span>
-        </li>
-        <li>
-          <span class="btn-vote">投票</span>
-
-        </li>
-      </ul>
-    </section>
+    <app-pk #PKComponent [setData]="articleDetailObj.articleStandArr"
+      (outFresh)="getDetail()"
+    ></app-pk>
 
     <section class="box">
       <header class="input">
         <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
-        <input type="text" placeholder="说说我的想法">
+        <input type="text" placeholder="说说我的想法" #ipt [(ngModel)]="commentValue" (keyup.enter)="sendComment($event)">
       </header>
-      <h3><i class="icon-square"></i>精彩评论</h3>
       <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList;">
+        <h3><i class="icon-square"></i>精彩评论</h3>
         <header>
           <div class="avatar"><img [src]="wonderReply.faceIco" alt=""></div>
           <div class="name">
@@ -103,54 +85,63 @@
         </section>
         <footer>
           <div class="praise">
-            <ng-container *ngIf="wonderReply.isDigg==='yes'">
-              <i class="iconfont icon-praise_fill active"></i>
-              <span>{{wonderReply.digg}}</span>
-            </ng-container>
 
-            <ng-container *ngIf="wonderReply.isDigg==='no'">
-              <i class="iconfont icon-praise_fill"></i>
-            </ng-container>
-
+            <i class="iconfont icon-praise_fill active"
+               [class.active]="wonderReply.isDigg==='yes'"
+               (click)="clickPraise($event,wonderReply)"></i>
+            <span (click)="clickPraise($event,wonderReply)"
+                  *ngIf="wonderReply.digg!=='0'"
+            >{{wonderReply.digg}}</span>
           </div>
-          <div class="praise">
+          <div class="praise" (click)="clickCommentReply($event,ipt,wonderReply)">
             <i class="iconfont icon-message"></i>
-            <span>2</span>
+            <span>{{wonderReply.comments}}</span>
           </div>
 
         </footer>
         <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
-          <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
+          <div>
+            <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
+          </div>
         </section>
 
       </div>
 
       <h3><i class="icon-square"></i>全部评论</h3>
-      <div class="detail-content">
+      <div class="detail-content all-reply" *ngFor="let reply of allReplyList;">
         <header>
-          <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+          <div class="avatar">
+            <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">
+            <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
+          </div>
           <div class="name">
-            <h6>张先生 <em>我选：夯实</em></h6>
-            <span>2018-05-08 8.29</span>
+            <h6>{{reply.name}} <em *ngIf="!!reply.optionName">我选：{{reply.optionName}}</em></h6>
+            <span>{{reply.createTime}}</span>
           </div>
         </header>
         <section class="main-comment">
 
-          真想控制房价，管管房价，看看加拿大。限购？就是扯淡真想控制房价，管管低价，看看加拿大。限购？
+          {{reply.content}}
         </section>
         <footer>
-          <div class="praise">
-            <i class="iconfont icon-praise_fill active"></i>
-            <span>1</span>
+          <div class="praise" (click)="clickPraise($event,reply)">
+            <i class="iconfont icon-praise_fill active"
+               [class.active]="reply.isDigg==='yes'"
+               ></i>
+            <span
+                  *ngIf="reply.digg!=='0'"
+            >{{reply.digg}}</span>
           </div>
-          <div class="praise">
+          <div class="praise" (click)="clickCommentReply($event,ipt,reply)">
             <i class="iconfont icon-message"></i>
-            <span>2</span>
+            <span>{{reply.comments}}</span>
           </div>
 
         </footer>
-        <section class="origin-comment">
-          <span>朱亮</span>：说的有道理
+        <section class="origin-comment" *ngIf="!!reply.toReplyId">
+          <div>
+            <span>{{reply.toReplyName}}：</span>{{reply.toReplyName}}：{{reply.toReplyContent}}
+          </div>
         </section>
 
       </div>

@@ -1,7 +1,7 @@
 @import "../../../styles";
 
 .detail-container{
-  height: 100vh;
+  //height: 100vh;
 }
 .top {
   position: fixed;
@@ -104,7 +104,7 @@ main {
       .left-foot {
         //display: flex;
         //align-items: center;
-        .progress {
+        .my-progress {
           color: $orange-normal !important;
           font-weight: bold;
         }
@@ -162,7 +162,7 @@ main {
         height: rem(20);
         border: rem(1) solid $blue-light;
         border-radius: rem(5);
-        padding: rem(5) rem(10);
+        padding: rem(15) rem(10);
         background-color: $white-1;
       }
     }
@@ -207,6 +207,7 @@ main {
     }
 
     .detail-content {
+      //padding-bottom: rem(25);
       header {
         display: flex;
         justify-content: flex-start;
@@ -243,8 +244,9 @@ main {
       .main-comment {
         margin-top: rem(5);
         padding-left: rem(50);
-        line-height: rem(18);
+        line-height: rem(25);
         font-size: rem(14);
+
       }
       .origin-comment {
         display: flex;
@@ -252,6 +254,8 @@ main {
         margin-left: rem(50);
         padding: rem(10);
         background-color: $blue-1;
+        line-height: rem(25);
+        margin-bottom: rem(20);
         span {
           color: #449fdb;
         }
@@ -280,6 +284,11 @@ main {
       }
     }
     .wonder{
+      margin-bottom: rem(25);
+    }
+
+    .all-reply{
+      border-bottom: rem(1) solid #eee;
       margin-bottom: rem(25);
     }
   }

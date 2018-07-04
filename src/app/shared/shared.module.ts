@@ -11,6 +11,8 @@ import {UserService} from './service/user.service';
 import {DateFormatService} from './service/date-format.service';
 import {HandleInterceptor} from './service/handle-interceptor';
 import {EscapeHtmlService} from './service/escape-html.service';
+import {NotificationService} from './service/notification.service';
+import {DialogService} from './service/dialog.service';
 
 @NgModule({
   imports: [
@@ -32,7 +34,9 @@ export class SharedModule {
         {provide: UserService, useClass: UserService},
         {provide: DateFormatService, useClass: DateFormatService},
         {provide: EscapeHtmlService, useClass: EscapeHtmlService},
-        {provide: HTTP_INTERCEPTORS, useClass: HandleInterceptor, multi: true },
+        {provide: NotificationService, useClass: NotificationService},
+        {provide: DialogService, useClass: DialogService},
+        {provide: HTTP_INTERCEPTORS, useClass: HandleInterceptor, multi: true},
       ]
     };
 

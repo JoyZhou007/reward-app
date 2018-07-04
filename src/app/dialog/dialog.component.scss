@@ -1,0 +1,65 @@
+@import "../../styles";
+
+.dialog-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(109, 109, 112, .8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  .dialog {
+    position: relative;
+    width: 80%;
+    padding: rem(25) rem(15) rem(15);
+    background-color: $white;
+    border-radius: rem(10);
+    .btn-wrap {
+      position: absolute;
+      right: rem(10);
+      top: rem(10);
+    }
+    .tit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: rem(20);
+      color: $orange-normal;
+      margin-bottom: rem(20);
+    }
+    .content {
+      line-height: rem(20);
+      font-size: rem(16);
+    }
+    .footer {
+      margin-top: rem(22);
+      color: $gray-normal;
+      font-size: rem(12);
+    }
+  }
+}
+
+.dialog-tip {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  .dialog-box {
+    padding: rem(15);
+    min-width: rem(100);
+    display: flex;
+    color: $white;
+    font-size: rem(16);
+    align-items: center;
+    justify-content: center;
+    background-color: $gray-1;
+  }
+}

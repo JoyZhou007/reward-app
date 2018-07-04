@@ -1,3 +1,26 @@
-<p>
-  pk works!
-</p>
+<section class="box">
+  <h3><i class="icon-square"></i> 选择观点</h3>
+
+  <ul class="vote">
+    <ng-container *ngFor="let voteObj of voteList;">
+      <li>
+        <h6>{{voteObj.option}}</h6>
+        <!--<div class="bar" [style.width]="voteObj.supportRate">-->
+          <!--{{voteObj.supportRate}} 已支持-->
+        <!--</div>-->
+        <progressbar max="100" [value]="voteObj.width"  [striped]="true" [animate]="true"><i>{{voteObj.supportRate}}已支持</i></progressbar>
+      </li>
+      <li>
+        <button class="btn-vote" [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote" [disabled]="articleDetailObj.articleStandId!==''" (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}</button>
+      </li>
+    </ng-container>
+  </ul>
+</section>
+
+<!--<section class="box">-->
+  <!--<h3><i class="icon-square"></i> 选择观点</h3>-->
+
+  <!--<ul class="vote">-->
+    <!--<progressbar class="progress" [value]="stacked" [max]="100"></progressbar>-->
+  <!--</ul>-->
+<!--</section>-->

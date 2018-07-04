@@ -1,3 +1,23 @@
-<p>
-  dialog works!
-</p>
+<div class="dialog-container" *ngIf="showDialog">
+  <div class="dialog">
+    <div class="btn-wrap">
+      <i class="iconfont icon-close" (click)="showDialog=false"></i>
+    </div>
+    <header class="tit">- 提示 -</header>
+    <section class="content">
+      1.每期问答结束后，我们将从所有评论中抽取不少于3位幸运用户，并送出50元，30元，20元，10元不等的红包奖励。我们会结合专家评估和评论点赞数，选出优质评论！
+      <br> <br>
+      2.我们的客服会在每周一，逐一联系中奖用户，送出红包奖励哦~
+    </section>
+
+    <footer class="footer">
+      本次活动解释权归我的钢铁网所有
+    </footer>
+  </div>
+</div>
+
+<div class="dialog-tip" *ngIf="showTipDialog">
+  <div class="dialog-box">
+    {{tipContent}}
+  </div>
+</div>

@@ -22,8 +22,11 @@
     "@angular/pwa": "^0.6.8",
     "@angular/router": "^6.0.0",
     "@angular/service-worker": "^6.0.0",
+    "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
     "dateformat": "^3.0.3",
+    "ng-zorro-antd": "^1.1.1",
+    "ngx-bootstrap": "^3.0.1",
     "rxjs": "^6.0.0",
     "vconsole": "^3.2.0",
     "zone.js": "^0.8.26"

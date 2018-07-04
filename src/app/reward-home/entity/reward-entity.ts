@@ -38,8 +38,11 @@ export class RewardDetailEntity {
   showDoing: boolean;//显示进行中
   showEnd: boolean;// 显示已结束
   replyArticleURL: string;//百家之言
-  id: string;
+  id: string; //articleId
   channelId: string;
+  type: string;
+  articleStandArr: any[];
+  articleStandId: string; //支持观点
 
   static init() {
     let obj = new RewardDetailEntity();
@@ -53,6 +56,9 @@ export class RewardDetailEntity {
     obj.replyArticleURL = '';
     obj.id = '';
     obj.channelId = '';
+    obj.type = '';
+    obj.articleStandArr = [];
+    obj.articleStandId = '';
     return obj;
   }
 }
@@ -77,6 +83,7 @@ export class ReplyEntity {
   toReplyNumber: string;
   topicId: string;
   userType: string;
+  comments: string;
 
   static init() {
     let obj = new ReplyEntity();
@@ -96,6 +103,47 @@ export class ReplyEntity {
     obj.toReplyNumber = '';
     obj.topicId = '';
     obj.userType = '';
+    obj.comments = '';
+    return obj;
+  }
+}
+
+/**
+ * 获奖人
+ */
+export class WinnerEntity {
+  userName: string;
+  number: string;
+  tplUserName: string;
+  tplNumber: string;
+
+  static init() {
+    let obj = new WinnerEntity();
+    obj.userName = '';
+    obj.number = '';
+    obj.tplNumber = '';
+    obj.tplUserName = '';
+    return obj;
+  }
+}
+
+/**
+ * 投票
+ */
+export class VoteEntity {
+  id: string;
+  hasVote: boolean;
+  option: string;
+  supportRate: string;
+  width: number;
+
+  static init() {
+    let obj = new VoteEntity();
+    obj.id = '';
+    obj.hasVote = false;
+    obj.option = '';
+    obj.supportRate = '0%';
+    obj.width = 0;
     return obj;
   }
 }
