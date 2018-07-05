@@ -7,7 +7,7 @@ import {WinningComponent} from './reward-home/winning/winning.component';
 export const appRoutes: Routes = [
   {
     path: '',
-    component: RewordDetailComponent
+    component: RewardHomeComponent
   },
   {
     path: 'reward-detail/:id',
