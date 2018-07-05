@@ -157,6 +157,13 @@ main {
           height: rem(40);
         }
       }
+      .btn-send{
+        color: $gray-1;
+        margin-left: rem(8);
+      }
+      .active-send{
+        color: $blue-normal;
+      }
       input {
         flex: 1;
         height: rem(20);
