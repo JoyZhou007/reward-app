@@ -66,7 +66,7 @@ export class RewordDetailComponent implements OnInit {
   }
 
 
-  private getDetail(): Promise<any> {
+  public getDetail(): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.rewardModelService.getDetail(this.articleId).subscribe(data => {
         this.articleDetailObj = RewardDetailEntity.init();
