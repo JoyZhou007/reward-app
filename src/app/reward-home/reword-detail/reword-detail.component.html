@@ -62,7 +62,7 @@
     </div>
 
     <app-pk #PKComponent [setData]="articleDetailObj.articleStandArr"
-      (outFresh)="getDetail()"
+            (outFresh)="getDetail()"
     ></app-pk>
 
     <section class="box">
@@ -73,8 +73,8 @@
               (click)="sendComment($event,ipt)"
               [class.active-send]="ipt.value!==''">发送</span>
       </header>
-      <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList;">
-        <h3><i class="icon-square"></i>精彩评论</h3>
+      <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList; let i=index;">
+        <h3 *ngIf="i===0"><i class="icon-square"></i>精彩评论</h3>
         <header>
           <div class="avatar"><img [src]="wonderReply.faceIco" alt=""></div>
           <div class="name">
@@ -130,9 +130,9 @@
           <div class="praise" (click)="clickPraise($event,reply)">
             <i class="iconfont icon-praise_fill active"
                [class.active]="reply.isDigg==='yes'"
-               ></i>
+            ></i>
             <span
-                  *ngIf="reply.digg!=='0'"
+              *ngIf="reply.digg!=='0'"
             >{{reply.digg}}</span>
           </div>
           <div class="praise" (click)="clickCommentReply($event,ipt,reply)">

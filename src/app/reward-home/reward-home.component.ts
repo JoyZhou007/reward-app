@@ -13,6 +13,7 @@ import {DialogService} from '../shared/service/dialog.service';
 export class RewardHomeComponent implements OnInit {
   public topicList: Array<any>;
   private pageNum: number = 1;
+  public hasInit: boolean = false;
 
   constructor(public router: Router,
               public dialogService: DialogService,
@@ -22,7 +23,9 @@ export class RewardHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getList();
+    this.getList().then(() => {
+      this.hasInit = true;
+    });
   }
 
 
@@ -47,7 +50,7 @@ export class RewardHomeComponent implements OnInit {
         let articles = data.articles || [];
         let currentTime = data.currentTime;
         if (!articles.length) {
-          if(this.pageNum!==1){
+          if (this.pageNum !== 1) {
             this.dialogService.openTipDialog({
               content: '已经是最后一页了'
             });
@@ -62,7 +65,7 @@ export class RewardHomeComponent implements OnInit {
           });
         }
 
-
+        resolve(data);
       }, error => {
 
       });
@@ -73,18 +76,21 @@ export class RewardHomeComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      // you're at the bottom of the page
-      console.log("Bottom of page");
-      if (this.pageNum !== -1) {
-        this.pageNum++;
-        this.getList();
-      } else {
-        this.dialogService.openTipDialog({
-          content: '已经是最后一页了'
-        });
+    if (this.hasInit) {
+      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+        // you're at the bottom of the page
+        console.log('Bottom of page');
+        if (this.pageNum !== -1) {
+          this.pageNum++;
+          this.getList();
+        } else {
+          this.dialogService.openTipDialog({
+            content: '已经是最后一页了'
+          });
+        }
       }
     }
+
   }
 
 }

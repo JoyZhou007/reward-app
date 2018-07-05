@@ -29,6 +29,7 @@ export class RewordDetailComponent implements OnInit {
   private currentReplyPeople: string = '';
 
   @ViewChild(PKComponent) PKComponent: PKComponent;
+  public hasInit: boolean = false;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -38,14 +39,16 @@ export class RewordDetailComponent implements OnInit {
               public dateFormatService: DateFormatService,
               public activatedRoute: ActivatedRoute,
               public rewardModelService: RewardModelService) {
+    this.pageNum = 1;
   }
 
   ngOnInit() {
 
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
-      this.getDetail();
-
+      this.getDetail().then(() => {
+        this.hasInit = true;
+      });
     });
 
     // this.dialogService.openWinnerDialog();
@@ -81,7 +84,9 @@ export class RewordDetailComponent implements OnInit {
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
-        this.getReplyList();
+        this.getReplyList().then(()=>{
+          resolve(data);
+        });
       });
     }));
   }
@@ -125,6 +130,7 @@ export class RewordDetailComponent implements OnInit {
    */
   private getReplyList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
+      console.log('page@@@', this.pageNum);
       this.rewardModelService.getReplyList({
         id: this.articleDetailObj.id,
         channelId: this.articleDetailObj.channelId,
@@ -133,6 +139,7 @@ export class RewordDetailComponent implements OnInit {
         // if (this.pageNum === 1) {
         //
         // }
+
 
         let wonderList = data.wonderFulReply || [];
         wonderList.forEach(value => {
@@ -151,6 +158,7 @@ export class RewordDetailComponent implements OnInit {
           this.pageNum = -1;
 
         } else {
+          this.pageNum++;
           allReplyList.forEach(reply => {
             let replyObj = ReplyEntity.init();
             Object.assign(replyObj, reply);
@@ -165,6 +173,7 @@ export class RewordDetailComponent implements OnInit {
           });
         }
 
+        resolve(data);
 
       });
     });
@@ -224,20 +233,21 @@ export class RewordDetailComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-
-    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-      // you're at the bottom of the page
-      console.log('Bottom of page');
-      // you're at the bottom of the page
-      if (this.pageNum !== -1) {
-        this.pageNum++;
-        this.getReplyList();
-      } else {
-        this.dialogService.openTipDialog({
-          content: '已经是最后一页了'
-        });
+    if(this.hasInit){
+      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+        // you're at the bottom of the page
+        console.log('Bottom of page');
+        // you're at the bottom of the page
+        if (this.pageNum !== -1) {
+          this.getReplyList();
+        } else {
+          this.dialogService.openTipDialog({
+            content: '已经是最后一页了'
+          });
+        }
       }
     }
+
   }
 
   /**
