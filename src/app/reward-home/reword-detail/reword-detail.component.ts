@@ -196,7 +196,7 @@ export class RewordDetailComponent implements OnInit {
    * @param ipt
    */
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
-    if (this.commentValue.trim() !== '') {
+    if (this.commentValue && this.commentValue.trim() !== '') {
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       let topicId = await this.getTopicId();
       let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');

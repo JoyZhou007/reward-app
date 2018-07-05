@@ -69,7 +69,9 @@
       <header class="input">
         <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
         <input type="text" placeholder="说说我的想法" #ipt [(ngModel)]="commentValue" (keyup.enter)="sendComment($event,ipt)">
-        <span class="btn-send" [class.active-send]="ipt.value!==''">发送</span>
+        <span class="btn-send"
+              (click)="sendComment($event,ipt)"
+              [class.active-send]="ipt.value!==''">发送</span>
       </header>
       <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList;">
         <h3><i class="icon-square"></i>精彩评论</h3>
