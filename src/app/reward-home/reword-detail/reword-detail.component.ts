@@ -33,6 +33,7 @@ export class RewordDetailComponent implements OnInit {
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
               public router: Router,
+              public typeScript: TypeService,
               public dialogService: DialogService,
               public dateFormatService: DateFormatService,
               public activatedRoute: ActivatedRoute,
@@ -72,6 +73,14 @@ export class RewordDetailComponent implements OnInit {
         this.checkCountdown(data);
         Object.assign(this.articleDetailObj, data);
         this.PKComponent.articleDetailObj = this.articleDetailObj;
+        const imgList = data.img;
+        let body = data.body.toString();
+        let index = -1;
+        this.articleDetailObj.body = body.replace(/(<!--IMG#\d+-->)/gm, function (match, ...m) {
+          console.log('match', match);
+          index++;
+          return `<img src="${imgList[index].src}" width="100%"/>`;
+        });
         this.getReplyList();
       });
     }));
@@ -134,11 +143,11 @@ export class RewordDetailComponent implements OnInit {
 
         let allReplyList = data.allReply || [];
         if (!allReplyList.length) {
-          if (this.pageNum !== 1) {
-            this.dialogService.openTipDialog({
-              content: '已经是最后一页了'
-            });
-          }
+          // if (this.pageNum !== 1) {
+          //   this.dialogService.openTipDialog({
+          //     content: '已经是最后一页了'
+          //   });
+          // }
           this.pageNum = -1;
 
         } else {
@@ -171,7 +180,6 @@ export class RewordDetailComponent implements OnInit {
     this.rewardModelService.praise({
       replyId: reply.id
     }).subscribe(data => {
-      console.log('reply.isDigg', reply.isDigg);
       if (reply.isDigg === 'yes') {
         reply.isDigg = 'no';
       } else {
@@ -187,11 +195,9 @@ export class RewordDetailComponent implements OnInit {
    * @param {Event} event
    */
   public async sendComment(event: Event): Promise<any> {
-    console.log(event);
     if (this.commentValue.trim() !== '') {
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       let topicId = await this.getTopicId();
-      console.log('topic', topicId);
       let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
       let formData = {
         topicId: topicId,
@@ -216,16 +222,18 @@ export class RewordDetailComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       // you're at the bottom of the page
-      console.log('bottom');
+      console.log('Bottom of page');
+      // you're at the bottom of the page
       if (this.pageNum !== -1) {
         this.pageNum++;
         this.getReplyList();
       } else {
-        // this.dialogService.openTipDialog({
-        //   content: '已经是最后一页了'
-        // });
+        this.dialogService.openTipDialog({
+          content: '已经是最后一页了'
+        });
       }
     }
   }

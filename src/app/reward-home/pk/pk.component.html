@@ -1,4 +1,4 @@
-<section class="box">
+<section class="box" *ngIf="voteList.length!==2">
   <h3><i class="icon-square"></i> 选择观点</h3>
 
   <ul class="vote">
@@ -17,10 +17,83 @@
   </ul>
 </section>
 
-<!--<section class="box">-->
-  <!--<h3><i class="icon-square"></i> 选择观点</h3>-->
+<section class="box" *ngIf="voteList.length===2">
+  <h3><i class="icon-square"></i> 选择观点</h3>
 
-  <!--<ul class="vote">-->
-    <!--<progressbar class="progress" [value]="stacked" [max]="100"></progressbar>-->
-  <!--</ul>-->
-<!--</section>-->
+
+  <div class="vote" >
+    <!--未投票-->
+    <div class="vote-box" *ngIf="articleDetailObj.articleStandId===''">
+      <div class="box-bar left-box blue-bar">
+
+        <div class="option">
+          {{voteList[0]?.option}}
+        </div>
+        <!--<div class="rate">-->
+          <!--{{voteList[0]?.supportRate}}-->
+        <!--</div>-->
+        <div class="btn-support" (click)="clickVote($event,voteList[0])">
+          <span class="btn-wrap">
+            支持
+          </span>
+        </div>
+      </div>
+      <div class="box-bar right-box red-bar">
+
+        <div class="option">
+          {{voteList[1]?.option}}
+        </div>
+        <!--<div class="rate">-->
+          <!--{{voteList[1]?.supportRate}}-->
+        <!--</div>-->
+        <div class="btn-support" (click)="clickVote($event,voteList[1])">
+         <span class="btn-wrap">
+            支持
+          </span>
+        </div>
+      </div>
+      <div class="pk">
+        pk
+      </div>
+    </div>
+
+    <!--投过票-->
+
+    <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!==''">
+      <div class="box-bar left-box blue-bar"
+           [style.width]="voteList[0]?.width+'%'">
+
+
+      </div>
+      <div class="box-bar right-box red-bar"
+
+           [style.width]="voteList[1]?.width+'%'">
+
+
+      </div>
+      <div class="left-txt">
+        <div class="option"
+             [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0"
+        >
+          {{voteList[0]?.option}}
+        </div>
+        <div class="rate"
+             [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0">
+          {{voteList[0]?.supportRate}}
+        </div>
+      </div>
+      <div class="right-txt">
+        <div class="option"
+             [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0"
+        >
+          {{voteList[1]?.option}}
+        </div>
+        <div class="rate"
+             [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0"
+        >
+          {{voteList[1]?.supportRate}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

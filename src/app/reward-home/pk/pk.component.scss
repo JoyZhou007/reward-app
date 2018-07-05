@@ -12,7 +12,7 @@
     border-radius: rem(10);
     box-shadow: 0 2px rem(2);
     margin-top: rem(10);
-    .bar{
+    .bar {
       height: rem(25);
       width: 100%;
       background-color: $blue-normal;
@@ -30,7 +30,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      &:nth-child(2n){
+      &:nth-child(2n) {
         align-items: flex-end;
         justify-content: flex-end;
       }
@@ -46,18 +46,121 @@
         border-radius: rem(15);
         border: rem(1) solid $blue-light;
       }
-      .btn-disabled{
+      .btn-disabled {
         color: $gray-1;
         border-color: $gray-1;
       }
+    }
+
+    .vote-box-show{
+      width: 100%;
+      height: rem(75);
+      position: relative;
+      .box-bar {
+        float: left;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: rem(19);
+        color: $white;
+        flex-wrap: wrap;
+      }
+
+      .left-txt{
+        position: absolute;
+        left: rem(10);
+        top: 50%;
+        transform: translateY(-50%);
+        .option,.rate{
+          font-size: rem(19);
+          line-height: rem(25);
+          color: $white;
+        }
+      }
+      .right-txt{
+        position: absolute;
+        right: rem(10);
+        top: 50%;
+        transform: translateY(-50%);
+        .option,.rate{
+          font-size: rem(19);
+          line-height: rem(25);
+          color: $white;
+        }
+      }
+    }
+    .gray-txt{
+      color: $gray-normal !important;
+    }
+
+    .red-bar {
+      background-color: $red-normal;
+    }
+    .blue-bar {
+      background-color: $blue-normal;
+    }
+
+    .vote-box {
+      display: flex;
+      width: 100%;
+      height: rem(75);
+      position: relative;
+
+      .pk{
+        font-size: rem(28);
+        position: absolute;
+        color: $white;
+        font-style: italic;
+        left: 50%;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .box-bar {
+        flex: 0 0 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        font-size: rem(19);
+        color: $white;
+        flex-wrap: wrap;
+      }
+      .option{
+        flex: 0 0 100%;
+      }
+      .rate{
+        flex: 0 0 100%;
+      }
+      .btn-support{
+        flex: 0 0 100%;
+        margin-top: rem(-20);
+        .btn-wrap{
+          font-size: rem(14);
+          padding: rem(5) rem(20);
+          border: rem(1) solid $white;
+          border-radius: rem(10);
+        }
+      }
+      .left-box{
+        padding-left: rem(10);
+        justify-content: flex-start;
+        border-radius: rem(5) 0 0 rem(5);
+      }
+      .right-box{
+        padding-right: rem(10);
+        justify-content: flex-end;
+        border-radius: 0 rem(5) rem(5) 0;
+        text-align: right;
+      }
+
     }
   }
 
 }
 
-/deep/ .progress{
+/deep/ .progress {
   height: rem(25);
-  i{
+  i {
     font-size: rem(14);
   }
 

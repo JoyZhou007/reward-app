@@ -17,21 +17,11 @@ export class PKComponent implements OnInit {
       this.initTplData(data);
     }
   }
-  stacked: any[] = [{
-    value:22,
-    type: 'info',
-    label: 22 + ' %'
-  },
-    {
-      value:78,
-      type: 'danger',
-      label: 22 + ' %'
-    }];
 
   public articleDetailObj: RewardDetailEntity;
 
   constructor(public rewardModelService: RewardModelService,
-              public dialogService:DialogService) {
+              public dialogService: DialogService) {
   }
 
   ngOnInit() {
@@ -39,20 +29,18 @@ export class PKComponent implements OnInit {
 
   private initTplData(data: Array<any>) {
     this.voteList = [];
-    console.log('articleStandId', this.articleDetailObj);
     data.forEach(val => {
-      let tplObj = VoteEntity.init();
+      const tplObj = VoteEntity.init();
       Object.assign(tplObj, val);
       tplObj.width = parseInt(tplObj.supportRate);
-      console.log('this.articleStandId', this.articleDetailObj, 'tplObj.id', tplObj.id);
-      tplObj.hasVote = tplObj.id == this.articleDetailObj.articleStandId;
+      tplObj.hasVote = tplObj.id.toString() === this.articleDetailObj.articleStandId;
       this.voteList.push(tplObj);
     });
   }
 
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
-    let formData = {
+    const formData = {
       id: voteObj.id,
       articleId: this.articleDetailObj.id
     };

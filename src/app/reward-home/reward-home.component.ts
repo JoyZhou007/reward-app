@@ -73,16 +73,16 @@ export class RewardHomeComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
       // you're at the bottom of the page
-      console.log('bottom');
+      console.log("Bottom of page");
       if (this.pageNum !== -1) {
         this.pageNum++;
         this.getList();
       } else {
-        // this.dialogService.openTipDialog({
-        //   content: '已经是最后一页了'
-        // });
+        this.dialogService.openTipDialog({
+          content: '已经是最后一页了'
+        });
       }
     }
   }

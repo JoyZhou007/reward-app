@@ -29,13 +29,6 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        {provide: HttpService, useClass: HttpService},
-        {provide: RewardModelService, useClass: RewardModelService},
-        {provide: UserService, useClass: UserService},
-        {provide: DateFormatService, useClass: DateFormatService},
-        {provide: EscapeHtmlService, useClass: EscapeHtmlService},
-        {provide: NotificationService, useClass: NotificationService},
-        {provide: DialogService, useClass: DialogService},
         {provide: HTTP_INTERCEPTORS, useClass: HandleInterceptor, multi: true},
       ]
     };

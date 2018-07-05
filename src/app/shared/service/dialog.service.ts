@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {NotificationService} from './notification.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DialogService {
 
   constructor(public notificationService: NotificationService) {

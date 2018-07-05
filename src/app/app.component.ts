@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import * as VConsole from 'vconsole';
 
 
@@ -9,7 +9,8 @@ import * as VConsole from 'vconsole';
 })
 export class AppComponent {
   title = 'app';
-  constructor(){
+
+  constructor() {
     const vConsole = new VConsole();
   }
 }

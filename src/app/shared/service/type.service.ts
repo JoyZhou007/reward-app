@@ -51,22 +51,45 @@ export class TypeService {
   }
 
   /**
-   * 采用节流实现限制回调函数调用频率
+   * 节流
    * @param fn
    * @param time
    * @returns {(...args) => undefined}
    */
-  public ttrottle(fn,time){
+  public ttrottle(fn, time) {
     let isNeedInvoke = true;
-    return function(...args){
-      if(!isNeedInvoke)return;
-      let context = this;
-      let _arguments = args;
+    return function (...args) {
+      if (!isNeedInvoke) {
+        return;
+      }
+      const context = this;
+      const _arguments = args;
       isNeedInvoke = false;
-      setTimeout(()=>{
-        fn.apply(context,_arguments);
+      setTimeout(() => {
+        fn.apply(context, _arguments);
         isNeedInvoke = true;
-      },time);
+      }, time);
+    };
+  };
+
+  /**
+   * 防抖
+   * @param fn
+   * @param time
+   * @returns {(...args) => void}
+   */
+  public debounce(fn, time) {
+    // 设置定时器
+    let timer;
+    return function (...args) {
+      // 清空上一次的定时器
+      clearTimeout(timer);
+      // 获取执行环境的上下文
+      const context = this;
+      const _arguments = args;
+      timer = setTimeout(() => {
+        fn.apply(context, _arguments);
+      }, time);
     };
   };
 }

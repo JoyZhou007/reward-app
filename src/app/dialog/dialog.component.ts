@@ -19,13 +19,14 @@ export class DialogComponent implements OnInit {
         this.showDialog = true;
       } else if (next.act === 'open-tip-dialog') {
         this.tipContent = next.data.content;
-        this.showTipDialog = true;
-        clearTimeout(this.tipTimer);
-        this.tipTimer = null;
-        this.tipTimer = setTimeout(() => {
-          this.showTipDialog = false;
-          clearTimeout(this.tipTimer);
-        }, 1500);
+        if(!this.showTipDialog){
+          this.showTipDialog = true;
+          this.tipTimer = setTimeout(() => {
+            this.showTipDialog = false;
+            // clearTimeout(this.tipTimer);
+          }, 1500);
+        }
+
       }
     });
   }

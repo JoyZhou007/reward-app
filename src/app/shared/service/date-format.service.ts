@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import * as dateFormat from 'dateformat';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DateFormatService {
   public defaultFormat: string = 'HH:MM ddS mmm yyyy';
 

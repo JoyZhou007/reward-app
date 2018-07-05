@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/service/http.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RewardModelService {
 
   constructor(public httpService: HttpService) {
