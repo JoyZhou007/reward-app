@@ -98,7 +98,7 @@ export class RewordDetailComponent implements OnInit {
   private checkCountdown(data: any) {
     const currentTime = data.currentTime;
     const countdownTime = new Date(data.publishTime).getTime();
-    let gap = parseInt(currentTime) - countdownTime;
+    let gap = countdownTime - parseInt(currentTime);
     if (gap > 0 && gap < 5 * 24 * 60 * 60 * 100) {
       let day = Math.floor(gap / (24 * 60 * 60 * 1000));
       let hours = Math.floor((gap - day * 24 * 60 * 60 * 1000) / (60 * 60 * 1000));
