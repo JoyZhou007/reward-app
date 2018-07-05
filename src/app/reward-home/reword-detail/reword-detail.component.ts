@@ -193,8 +193,9 @@ export class RewordDetailComponent implements OnInit {
   /**
    * 发送评论
    * @param {Event} event
+   * @param ipt
    */
-  public async sendComment(event: Event): Promise<any> {
+  public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
     if (this.commentValue.trim() !== '') {
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       let topicId = await this.getTopicId();
@@ -213,6 +214,7 @@ export class RewordDetailComponent implements OnInit {
         this.wonderReplyList = [];
         this.pageNum = 1;
         this.commentValue = '';
+        ipt.blur();
         this.getReplyList();
       });
     }
