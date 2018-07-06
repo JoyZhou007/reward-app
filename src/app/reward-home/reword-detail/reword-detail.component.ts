@@ -109,7 +109,7 @@ export class RewordDetailComponent implements OnInit {
    */
   private checkCountdown(data: any) {
     const currentTime = data.currentTime;
-    const countdownTime = this.dateFormatService.getTimeStamp(data.publishTime);
+    const countdownTime = parseInt(data.articleTime);
     let gap = countdownTime - parseInt(currentTime);
     if (gap > 0 && gap < 5 * 24 * 60 * 60 * 1000) {
       let day = Math.floor(gap / (24 * 60 * 60 * 1000));
