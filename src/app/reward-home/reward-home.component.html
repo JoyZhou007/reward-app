@@ -19,7 +19,10 @@
           <h3 (click)="clickOpenDetail($event,articleObj)"><i class="icon-square"></i>{{articleObj?.title}}</h3>
           <div class="body" (click)="clickOpenDetail($event,articleObj)" *ngIf="!!articleObj.content">
             <header>
-              <div class="avatar"><img [src]="articleObj.faceIco" alt=""></div>
+              <div class="avatar">
+                <img [src]="articleObj.faceIco" alt="" *ngIf="!!articleObj.faceIco">
+                <img src="../../assets/icons/icon/avatar.png" alt="" *ngIf="!articleObj.faceIco">
+              </div>
               <div class="name">
                 <h6>{{articleObj?.name}} <em *ngIf="!!articleObj.optionName">我选：{{articleObj?.optionName}}</em></h6>
               </div>
