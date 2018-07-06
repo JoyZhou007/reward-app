@@ -69,7 +69,12 @@ export class RewordDetailComponent implements OnInit {
   }
 
 
-  public getDetail(): Promise<any> {
+  /**
+   *
+   * @param {boolean} isGetReply
+   * @returns {Promise<any>}
+   */
+  public getDetail(isGetReply: boolean = true): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.rewardModelService.getDetail(this.articleId).subscribe(data => {
         this.articleDetailObj = RewardDetailEntity.init();
@@ -83,9 +88,12 @@ export class RewordDetailComponent implements OnInit {
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
-        this.getReplyList().then(() => {
-          resolve(data);
-        });
+        if (isGetReply) {
+          this.getReplyList().then(() => {
+            resolve(data);
+          });
+        }
+
       });
     }));
   }
@@ -281,7 +289,13 @@ export class RewordDetailComponent implements OnInit {
    */
   public showRewardTip(event: MouseEvent): void {
     event.stopPropagation();
-    this.dialogService.openWinnerDialog()
+    this.dialogService.openWinnerDialog();
+  }
+
+
+  public OutFresh(): void {
+
+    this.getDetail(false);
   }
 
 }
