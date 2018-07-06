@@ -43,7 +43,7 @@ export class RewardDetailEntity {
   type: string;
   articleStandArr: any[];
   articleStandId: string; //
-  hasWinners: boolean;
+  hasWinners: string;
 
   static init() {
     let obj = new RewardDetailEntity();
@@ -60,7 +60,7 @@ export class RewardDetailEntity {
     obj.type = '';
     obj.articleStandArr = [];
     obj.articleStandId = '';
-    obj.hasWinners = false;
+    obj.hasWinners = 'false';
     return obj;
   }
 }

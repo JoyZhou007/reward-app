@@ -154,11 +154,11 @@
     </section>
   </main>
 
-  <footer class="footer" *ngIf="!!articleDetailObj.replyArticleURL || articleDetailObj.hasWinners">
+  <footer class="footer" *ngIf="!!articleDetailObj.replyArticleURL || articleDetailObj.hasWinners==='true'">
     <span (click)="clickGoToWin($event)"
-      *ngIf="articleDetailObj.hasWinners"
+          *ngIf="articleDetailObj.hasWinners==='true'"
     >获奖名单</span>
-    <div class="line" *ngIf="!!articleDetailObj.replyArticleURL && articleDetailObj.hasWinners"></div>
+    <div class="line" *ngIf="!!articleDetailObj.replyArticleURL && articleDetailObj.hasWinners ==='true'"></div>
     <a href="{{articleDetailObj.replyArticleURL}}"
        *ngIf="!!articleDetailObj.replyArticleURL"
     >百家之言</a>
