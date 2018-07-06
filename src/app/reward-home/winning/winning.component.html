@@ -14,7 +14,7 @@
 
   <main>
     <div class="reward-box">
-      <section class="steel-box">
+      <section class="steel-box" *ngIf="appList?.length">
         <h3 class="tit">
           <img class="icon-steel" src="../../../assets/icons/icon/logo.png"/>
           我的钢铁APP 留言获奖名单
@@ -27,7 +27,7 @@
         </ul>
       </section>
 
-      <section class="steel-box">
+      <section class="steel-box" *ngIf="wxList?.length">
         <h3 class="tit">
           <img class="icon-steel" src="../../../assets/icons/icon/wechat.png"/>
           我的钢铁网 微信公众号 留言获奖名单

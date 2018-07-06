@@ -76,7 +76,10 @@
       <div class="detail-content wonder" *ngFor="let wonderReply of wonderReplyList; let i=index;">
         <h3 *ngIf="i===0"><i class="icon-square"></i>精彩评论</h3>
         <header>
-          <div class="avatar"><img [src]="wonderReply.faceIco" alt=""></div>
+          <div class="avatar">
+            <img [src]="wonderReply.faceIco" alt="" *ngIf="wonderReply.faceIco">
+            <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!wonderReply.faceIco">
+          </div>
           <div class="name">
             <h6>{{wonderReply.name}} <em *ngIf="!!wonderReply.optionName">我选：{{wonderReply.optionName}}</em></h6>
             <span>{{wonderReply.createTime}}</span>
