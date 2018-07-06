@@ -151,7 +151,7 @@
     </section>
   </main>
 
-  <footer class="footer" *ngIf="articleDetailObj.showEnd">
+  <footer class="footer" *ngIf="!!articleDetailObj.replyArticleURL || articleDetailObj.hasWinners">
     <span (click)="clickGoToWin($event)"
       *ngIf="articleDetailObj.hasWinners"
     >获奖名单</span>
