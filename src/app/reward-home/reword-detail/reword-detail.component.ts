@@ -84,7 +84,7 @@ export class RewordDetailComponent implements OnInit {
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
-        this.getReplyList().then(()=>{
+        this.getReplyList().then(() => {
           resolve(data);
         });
       });
@@ -102,7 +102,7 @@ export class RewordDetailComponent implements OnInit {
    */
   private checkCountdown(data: any) {
     const currentTime = data.currentTime;
-    const countdownTime = new Date(data.publishTime).getTime();
+    const countdownTime = this.dateFormatService.getTimeStamp(data.publishTime);
     let gap = countdownTime - parseInt(currentTime);
     if (gap > 0 && gap < 5 * 24 * 60 * 60 * 100) {
       let day = Math.floor(gap / (24 * 60 * 60 * 1000));
@@ -223,6 +223,7 @@ export class RewordDetailComponent implements OnInit {
         this.wonderReplyList = [];
         this.pageNum = 1;
         this.commentValue = '';
+        console.log('重复么', this.pageNum);
         ipt.blur();
         this.getReplyList();
       });
@@ -233,7 +234,7 @@ export class RewordDetailComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if(this.hasInit){
+    if (this.hasInit) {
       if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
         // you're at the bottom of the page
         console.log('Bottom of page');

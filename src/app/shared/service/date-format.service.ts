@@ -27,4 +27,16 @@ export class DateFormatService {
     }
     return dateFormat(date, format, false);
   }
+
+  /**
+   * 获取时间戳
+   * @param {string} date
+   * @returns {number}
+   */
+  getTimeStamp(date: string): number {
+    if (typeof date === 'string') {
+      date = date.replace(/-/g, '/');
+    }
+    return new Date(date).getTime();
+  }
 }

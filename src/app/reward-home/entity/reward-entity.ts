@@ -42,7 +42,8 @@ export class RewardDetailEntity {
   channelId: string;
   type: string;
   articleStandArr: any[];
-  articleStandId: string; //支持观点
+  articleStandId: string; //
+  hasWinners: boolean;
 
   static init() {
     let obj = new RewardDetailEntity();
@@ -59,6 +60,7 @@ export class RewardDetailEntity {
     obj.type = '';
     obj.articleStandArr = [];
     obj.articleStandId = '';
+    obj.hasWinners = false;
     return obj;
   }
 }

@@ -152,9 +152,13 @@
   </main>
 
   <footer class="footer" *ngIf="articleDetailObj.showEnd">
-    <span (click)="clickGoToWin($event)">获奖名单</span>
-    <div class="line"></div>
-    <a href="{{articleDetailObj.replyArticleURL}}">百家之言</a>
+    <span (click)="clickGoToWin($event)"
+      *ngIf="articleDetailObj.hasWinners"
+    >获奖名单</span>
+    <div class="line" *ngIf="!!articleDetailObj.replyArticleURL && articleDetailObj.hasWinners"></div>
+    <a href="{{articleDetailObj.replyArticleURL}}"
+       *ngIf="!!articleDetailObj.replyArticleURL"
+    >百家之言</a>
   </footer>
 </div>
 
