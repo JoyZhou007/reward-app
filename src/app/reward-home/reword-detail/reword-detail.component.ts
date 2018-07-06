@@ -52,7 +52,6 @@ export class RewordDetailComponent implements OnInit {
       });
     });
 
-    // this.dialogService.openWinnerDialog();
   }
 
   /**
@@ -81,7 +80,6 @@ export class RewordDetailComponent implements OnInit {
         let body = data.body.toString();
         let index = -1;
         this.articleDetailObj.body = body.replace(/(<!--IMG#\d+-->)/gm, function (match, ...m) {
-          console.log('match', match);
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
@@ -223,7 +221,6 @@ export class RewordDetailComponent implements OnInit {
         this.wonderReplyList = [];
         this.pageNum = 1;
         this.commentValue = '';
-        console.log('重复么', this.pageNum);
         ipt.blur();
         this.getReplyList();
       });
@@ -278,5 +275,13 @@ export class RewordDetailComponent implements OnInit {
     this.currentReplyPeople = reply.id;
   }
 
+  /**
+   * 点击评论赢赏金
+   * @param {MouseEvent} event
+   */
+  public showRewardTip(event: MouseEvent): void {
+    event.stopPropagation();
+    this.dialogService.openWinnerDialog()
+  }
 
 }

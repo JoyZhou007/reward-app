@@ -53,7 +53,7 @@
         </div>
         <div class="right-foot">
 
-          <div class="comment" *ngIf="articleDetailObj?.showReward==='yes'">
+          <div class="comment" (click)="showRewardTip($event)">
             <img src="../../../assets/icons/icon/money.png" class="icon-money"/>
             <span>评论赢赏金</span>
           </div>
