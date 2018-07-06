@@ -81,7 +81,7 @@
             <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!wonderReply.faceIco">
           </div>
           <div class="name">
-            <h6>{{wonderReply.name}} <em *ngIf="!!wonderReply.optionName">我选：{{wonderReply.optionName}}</em></h6>
+            <h6><i>{{wonderReply.name}}</i> <em *ngIf="!!wonderReply.optionName">我选：{{wonderReply.optionName}}</em></h6>
             <span>{{wonderReply.createTime}}</span>
           </div>
         </header>
@@ -121,7 +121,7 @@
             <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
           </div>
           <div class="name">
-            <h6>{{reply.name}} <em *ngIf="!!reply.optionName">我选：{{reply.optionName}}</em></h6>
+            <h6><i>{{reply.name}}</i>> <em *ngIf="!!reply.optionName">我选：{{reply.optionName}}</em></h6>
             <span>{{reply.createTime}}</span>
           </div>
         </header>

@@ -228,11 +228,15 @@ main {
         .name {
           padding-left: rem(10);
           h6 {
+            width: 100%;
             display: flex;
             align-items: center;
             font-size: rem(16);
             margin-bottom: rem(8);
             color: $blue-normal;
+            i{
+              //flex: 0 0 30%;
+            }
           }
           span {
             color: #999999;
