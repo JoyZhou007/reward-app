@@ -30,6 +30,7 @@ export class RewordDetailComponent implements OnInit {
 
   @ViewChild(PKComponent) PKComponent: PKComponent;
   public hasInit: boolean = false;
+  private scrollTimer: any;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -158,7 +159,7 @@ export class RewordDetailComponent implements OnInit {
           this.pageNum = -1;
 
         } else {
-          this.pageNum++;
+          // this.pageNum++;
           allReplyList.forEach(reply => {
             let replyObj = ReplyEntity.init();
             Object.assign(replyObj, reply);
@@ -235,18 +236,23 @@ export class RewordDetailComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
     if (this.hasInit) {
-      if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
-        // you're at the bottom of the page
-        console.log('Bottom of page');
-        // you're at the bottom of the page
-        if (this.pageNum !== -1) {
-          this.getReplyList();
-        } else {
-          this.dialogService.openTipDialog({
-            content: '已经是最后一页了'
-          });
+      clearTimeout(this.scrollTimer);
+      this.scrollTimer = setTimeout(() => {
+        if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+          // you're at the bottom of the page
+          console.log('Bottom of page');
+          // you're at the bottom of the page
+          if (this.pageNum !== -1) {
+            this.pageNum++;
+            this.getReplyList();
+          } else {
+            this.dialogService.openTipDialog({
+              content: '已经是最后一页了'
+            });
+          }
         }
-      }
+      }, 500);
+
     }
 
   }
