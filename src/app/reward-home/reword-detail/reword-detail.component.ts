@@ -198,18 +198,23 @@ export class RewordDetailComponent implements OnInit {
   public clickPraise(event: MouseEvent, reply: ReplyEntity): void {
     event.stopPropagation();
     if (!this.showLoading) {
-      this.showLoading = true;
-      this.rewardModelService.praise({
-        replyId: reply.id
-      }).subscribe(data => {
-        if (reply.isDigg === 'yes') {
-          reply.isDigg = 'no';
-        } else {
-          reply.isDigg = 'yes';
-        }
-        reply.digg = data.digNum;
-        this.showLoading = false;
-      });
+      this.userService.checkIsLogin().then((userInfo:any)=>{
+        console.log('userInfo',userInfo)
+        this.showLoading = true;
+        this.rewardModelService.praise({
+          replyId: reply.id
+        }).subscribe(data => {
+          if (reply.isDigg === 'yes') {
+            reply.isDigg = 'no';
+          } else {
+            reply.isDigg = 'yes';
+          }
+          reply.digg = data.digNum;
+          this.showLoading = false;
+        });
+      })
+
+
     }
 
   }
