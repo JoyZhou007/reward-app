@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/service/http.service';
+import {UserService} from '../../shared/service/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RewardModelService {
 
-  constructor(public httpService: HttpService) {
+  constructor(public httpService: HttpService,
+              public userService: UserService) {
   }
 
   /**
@@ -52,8 +54,16 @@ export class RewardModelService {
    * @param data
    * @returns {Observable<any>}
    */
-  public praise(data: any): Observable<any> {
-    return this.httpService.get(`/article/praise.htm?userId=1&id=${data.replyId}`);
+  public praise(data: any): any {
+    this.userService.checkIsLogin().then((userInfo: {
+      encCellphone: string,
+      encUserId: string,
+      userId: string
+    }) => {
+      console.log('uuu', userInfo.userId);
+      return this.httpService.get(`/article/praise.htm?userId=${userInfo.userId}&id=${data.replyId}`);
+    });
+
   }
 
 
@@ -70,8 +80,8 @@ export class RewardModelService {
    * @param data
    * @returns {Observable<any>}
    */
-  public getTopicId(data:any): Observable<any> {
-    return this.httpService.get(`/article/detail.htm?id=${data.id}&userId=1&type=${data.type}`)
+  public getTopicId(data: any): Observable<any> {
+    return this.httpService.get(`/article/detail.htm?id=${data.id}&userId=1&type=${data.type}`);
   }
 
   /**
@@ -80,6 +90,6 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public vote(data): Observable<any> {
-    return this.httpService.get(`/article/submitStand.htm?id=${data.id}&articleId=${data.articleId}&userId=1`)
+    return this.httpService.get(`/article/submitStand.htm?id=${data.id}&articleId=${data.articleId}&userId=1`);
   }
 }
