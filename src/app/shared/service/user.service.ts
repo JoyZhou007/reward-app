@@ -21,10 +21,10 @@ export class UserService {
         if (window['mysteeljs'])//ios老控件或安卓
         {
           userInfoJson = window['mysteeljs'].getUserInfo('false');
-          userInfoData = eval('(' + userInfoJson + ')');
+          userInfoData = eval('(' + userInfoJson + ')') || '';
           console.log('userInfoJson', userInfoJson, 'b', userInfoData);
           //判断是否已经登录
-          if (userInfoJson.userId && userInfoJson.encCellphone) {
+          if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
             console.log('已登录');
             resolve(userInfoData);
           } else {
@@ -33,9 +33,9 @@ export class UserService {
           }
         } else { //新控件
           userInfoJson = window['webkit'].messageHandlers.getUserInfo.postMessage('false');
-          userInfoData = eval('(' + userInfoJson + ')');
+          userInfoData = eval('(' + userInfoJson + ')') || '';
           console.log('userInfoJson', userInfoJson, 'b', userInfoData);
-          if (userInfoJson.userId && userInfoJson.encCellphone) {
+          if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
             console.log('已登录');
             resolve(userInfoData);
           } else {
