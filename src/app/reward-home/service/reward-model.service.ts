@@ -45,7 +45,9 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getReplyList(data: any): Observable<any> {
-    const api = `article/getReply.htm?userId=1&id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15`;
+    const api = data.hasOwnProperty('userId') ?
+      `article/getReply.htm?userId=${data.userId}&id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15` :
+      `article/getReply.htm?id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15`;
     return this.httpService.get(api);
   }
 
