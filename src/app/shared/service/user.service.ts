@@ -22,7 +22,7 @@ export class UserService {
         {
           userInfoJson = window['mysteeljs'].getUserInfo('false');
           userInfoData = JSON.parse(userInfoJson) || '';
-          console.log('userInfoJson', userInfoJson, 'b', userInfoData);
+          console.log('旧的userInfoJson', userInfoJson, 'b', userInfoData);
           //判断是否已经登录
           if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
             console.log('已登录');
@@ -34,7 +34,7 @@ export class UserService {
         } else { //新控件
           userInfoJson = window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           userInfoData =  JSON.parse(userInfoJson) || '';
-          console.log('userInfoJson', userInfoJson, 'userInfoData', userInfoData);
+          console.log('新的userInfoJson', userInfoJson, 'userInfoData', userInfoData);
           if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
             console.log('已登录');
             resolve(userInfoData);
