@@ -52,7 +52,7 @@ export class RewardHomeComponent implements OnInit {
         if (!articles.length) {
           if (this.pageNum !== 1) {
             this.dialogService.openTipDialog({
-              content: '已经是最后一页了'
+              content: '已经是最后一页'
             });
           }
           this.pageNum = -1;

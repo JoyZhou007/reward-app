@@ -34,7 +34,7 @@ export class UserService {
         } else { //新控件
           userInfoJson = window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           userInfoData = eval('(' + userInfoJson + ')') || '';
-          console.log('userInfoJson', userInfoJson, 'b', userInfoData);
+          console.log('userInfoJson', userInfoJson, 'userInfoData', userInfoData);
           if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
             console.log('已登录');
             resolve(userInfoData);

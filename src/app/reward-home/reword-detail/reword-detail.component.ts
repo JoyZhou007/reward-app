@@ -264,7 +264,7 @@ export class RewordDetailComponent implements OnInit {
             this.getReplyList();
           } else {
             this.dialogService.openTipDialog({
-              content: '已经是最后一页了'
+              content: '已经是最后一页'
             });
           }
         }
