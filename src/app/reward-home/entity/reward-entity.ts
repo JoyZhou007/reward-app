@@ -70,7 +70,7 @@ export class RewardDetailEntity {
  */
 export class ReplyEntity {
   content: string;
-  createTime: string;
+  createTimeStr: string;
   digg: string;
   faceIco: string;
   id: string;
@@ -90,7 +90,7 @@ export class ReplyEntity {
   static init() {
     let obj = new ReplyEntity();
     obj.content = '';
-    obj.createTime = '';
+    obj.createTimeStr = '';
     obj.digg = '';
     obj.faceIco = '';
     obj.id = '';

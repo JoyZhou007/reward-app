@@ -82,12 +82,18 @@
           </div>
           <div class="name">
             <h6><i>{{wonderReply.name}}</i> <em *ngIf="!!wonderReply.optionName">我选：{{wonderReply.optionName}}</em></h6>
-            <span>{{wonderReply.createTime}}</span>
+            <span>{{wonderReply.createTimeStr}}</span>
           </div>
         </header>
         <section class="main-comment">
 
           {{wonderReply.content}}
+        </section>
+
+        <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
+          <div>
+            <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
+          </div>
         </section>
         <footer>
           <div class="praise">
@@ -105,11 +111,7 @@
           </div>
 
         </footer>
-        <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
-          <div>
-            <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
-          </div>
-        </section>
+
 
       </div>
 
@@ -122,12 +124,17 @@
           </div>
           <div class="name">
             <h6><i>{{reply.name}}</i>> <em *ngIf="!!reply.optionName">我选：{{reply.optionName}}</em></h6>
-            <span>{{reply.createTime}}</span>
+            <span>{{reply.createTimeStr}}</span>
           </div>
         </header>
         <section class="main-comment">
 
           {{reply.content}}
+        </section>
+        <section class="origin-comment" *ngIf="!!reply.toReplyId">
+          <div>
+            <span>{{reply.toReplyName}}：</span>{{reply.toReplyContent}}
+          </div>
         </section>
         <footer>
           <div class="praise" (click)="clickPraise($event,reply)">
@@ -144,11 +151,7 @@
           </div>
 
         </footer>
-        <section class="origin-comment" *ngIf="!!reply.toReplyId">
-          <div>
-            <span>{{reply.toReplyName}}：</span>{{reply.toReplyContent}}
-          </div>
-        </section>
+
 
       </div>
     </section>
