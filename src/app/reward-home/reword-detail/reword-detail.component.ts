@@ -34,6 +34,7 @@ export class RewordDetailComponent implements OnInit {
   private scrollTimer: any;
   public showLoading: boolean = false;
   public topicId: any = '';
+  public userInfo: UserInfoEntity;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -45,7 +46,9 @@ export class RewordDetailComponent implements OnInit {
               public activatedRoute: ActivatedRoute,
               public rewardModelService: RewardModelService) {
     this.pageNum = 1;
-
+    this.userService.getUserInfo().then((userInfo:UserInfoEntity)=>{
+      this.userInfo = userInfo;
+    });
   }
 
   ngOnInit() {
@@ -143,18 +146,27 @@ export class RewordDetailComponent implements OnInit {
    * 获取评论列表
    * @returns {Promise<any>}
    */
-  private getReplyList(): Promise<any> {
+  private async getReplyList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      console.log('page@@@', this.pageNum);
-      this.rewardModelService.getReplyList({
-        id: this.articleDetailObj.id,
-        channelId: this.articleDetailObj.channelId,
-        pageNum: this.pageNum
-      }).subscribe(data => {
-        // if (this.pageNum === 1) {
-        //
-        // }
 
+
+      let formData;
+      if (this.userInfo) { //已经登录
+        formData = {
+          id: this.articleDetailObj.id,
+          channelId: this.articleDetailObj.channelId,
+          pageNum: this.pageNum,
+          userId: this.userInfo.userId
+        };
+      } else { //未登录
+        formData = {
+          id: this.articleDetailObj.id,
+          channelId: this.articleDetailObj.channelId,
+          pageNum: this.pageNum,
+        };
+      }
+
+      this.rewardModelService.getReplyList(formData).subscribe(data => {
 
         let wonderList = data.wonderFulReply || [];
         wonderList.forEach(value => {
