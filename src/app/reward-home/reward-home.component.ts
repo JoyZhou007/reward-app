@@ -51,9 +51,9 @@ export class RewardHomeComponent implements OnInit {
         let currentTime = data.currentTime;
         if (!articles.length) {
           if (this.pageNum !== 1) {
-            this.dialogService.openTipDialog({
-              content: '已经是最后一页'
-            });
+            // this.dialogService.openTipDialog({
+            //   content: '已经是最后一页'
+            // });
           }
           this.pageNum = -1;
         } else {
@@ -84,9 +84,9 @@ export class RewardHomeComponent implements OnInit {
           this.pageNum++;
           this.getList();
         } else {
-          this.dialogService.openTipDialog({
-            content: '已经是最后一页了'
-          });
+          // this.dialogService.openTipDialog({
+          //   content: '已经是最后一页了'
+          // });
         }
       }
     }
