@@ -22,9 +22,9 @@ export class UserService {
         {
           userInfoJson = window['mysteeljs'].getUserInfo('false');
           userInfoData = JSON.parse(userInfoJson) || '';
-          console.log('旧的userInfoJson', userInfoJson, 'b', userInfoData);
+          console.log('旧的userInfoJson', userInfoJson, 'userData', userInfoData);
           //判断是否已经登录
-          if (userInfoJson && userInfoData && userInfoJson.userId && userInfoJson.encCellphone) {
+          if ( userInfoData && userInfoData.userId && userInfoData.encCellphone) {
             console.log('已登录');
             resolve(userInfoData);
           } else {
