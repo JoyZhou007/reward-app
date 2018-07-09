@@ -55,7 +55,6 @@ export class RewordDetailComponent implements OnInit {
       });
     });
 
-    this.userService.checkIsLogin();
 
   }
 
