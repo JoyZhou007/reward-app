@@ -32,6 +32,7 @@ export class RewordDetailComponent implements OnInit {
   @ViewChild(PKComponent) PKComponent: PKComponent;
   public hasInit: boolean = false;
   private scrollTimer: any;
+  public showLoading: boolean = false;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -196,17 +197,21 @@ export class RewordDetailComponent implements OnInit {
    */
   public clickPraise(event: MouseEvent, reply: ReplyEntity): void {
     event.stopPropagation();
-    this.rewardModelService.praise({
-      replyId: reply.id
-    }).subscribe(data => {
-      if (reply.isDigg === 'yes') {
-        reply.isDigg = 'no';
-      } else {
-        reply.isDigg = 'yes';
-      }
-      reply.digg = data.digNum;
+    if (!this.showLoading) {
+      this.showLoading = true;
+      this.rewardModelService.praise({
+        replyId: reply.id
+      }).subscribe(data => {
+        if (reply.isDigg === 'yes') {
+          reply.isDigg = 'no';
+        } else {
+          reply.isDigg = 'yes';
+        }
+        reply.digg = data.digNum;
+        this.showLoading = false;
+      });
+    }
 
-    });
   }
 
   /**

@@ -9,6 +9,7 @@ export class UserService {
   }
 
   public checkIsLogin(): void {
+    console.log('window',window)
     if (window['mysteeljs'] || (typeof window['webkit'] != 'undefined' && typeof window['webkit'].messageHandlers.getUserInfo != 'undefined')) {
       if (window['mysteeljs'])//ios老控件或安卓
       {
@@ -24,6 +25,7 @@ export class UserService {
           window['mysteeljs'].getUserInfo('true');
         }
       } else {
+        console.log('fffff')
         window['webkit'].messageHandlers.getUserInfo.postMessage('false');
       }
     }
