@@ -14,26 +14,16 @@ export class UserService {
       {
         let a = window['mysteeljs'].getUserInfo('false');
         let b = eval('(' + a + ')');
+        console.log('a',a,'b',b)
         //判断是否已经登录
         if (b.userId && b.encCellphone) {
-          window.location.href = '';
+          // window.location.href = '';
+          console.log('已登录')
         } else {
+          console.log('未登录')
           window['mysteeljs'].getUserInfo('true');
         }
-      }
-      /*else if(window.webkit.messageHandlers.getUserInfo != 'undefined'){
-          var a = window.webkit.messageHandlers.getUserInfo.postMessage("false");
-              var b = eval("(" + a + ")");
-            //判断是否已经登录
-        if (b.userId && b.encCellphone)
-        {
-          url = getUrlByApp(url, b.userId, b.encCellphone);
-          window.location.href = url;
-        } else {
-          window.webkit.messageHandlers.getUserInfo.postMessage("true")
-        }
-        }*/
-      else {
+      } else {
         window['webkit'].messageHandlers.getUserInfo.postMessage('false');
       }
     }

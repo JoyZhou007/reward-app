@@ -8,6 +8,7 @@ import {EscapeHtmlService} from '../../shared/service/escape-html.service';
 import {DialogService} from '../../shared/service/dialog.service';
 import {promise} from 'selenium-webdriver';
 import {PKComponent} from '../pk/pk.component';
+import {UserService} from '../../shared/service/user.service';
 
 @Component({
   selector: 'app-reword-detail',
@@ -35,6 +36,7 @@ export class RewordDetailComponent implements OnInit {
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
               public router: Router,
+              public userService: UserService,
               public typeScript: TypeService,
               public dialogService: DialogService,
               public dateFormatService: DateFormatService,
@@ -51,6 +53,8 @@ export class RewordDetailComponent implements OnInit {
         this.hasInit = true;
       });
     });
+
+    this.userService.checkIsLogin();
 
   }
 
