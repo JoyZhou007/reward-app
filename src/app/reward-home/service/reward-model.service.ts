@@ -66,7 +66,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public doComment(data: any): Observable<any> {
-    return this.httpService.get(`/comment/reply/create.htm?userId=1&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
+    return this.httpService.get(`/comment/reply/create.htm?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
   }
 
   /**
@@ -84,6 +84,6 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public vote(data): Observable<any> {
-    return this.httpService.get(`/article/submitStand.htm?id=${data.id}&articleId=${data.articleId}&userId=1`);
+    return this.httpService.get(`/article/submitStand.htm?id=${data.id}&articleId=${data.articleId}&userId=${data.userId}`);
   }
 }

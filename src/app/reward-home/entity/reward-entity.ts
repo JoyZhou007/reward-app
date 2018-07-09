@@ -149,3 +149,12 @@ export class VoteEntity {
     return obj;
   }
 }
+
+/**
+ * 用户信息
+ */
+export interface UserInfoEntity {
+  encCellphone: string,
+  encUserId: string,
+  userId: string
+}

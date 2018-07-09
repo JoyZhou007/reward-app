@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RewardDetailEntity, VoteEntity} from '../entity/reward-entity';
+import {RewardDetailEntity, UserInfoEntity, VoteEntity} from '../entity/reward-entity';
 import {RewardModelService} from '../service/reward-model.service';
 import {DialogService} from '../../shared/service/dialog.service';
+import {UserService} from '../../shared/service/user.service';
 
 @Component({
   selector: 'app-pk',
@@ -21,7 +22,8 @@ export class PKComponent implements OnInit {
   public articleDetailObj: RewardDetailEntity;
 
   constructor(public rewardModelService: RewardModelService,
-              public dialogService: DialogService) {
+              public dialogService: DialogService,
+              public userService: UserService) {
   }
 
   ngOnInit() {
@@ -40,15 +42,21 @@ export class PKComponent implements OnInit {
 
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
-    const formData = {
-      id: voteObj.id,
-      articleId: this.articleDetailObj.id
-    };
-    this.rewardModelService.vote(formData).subscribe(data => {
-      this.outFresh.emit();
-      this.dialogService.openTipDialog({
-        content: '投票成功'
+
+    this.userService.checkIsLogin().then((userInfo: UserInfoEntity) => {
+
+      const formData = {
+        id: voteObj.id,
+        articleId: this.articleDetailObj.id,
+        userId: userInfo.userId
+      };
+      this.rewardModelService.vote(formData).subscribe(data => {
+        this.outFresh.emit();
+        this.dialogService.openTipDialog({
+          content: '投票成功'
+        });
       });
     });
+
   }
 }

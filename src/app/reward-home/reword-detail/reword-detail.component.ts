@@ -3,7 +3,7 @@ import {TypeService} from '../../shared/service/type.service';
 import {RewardModelService} from '../service/reward-model.service';
 import {DateFormatService} from '../../shared/service/date-format.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ReplyEntity, RewardDetailEntity} from '../entity/reward-entity';
+import {ReplyEntity, RewardDetailEntity, UserInfoEntity} from '../entity/reward-entity';
 import {EscapeHtmlService} from '../../shared/service/escape-html.service';
 import {DialogService} from '../../shared/service/dialog.service';
 import {promise} from 'selenium-webdriver';
@@ -234,28 +234,34 @@ export class RewordDetailComponent implements OnInit {
    */
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
     if (this.commentValue && this.commentValue.trim() !== '') {
+
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       if (this.topicId === '') {
         this.topicId = await this.getTopicId();
       }
-      let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
-      let formData = {
-        topicId: this.topicId,
-        channlId: this.articleDetailObj.channelId,
-        objectType: this.articleDetailObj.type,
-        objectId: this.articleDetailObj.id,
-        objectTitle: this.articleDetailObj.title,
-        content: content,
-        replyId: replyId
-      };
-      this.rewardModelService.doComment(formData).subscribe(data => {
-        this.allReplyList = [];
-        this.wonderReplyList = [];
-        this.pageNum = 1;
-        this.commentValue = '';
-        ipt.blur();
-        this.getReplyList();
+
+      this.userService.checkIsLogin().then((userInfo: UserInfoEntity) => {
+        let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
+        let formData = {
+          topicId: this.topicId,
+          channlId: this.articleDetailObj.channelId,
+          objectType: this.articleDetailObj.type,
+          objectId: this.articleDetailObj.id,
+          objectTitle: this.articleDetailObj.title,
+          content: content,
+          replyId: replyId,
+          userId: userInfo.userId
+        };
+        this.rewardModelService.doComment(formData).subscribe(data => {
+          this.allReplyList = [];
+          this.wonderReplyList = [];
+          this.pageNum = 1;
+          this.commentValue = '';
+          ipt.blur();
+          this.getReplyList();
+        });
       });
+
     }
 
   }
