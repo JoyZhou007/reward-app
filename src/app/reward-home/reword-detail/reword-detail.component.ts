@@ -33,6 +33,7 @@ export class RewordDetailComponent implements OnInit {
   public hasInit: boolean = false;
   private scrollTimer: any;
   public showLoading: boolean = false;
+  public topicId: any = '';
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -44,6 +45,7 @@ export class RewordDetailComponent implements OnInit {
               public activatedRoute: ActivatedRoute,
               public rewardModelService: RewardModelService) {
     this.pageNum = 1;
+
   }
 
   ngOnInit() {
@@ -51,7 +53,10 @@ export class RewordDetailComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
       this.getDetail().then(() => {
-        this.hasInit = true;
+        this.getTopicId().then((id) => {
+          this.hasInit = true;
+          this.topicId = id;
+        });
       });
     });
 
@@ -197,8 +202,8 @@ export class RewordDetailComponent implements OnInit {
   public clickPraise(event: MouseEvent, reply: ReplyEntity): void {
     event.stopPropagation();
     if (!this.showLoading) {
-      this.userService.checkIsLogin().then((userInfo:any)=>{
-        console.log('userInfo',userInfo)
+      this.userService.checkIsLogin().then((userInfo: any) => {
+        console.log('userInfo', userInfo);
         this.showLoading = true;
         this.rewardModelService.praise({
           replyId: reply.id
@@ -211,7 +216,7 @@ export class RewordDetailComponent implements OnInit {
           reply.digg = data.digNum;
           this.showLoading = false;
         });
-      })
+      });
 
 
     }
@@ -226,10 +231,12 @@ export class RewordDetailComponent implements OnInit {
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
     if (this.commentValue && this.commentValue.trim() !== '') {
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
-      let topicId = await this.getTopicId();
+      if(this.topicId===''){
+        this.topicId = await this.getTopicId();
+      }
       let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
       let formData = {
-        topicId: topicId,
+        topicId: this.topicId,
         channlId: this.articleDetailObj.channelId,
         objectType: this.articleDetailObj.type,
         objectId: this.articleDetailObj.id,
