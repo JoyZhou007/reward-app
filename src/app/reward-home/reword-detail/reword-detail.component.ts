@@ -203,17 +203,26 @@ export class RewordDetailComponent implements OnInit {
     event.stopPropagation();
     if (!this.showLoading) {
       this.showLoading = true;
-      this.rewardModelService.praise({
-        replyId: reply.id
-      }).subscribe(data => {
-        if (reply.isDigg === 'yes') {
-          reply.isDigg = 'no';
-        } else {
-          reply.isDigg = 'yes';
-        }
-        reply.digg = data.digNum;
-        this.showLoading = false;
+      this.userService.checkIsLogin().then((userInfo: {
+        encCellphone: string,
+        encUserId: string,
+        userId: string
+      }) => {
+        console.log('uuu', userInfo.userId);
+        this.rewardModelService.praise({
+          replyId: reply.id,
+          userId: userInfo.userId
+        }).subscribe(data => {
+          if (reply.isDigg === 'yes') {
+            reply.isDigg = 'no';
+          } else {
+            reply.isDigg = 'yes';
+          }
+          reply.digg = data.digNum;
+          this.showLoading = false;
+        });
       });
+
     }
 
   }
@@ -226,7 +235,7 @@ export class RewordDetailComponent implements OnInit {
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
     if (this.commentValue && this.commentValue.trim() !== '') {
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
-      if(this.topicId===''){
+      if (this.topicId === '') {
         this.topicId = await this.getTopicId();
       }
       let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');

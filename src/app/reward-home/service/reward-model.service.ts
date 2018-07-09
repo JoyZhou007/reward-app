@@ -54,15 +54,9 @@ export class RewardModelService {
    * @param data
    * @returns {Observable<any>}
    */
-  public praise(data: any): any {
-    this.userService.checkIsLogin().then((userInfo: {
-      encCellphone: string,
-      encUserId: string,
-      userId: string
-    }) => {
-      console.log('uuu', userInfo.userId);
-      return this.httpService.get(`/article/praise.htm?userId=${userInfo.userId}&id=${data.replyId}`);
-    });
+  public praise(data: any): Observable<any> {
+
+    return this.httpService.get(`/article/praise.htm?userId=${data.userId}&id=${data.replyId}`);
 
   }
 
