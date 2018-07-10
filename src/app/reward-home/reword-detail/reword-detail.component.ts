@@ -158,7 +158,7 @@ export class RewordDetailComponent implements OnInit {
    */
   private async getReplyList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-
+      this.userId = this.storageService.getStorageValue('userId');
 
       let formData;
       if (this.userId) { //已经登录
