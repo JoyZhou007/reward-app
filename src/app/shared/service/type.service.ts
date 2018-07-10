@@ -8,6 +8,13 @@ export class TypeService {
   constructor() {
   }
 
+  /**
+   *
+   * @param {string} str
+   * @param {number} len
+   * @param {string} flow
+   * @returns {string}
+   */
   public substring(str: string, len: number, flow: string = '...') {
     if (!str) return '';
     str = str.toString();

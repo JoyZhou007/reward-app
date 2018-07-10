@@ -83,13 +83,18 @@
             <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!wonderReply.faceIco">
           </div>
           <div class="name">
-            <h6><i>{{wonderReply.name}}</i> <em *ngIf="wonderReply.optionName && !wonderReply.toReplyId">我认为：{{wonderReply.optionName}}</em></h6>
+            <h6><i>{{wonderReply.name}}</i> <em *ngIf="wonderReply.optionName && !wonderReply.toReplyId">我认为：{{wonderReply.optionName}}</em>
+            </h6>
             <span>{{wonderReply.createTimeStr}}</span>
           </div>
         </header>
         <section class="main-comment">
 
-          {{wonderReply.content}}
+          {{wonderReply.showContent?wonderReply.content: wonderReply.simpleContent}}
+          <div class="operate">
+            <span class="icon-cheveron-down"></span>
+            <!--<span class="icon-cheveron-up" ></span>-->
+          </div>
         </section>
 
         <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
@@ -125,7 +130,8 @@
             <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
           </div>
           <div class="name">
-            <h6><i>{{reply.name}}</i>> <em *ngIf="reply.optionName && !reply.toReplyId">我认为：{{reply.optionName}}</em></h6>
+            <h6><i>{{reply.name}}</i> <em *ngIf="reply.optionName && !reply.toReplyId">我认为：{{reply.optionName}}</em>
+            </h6>
             <span>{{reply.createTimeStr}}</span>
           </div>
         </header>

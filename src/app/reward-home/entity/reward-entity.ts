@@ -86,6 +86,11 @@ export class ReplyEntity {
   topicId: string;
   userType: string;
   comments: string;
+  simpleContent: string;
+  showContent: boolean;
+  simpleOriginContent: string;
+  showOriginContent: boolean;
+
 
   static init() {
     let obj = new ReplyEntity();
@@ -106,6 +111,10 @@ export class ReplyEntity {
     obj.topicId = '';
     obj.userType = '';
     obj.comments = '';
+    obj.simpleContent = '';
+    obj.showOriginContent = false;
+    obj.showContent = false;
+    obj.simpleOriginContent = '';
     return obj;
   }
 }

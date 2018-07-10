@@ -195,6 +195,10 @@ export class RewordDetailComponent implements OnInit {
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
+          replyObj.simpleContent = this.typeService.substring(replyObj.content, 200);
+          if(replyObj.toReplyContent){
+            replyObj.simpleOriginContent = this.typeService.substring(replyObj.toReplyContent, 200);
+          }
           this.wonderReplyList.push(replyObj);
         });
 
@@ -208,7 +212,6 @@ export class RewordDetailComponent implements OnInit {
           this.pageNum = -1;
 
         } else {
-          // this.pageNum++;
           allReplyList.forEach(reply => {
             let replyObj = ReplyEntity.init();
             Object.assign(replyObj, reply);

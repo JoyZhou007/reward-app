@@ -258,7 +258,9 @@ main {
         padding-left: rem(50);
         line-height: rem(25);
         font-size: rem(14);
-
+        .operate{
+          text-align: center;
+        }
       }
       .origin-comment {
         display: flex;
