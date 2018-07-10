@@ -27,31 +27,27 @@
     }
 
     //采用节流实现限制回调函数调用频率
-    function ttrottle(fn,time){
+    function ttrottle(fn, time) {
       let isNeedInvoke = true;
-      return function(...args){
-        if(!isNeedInvoke)return;
+      return function (...args) {
+        if (!isNeedInvoke) return;
         let context = this;
         let _arguments = args;
         isNeedInvoke = false;
-        setTimeout(()=>{
-          fn.apply(context,_arguments);
+        setTimeout(() => {
+          fn.apply(context, _arguments);
           isNeedInvoke = true;
-        },time);
+        }, time);
       };
     };
 
-    window.onresize = ttrottle(onWindowResize,500);
+    window.onresize = ttrottle(onWindowResize, 500);
 
     // window.addEventListener('resize', onWindowResize);
     onWindowResize();
 
 
-    function getUserInfo(data) {
-      console.log('用户数据',data)
-    }
   })();
-
 
 </script>
 
@@ -90,11 +86,21 @@
       window.webkit.messageHandlers.share.postMessage(shareData);
     }
   }
+
 </script>
 
 <script>
+  var getUserInfo = function (data) {
+    let userData = JSON.parse(data);
+    console.log('userData', userData)
 
-
+    if (userData && userData.userId && userData.encCellphone) {
+      console.log('已登录');
+    } else {
+      console.log('未登录');
+      window['webkit'].messageHandlers.getUserInfo.postMessage('true');
+    }
+  }
 </script>
 </body>
 </html>
