@@ -140,7 +140,7 @@ export class RewordDetailComponent implements OnInit {
       this.articleDetailObj.showEnd = false;
     } else if (gap > 5 * 24 * 60 * 60 * 1000) {
       this.articleDetailObj.showCountdown = false;
-      this.articleDetailObj.showDoing = true;
+      this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = false;
     } else if (gap < 0) {
       this.articleDetailObj.showCountdown = false;

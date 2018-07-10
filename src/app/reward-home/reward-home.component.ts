@@ -86,6 +86,16 @@ export class RewardHomeComponent implements OnInit {
           articles.forEach(value => {
             let tplObj = RewardListEntity.init();
             tplObj.isDoing = (value.articleTime - currentTime) > 0;
+
+            const countdownTime = parseInt(value.articleTime) + 5 * 24 * 60 * 60 * 1000;
+            let gap = countdownTime - parseInt(currentTime);
+            if (gap > 0 && gap < 5 * 24 * 60 * 60 * 1000) {
+              tplObj.isDoing = true;
+            } else if (gap > 5 * 24 * 60 * 60 * 1000) {
+              tplObj.isDoing = false;
+            } else if (gap < 0) {
+              tplObj.isDoing = false;
+            }
             Object.assign(tplObj, value);
             this.topicList.push(tplObj);
           });
