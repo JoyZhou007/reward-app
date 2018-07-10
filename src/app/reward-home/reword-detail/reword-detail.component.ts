@@ -98,7 +98,19 @@ export class RewordDetailComponent implements OnInit {
    */
   public getDetail(isGetReply: boolean = true): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
-      this.rewardModelService.getDetail(this.articleId).subscribe(data => {
+      this.userId = this.storageService.getStorageValue('userId');
+      let formData;
+      if (this.userId) {
+        formData = {
+          articleId: this.articleId,
+          userId: this.userId
+        };
+      } else {
+        formData = {
+          articleId: this.articleId,
+        };
+      }
+      this.rewardModelService.getDetail(formData).subscribe(data => {
         this.articleDetailObj = RewardDetailEntity.init();
         this.checkCountdown(data);
         Object.assign(this.articleDetailObj, data);

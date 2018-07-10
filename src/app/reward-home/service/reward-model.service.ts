@@ -28,7 +28,8 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getDetail(data: any): Observable<any> {
-    const api = `/v4/articleStand/getContent.htm?userId=1&articleId=${data}`;
+    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/getContent.htm?userId=${data.userId}&articleId=${data.articleId}` :
+      `/v4/articleStand/getContent.htm?articleId=${data.articleId}`;
     return this.httpService.get(api);
   }
 
@@ -38,7 +39,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getWinnerList(data: any): Observable<any> {
-    const api = `/v4/articleStand/winnerList.htm?userId=1&articleId=${data}`;
+    const api = `/v4/articleStand/winnerList.htm?articleId=${data}`;
     return this.httpService.get(api);
   }
 
