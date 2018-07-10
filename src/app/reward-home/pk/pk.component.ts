@@ -19,6 +19,8 @@ export class PKComponent implements OnInit {
     }
   }
 
+  @Input() userId: string;
+
   public articleDetailObj: RewardDetailEntity;
 
   constructor(public rewardModelService: RewardModelService,
@@ -43,12 +45,12 @@ export class PKComponent implements OnInit {
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
 
-    this.userService.checkIsLogin().then((userInfo: UserInfoEntity) => {
+    this.userService.doLogin().then((userInfo: UserInfoEntity) => {
 
       const formData = {
         id: voteObj.id,
         articleId: this.articleDetailObj.id,
-        userId: userInfo.userId
+        userId: this.userId
       };
       this.rewardModelService.vote(formData).subscribe(data => {
         this.outFresh.emit();

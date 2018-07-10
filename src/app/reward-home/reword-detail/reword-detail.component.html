@@ -61,7 +61,9 @@
       </div>
     </div>
 
-    <app-pk #PKComponent [setData]="articleDetailObj.articleStandArr"
+    <app-pk #PKComponent
+            [userId]="userId"
+            [setData]="articleDetailObj.articleStandArr"
             (outFresh)="OutFresh()"
     ></app-pk>
 

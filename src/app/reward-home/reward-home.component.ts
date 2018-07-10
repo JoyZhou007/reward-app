@@ -2,8 +2,10 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {RewardModelService} from './service/reward-model.service';
 import {DateFormatService} from '../shared/service/date-format.service';
-import {RewardListEntity} from './entity/reward-entity';
+import {RewardListEntity, UserInfoEntity} from './entity/reward-entity';
 import {DialogService} from '../shared/service/dialog.service';
+import {StorageService} from '../shared/service/storage.service';
+import {UserService} from '../shared/service/user.service';
 
 @Component({
   selector: 'app-reward-home',
@@ -14,12 +16,27 @@ export class RewardHomeComponent implements OnInit {
   public topicList: Array<any>;
   private pageNum: number = 1;
   public hasInit: boolean = false;
+  public userId: string;
 
   constructor(public router: Router,
               public dialogService: DialogService,
+              public storageService: StorageService,
+              public userService: UserService,
               public dateFormatService: DateFormatService,
               public rewardModelService: RewardModelService) {
     this.topicList = [];
+
+
+    this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
+
+      // this.userId = this.storageService.getStorageValue('userId');
+
+      this.storageService.localStorage.observe('userId')
+        .subscribe((newValue) => {
+          console.log('observe userId', newValue);
+          this.userId = newValue;
+        });
+    });
   }
 
   ngOnInit() {
@@ -42,10 +59,19 @@ export class RewardHomeComponent implements OnInit {
 
   private getList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      let formData = {
-        pageNO: this.pageNum,
-        userId: 206043
-      };
+      this.userId = this.storageService.getStorageValue('userId');
+      let formData;
+      if (this.userId) {
+        formData = {
+          pageNO: this.pageNum,
+          userId: this.userId
+        };
+      } else {
+        formData = {
+          pageNO: this.pageNum,
+        };
+      }
+
       this.rewardModelService.getList(formData).subscribe(data => {
         let articles = data.articles || [];
         let currentTime = data.currentTime;

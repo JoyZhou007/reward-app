@@ -13,11 +13,13 @@ export class RewardModelService {
   }
 
   /**
-   *
+   *文章列表
    * @returns {Observable<any>}
    */
   public getList(data: any): Observable<any> {
-    return this.httpService.get(`/v4/articleStand/list.htm?userId=1&pageNO=${data.pageNO}&pageSize=15`);
+    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/list.htm?userId=${data.userId}&pageNO=${data.pageNO}&pageSize=15` :
+      `/v4/articleStand/list.htm?pageNO=${data.pageNO}&pageSize=15`;
+    return this.httpService.get(api);
   }
 
   /**
