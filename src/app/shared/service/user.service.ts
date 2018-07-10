@@ -92,10 +92,12 @@ export class UserService {
           } else {
             console.log('未登录');
             window['mysteeljs'].getUserInfo('true');
+            resolve('')
           }
         } else { //新控件 ios
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 1);
+          resolve('')
         }
       }
     });
