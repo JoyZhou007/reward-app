@@ -37,7 +37,7 @@ export class TypeService {
   // }
 
   public substring(str: string, len: number) {
-    return str.substr(0, len) + '...';
+    return str.substr(0, len);
   }
 
   /**
