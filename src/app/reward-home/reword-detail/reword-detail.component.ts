@@ -37,12 +37,12 @@ export class RewordDetailComponent implements OnInit {
   public topicId: any = '';
   public userInfo: UserInfoEntity;
   public userId: string;
+  public subStrLen: number = 70;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
               public router: Router,
               public userService: UserService,
-              public typeScript: TypeService,
               public dialogService: DialogService,
               public dateFormatService: DateFormatService,
               public activatedRoute: ActivatedRoute,
@@ -74,20 +74,6 @@ export class RewordDetailComponent implements OnInit {
     });
 
 
-  }
-
-  /**
-   * 点击展开
-   * @param {MouseEvent} event
-   */
-  public clickExpend(event: MouseEvent): void {
-    event.stopPropagation();
-    this.showMore = !this.showMore;
-    if (this.showMore) {
-      this.newStr = this.titStr;
-    } else {
-      this.newStr = this.typeService.substring(this.titStr, 150);
-    }
   }
 
 
@@ -195,9 +181,15 @@ export class RewordDetailComponent implements OnInit {
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
-          replyObj.simpleContent = this.typeService.substring(replyObj.content, 200);
-          if(replyObj.toReplyContent){
-            replyObj.simpleOriginContent = this.typeService.substring(replyObj.toReplyContent, 200);
+          if (replyObj.content.length > this.subStrLen) {
+            replyObj.showSimpleContent = true;
+            replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
+          }
+          if (replyObj.toReplyContent && replyObj.toReplyContent.length > this.subStrLen) {
+            replyObj.showSimpleOriginContent = true;
+            replyObj.simpleOriginContent = this.typeService.substring(replyObj.toReplyContent, this.subStrLen);
+
+            console.log('replyObj.simpleOriginContent', replyObj.simpleOriginContent);
           }
           this.wonderReplyList.push(replyObj);
         });
@@ -215,6 +207,16 @@ export class RewordDetailComponent implements OnInit {
           allReplyList.forEach(reply => {
             let replyObj = ReplyEntity.init();
             Object.assign(replyObj, reply);
+            if (replyObj.content.length > this.subStrLen) {
+              replyObj.showSimpleContent = true;
+              replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
+            }
+            if (replyObj.toReplyContent && replyObj.toReplyContent.length > this.subStrLen) {
+              replyObj.showSimpleOriginContent = true;
+              replyObj.simpleOriginContent = this.typeService.substring(replyObj.toReplyContent, this.subStrLen);
+
+            }
+
             //将精彩评论和全部评论对象关联
             for (let i = 0, len = this.wonderReplyList.length; i < len; i++) {
               if (this.wonderReplyList[i].id === replyObj.id) {

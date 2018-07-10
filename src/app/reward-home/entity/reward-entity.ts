@@ -87,9 +87,9 @@ export class ReplyEntity {
   userType: string;
   comments: string;
   simpleContent: string;
-  showContent: boolean;
+  showSimpleContent: boolean;
   simpleOriginContent: string;
-  showOriginContent: boolean;
+  showSimpleOriginContent: boolean;
 
 
   static init() {
@@ -111,10 +111,8 @@ export class ReplyEntity {
     obj.topicId = '';
     obj.userType = '';
     obj.comments = '';
-    obj.simpleContent = '';
-    obj.showOriginContent = false;
-    obj.showContent = false;
-    obj.simpleOriginContent = '';
+    obj.showSimpleOriginContent = false;
+    obj.showSimpleContent = false;
     return obj;
   }
 }

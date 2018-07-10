@@ -263,8 +263,8 @@ main {
         }
       }
       .origin-comment {
-        display: flex;
-        align-items: center;
+        //display: flex;
+        //align-items: center;
         margin-left: rem(50);
         padding: rem(10);
         background-color: $blue-1;
@@ -273,6 +273,9 @@ main {
         margin-top: rem(10);
         span {
           color: #449fdb;
+        }
+        .operate{
+          text-align: center;
         }
       }
       footer {

@@ -10,7 +10,7 @@
 <div class="container">
   <main>
     <section class="describe">
-    关注钢铁行业话题 <br> 等你来辩
+    话题已出，等你来辩
     </section>
 
     <section class="article-wrap">
@@ -39,7 +39,7 @@
             </div>
             <div class="right-foot">
               <span class="comment" (click)="clickOpenDetail($event,articleObj)">{{articleObj.comments}}条评论</span>
-              <a class="more" *ngIf="!!articleObj.replyArticleURL"
+              <a class="more"
                  href="{{articleObj.replyArticleURL}}">百家之言</a>
             </div>
           </div>

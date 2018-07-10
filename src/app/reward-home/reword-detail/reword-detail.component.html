@@ -90,16 +90,22 @@
         </header>
         <section class="main-comment">
 
-          {{wonderReply.showContent?wonderReply.content: wonderReply.simpleContent}}
+          {{wonderReply.showSimpleContent? wonderReply.simpleContent: wonderReply.content}}
           <div class="operate">
-            <span class="icon-cheveron-down"></span>
-            <!--<span class="icon-cheveron-up" ></span>-->
+            <span class="icon-cheveron-down"
+                  *ngIf="wonderReply.showSimpleContent"
+                  (click)="wonderReply.showSimpleContent=false"></span>
           </div>
         </section>
 
         <section class="origin-comment" *ngIf="!!wonderReply.toReplyId">
           <div>
-            <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.toReplyContent}}
+            <span>{{wonderReply.toReplyName}}</span>：{{wonderReply.showSimpleOriginContent?wonderReply.simpleOriginContent:wonderReply.toReplyContent}}
+          </div>
+          <div class="operate">
+            <span class="icon-cheveron-down"
+                  *ngIf="wonderReply.showSimpleOriginContent"
+                  (click)="wonderReply.showSimpleOriginContent=false"></span>
           </div>
         </section>
         <footer>
@@ -137,11 +143,23 @@
         </header>
         <section class="main-comment">
 
-          {{reply.content}}
+          {{reply.showSimpleContent? reply.simpleContent: reply.content}}
+
+          <div class="operate">
+            <span class="icon-cheveron-down"
+                  *ngIf="reply.showSimpleContent"
+                  (click)="reply.showSimpleContent=false"></span>
+          </div>
         </section>
         <section class="origin-comment" *ngIf="!!reply.toReplyId">
           <div>
-            <span>{{reply.toReplyName}}：</span>{{reply.toReplyContent}}
+            <span>{{reply.toReplyName}}：</span>{{reply.showSimpleOriginContent?reply.simpleOriginContent:reply.toReplyContent}}
+          </div>
+          <div class="operate">
+            <span class="icon-cheveron-down"
+                  *ngIf="reply.showSimpleOriginContent"
+                  (click)="reply.showSimpleOriginContent=false"
+            ></span>
           </div>
         </section>
         <footer>
