@@ -191,6 +191,7 @@ export class RewordDetailComponent implements OnInit {
       this.rewardModelService.getReplyList(formData).subscribe(data => {
 
         let wonderList = data.wonderFulReply || [];
+        this.wonderReplyList = [];
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);

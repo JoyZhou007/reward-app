@@ -47,7 +47,8 @@ export class TypeService {
    * @param name
    */
   public formatName(name: any): any {
-    return [...name].map((item, index, arr) => {
+    console.log('[...name]');
+    return name.split('').map((item, index, arr) => {
       return Math.floor(arr.length / 2) === index ? '*' : item;
     }).join('');
   }
