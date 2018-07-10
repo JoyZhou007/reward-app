@@ -226,7 +226,7 @@ export class RewordDetailComponent implements OnInit {
     if (!this.showLoading) {
       this.showLoading = true;
       this.userService.doLogin().then(() => {
-        this.storageService.getStorageValue('userId');
+        this.userId = this.storageService.getStorageValue('userId');
         this.rewardModelService.praise({
           replyId: reply.id,
           userId: this.userId
@@ -259,7 +259,7 @@ export class RewordDetailComponent implements OnInit {
       }
 
       this.userService.doLogin().then(() => {
-        this.userId=this.storageService.getStorageValue('userId');
+        this.userId = this.storageService.getStorageValue('userId');
         let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
         let formData = {
           topicId: this.topicId,
