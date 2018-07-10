@@ -259,7 +259,10 @@ main {
         line-height: rem(25);
         font-size: rem(14);
         .operate{
-          text-align: center;
+          text-align: right;
+          padding-right: rem(10);
+          font-size: rem(18);
+          color: #449fdb;
         }
       }
       .origin-comment {
@@ -275,7 +278,9 @@ main {
           color: #449fdb;
         }
         .operate{
-          text-align: center;
+          text-align: right;
+          padding-right: rem(10);
+          font-size: rem(18);
         }
       }
       footer {
