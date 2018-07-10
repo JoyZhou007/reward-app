@@ -43,11 +43,13 @@ export class TypeService {
 
   /**
    * 名字中间部分替换成星号
-   * @param {string} str
    * @returns {string}
+   * @param name
    */
-  public formatName(str: string): string {
-    return new Array(str.length).join('*') + str.substr(-1);
+  public formatName(name: any): any {
+    return [...name].map((item, index, arr) => {
+      return Math.floor(arr.length / 2) === index ? '*' : item;
+    }).join('');
   }
 
   /**

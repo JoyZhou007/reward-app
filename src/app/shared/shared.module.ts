@@ -13,11 +13,18 @@ import {HandleInterceptor} from './service/handle-interceptor';
 import {EscapeHtmlService} from './service/escape-html.service';
 import {NotificationService} from './service/notification.service';
 import {DialogService} from './service/dialog.service';
+import {Ng2Webstorage} from 'ngx-webstorage';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
+    Ng2Webstorage.forRoot({prefix: '', separator: '', caseSensitive: true})
+    // The forRoot method allows to configure the prefix, the separator and the caseSensitive option used by the library
+    // Default values:
+    // prefix: "ng2-webstorage"
+    // separator: "|"
+    // caseSensitive: false
   ],
   declarations: [HeaderComponent],
   exports: [

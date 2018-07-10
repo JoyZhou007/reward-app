@@ -25,80 +25,7 @@ export class WinningComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.steelList = [
-      {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      }, {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      }, {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      }, {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      }, {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      }, {
-        name: '周杰伦',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '胡歌',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '吴彦祖',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '吴彦祖',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '吴彦祖',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-      {
-        name: '吴彦祖',
-        phone: '15026961810',
-        tplPhone: '',
-        tplName: ''
-      },
-    ];
 
-    this.steelList.forEach(value => {
-      value.tplPhone = this.typeService.formatPhone(value.phone);
-      value.tplName = this.typeService.formatName(value.name);
-    });
 
   }
 
@@ -111,7 +38,7 @@ export class WinningComponent implements OnInit {
           let appData = WinnerEntity.init();
           Object.assign(appData, item);
           appData.tplNumber = this.typeService.formatPhone(appData.number);
-          appData.tplUserName = this.typeService.formatPhone(appData.userName);
+          appData.tplUserName = this.typeService.formatName(appData.userName);
           this.appList.push(appData);
         });
 
@@ -121,7 +48,7 @@ export class WinningComponent implements OnInit {
           let wxData = WinnerEntity.init();
           Object.assign(wxData, item);
           wxData.tplNumber = this.typeService.formatPhone(wxData.number);
-          wxData.tplUserName = this.typeService.formatPhone(wxData.userName);
+          wxData.tplUserName = this.typeService.formatName(wxData.userName);
           this.wxList.push(wxData);
         });
 

@@ -96,9 +96,13 @@
 
     if (userData && userData.userId && userData.encCellphone) {
       console.log('已登录');
+      Storage.setItem('userId', userId);
     } else {
-      console.log('未登录');
-      window['webkit'].messageHandlers.getUserInfo.postMessage('true');
+      console.log('未登录',Storage.getItem('doLogin'));
+      Storage.setItem('userId', '');
+      if (Storage.getItem('doLogin') === '1'){
+        window['webkit'].messageHandlers.getUserInfo.postMessage('true');
+      }
     }
   }
 </script>

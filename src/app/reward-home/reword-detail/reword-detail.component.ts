@@ -9,6 +9,7 @@ import {DialogService} from '../../shared/service/dialog.service';
 import {promise} from 'selenium-webdriver';
 import {PKComponent} from '../pk/pk.component';
 import {UserService} from '../../shared/service/user.service';
+import {StorageService} from '../../shared/service/storage.service';
 
 @Component({
   selector: 'app-reword-detail',
@@ -35,6 +36,7 @@ export class RewordDetailComponent implements OnInit {
   public showLoading: boolean = false;
   public topicId: any = '';
   public userInfo: UserInfoEntity;
+  public userId: string;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -44,10 +46,18 @@ export class RewordDetailComponent implements OnInit {
               public dialogService: DialogService,
               public dateFormatService: DateFormatService,
               public activatedRoute: ActivatedRoute,
+              public storageService: StorageService,
               public rewardModelService: RewardModelService) {
     this.pageNum = 1;
-    this.userService.getUserInfo().then((userInfo:UserInfoEntity)=>{
-      this.userInfo = userInfo;
+    this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
+
+      // this.userId = this.storageService.getStorageValue('userId');
+
+      this.storageService.localStorage.observe('userId')
+        .subscribe((newValue) => {
+          console.log('observe userId', newValue);
+          this.userId = newValue;
+        });
     });
   }
 
@@ -151,12 +161,12 @@ export class RewordDetailComponent implements OnInit {
 
 
       let formData;
-      if (this.userInfo) { //已经登录
+      if (this.userId) { //已经登录
         formData = {
           id: this.articleDetailObj.id,
           channelId: this.articleDetailObj.channelId,
           pageNum: this.pageNum,
-          userId: this.userInfo.userId
+          userId: this.userId
         };
       } else { //未登录
         formData = {
@@ -215,15 +225,10 @@ export class RewordDetailComponent implements OnInit {
     event.stopPropagation();
     if (!this.showLoading) {
       this.showLoading = true;
-      this.userService.checkIsLogin().then((userInfo: {
-        encCellphone: string,
-        encUserId: string,
-        userId: string
-      }) => {
-        console.log('uuu', userInfo.userId);
+      this.userService.doLogin().then(() => {
         this.rewardModelService.praise({
           replyId: reply.id,
-          userId: userInfo.userId
+          userId: this.userId
         }).subscribe(data => {
           if (reply.isDigg === 'yes') {
             reply.isDigg = 'no';
@@ -252,7 +257,7 @@ export class RewordDetailComponent implements OnInit {
         this.topicId = await this.getTopicId();
       }
 
-      this.userService.checkIsLogin().then((userInfo: UserInfoEntity) => {
+      this.userService.doLogin().then(() => {
         let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
         let formData = {
           topicId: this.topicId,
@@ -262,7 +267,7 @@ export class RewordDetailComponent implements OnInit {
           objectTitle: this.articleDetailObj.title,
           content: content,
           replyId: replyId,
-          userId: userInfo.userId
+          userId: this.userId
         };
         this.rewardModelService.doComment(formData).subscribe(data => {
           this.allReplyList = [];
