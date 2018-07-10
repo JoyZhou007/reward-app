@@ -92,15 +92,15 @@
 <script>
   var getUserInfo = function (data) {
     let userData = JSON.parse(data);
-    console.log('userData', userData)
+    console.log('userData index', userData)
 
     if (userData && userData.userId && userData.encCellphone) {
-      console.log('已登录');
-      Storage.setItem('userId', userId);
+      console.log('已登录 window');
+      window.localStorage.setItem('userId', userData.userId);
     } else {
-      console.log('未登录',Storage.getItem('doLogin'));
-      Storage.setItem('userId', '');
-      if (Storage.getItem('doLogin') === '1'){
+      console.log('未登录','window.local',window.localStorage.getItem('doLogin'));
+      window.localStorage.setItem('userId', '');
+      if ( window.localStorage.getItem('doLogin') === '1'){
         window['webkit'].messageHandlers.getUserInfo.postMessage('true');
       }
     }
