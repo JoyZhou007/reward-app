@@ -18,6 +18,7 @@ export class AppComponent {
 
   checkBrowser() {
     let ua = navigator.userAgent.toLocaleLowerCase();
+    console.log('浏览器信息',ua)
     if (ua.match(/msie/) != null || ua.match(/trident/) != null) {
       if(ua.match(/lbbrowser/) != null) {
         console.log("猎豹");
