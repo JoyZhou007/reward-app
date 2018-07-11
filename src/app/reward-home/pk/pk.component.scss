@@ -2,6 +2,21 @@
 
 .box {
   margin-top: rem(30);
+  h3 {
+    margin-top: rem(10);
+    height: rem(30);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: rem(16);
+    .icon-square {
+      display: inline-block;
+      width: rem(5);
+      height: rem(20);
+      margin-right: rem(5);
+      background-color: $blue-normal;
+    }
+  }
   .vote {
     display: flex;
     align-items: flex-end;
