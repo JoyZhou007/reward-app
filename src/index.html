@@ -21,35 +21,35 @@
 <!--<script src="browser.min.js"></script>-->
 <script type="text/javascript" src="./rem.min.js"></script>
 <script>
-  (function () {
-    let html = document.documentElement;
-
-    function onWindowResize() {
-      html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
-    }
-
-    //采用节流实现限制回调函数调用频率
-    function ttrottle(fn, time) {
-      let isNeedInvoke = true;
-      return function (...args) {
-        if (!isNeedInvoke) return;
-        let context = this;
-        let _arguments = args;
-        isNeedInvoke = false;
-        setTimeout(() => {
-          fn.apply(context, _arguments);
-          isNeedInvoke = true;
-        }, time);
-      };
-    };
-
-    window.onresize = ttrottle(onWindowResize, 500);
-
-    // window.addEventListener('resize', onWindowResize);
-    onWindowResize();
-
-
-  })();
+  // (function () {
+  //   let html = document.documentElement;
+  //
+  //   function onWindowResize() {
+  //     html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
+  //   }
+  //
+  //   //采用节流实现限制回调函数调用频率
+  //   function ttrottle(fn, time) {
+  //     let isNeedInvoke = true;
+  //     return function (...args) {
+  //       if (!isNeedInvoke) return;
+  //       let context = this;
+  //       let _arguments = args;
+  //       isNeedInvoke = false;
+  //       setTimeout(() => {
+  //         fn.apply(context, _arguments);
+  //         isNeedInvoke = true;
+  //       }, time);
+  //     };
+  //   };
+  //
+  //   window.onresize = ttrottle(onWindowResize, 500);
+  //
+  //   // window.addEventListener('resize', onWindowResize);
+  //   onWindowResize();
+  //
+  //
+  // })();
 
 </script>
 
