@@ -83,7 +83,7 @@
             flex: 0 0 50%;
             color: #333;
             font-size: rem(13);
-            line-height: rem(18);
+            line-height: rem(20);
             display: flex;
             .name {
               flex: 0 0 40%;
@@ -93,6 +93,11 @@
             .phone{
               text-align: center;
             }
+          }
+        }
+        .wechat-list{
+          .name {
+            flex: 0 0 100% !important;
           }
         }
       }
