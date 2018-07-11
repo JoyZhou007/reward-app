@@ -66,8 +66,14 @@ export class PKComponent implements OnInit {
 
   public clickTip(event: MouseEvent): void {
     event.stopPropagation();
-    this.dialogService.openTipDialog({
-      content: '投票已结束'
-    });
+    if(this.articleDetailObj.showEnd){
+      this.dialogService.openTipDialog({
+        content: '投票已结束'
+      });
+    } else if(this.articleDetailObj.articleStandId) {
+      this.dialogService.openTipDialog({
+        content: '已投票'
+      });
+    }
   }
 }

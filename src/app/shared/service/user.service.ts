@@ -67,6 +67,8 @@ export class UserService {
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 0);
         }
+      } else{
+
       }
     });
   }
