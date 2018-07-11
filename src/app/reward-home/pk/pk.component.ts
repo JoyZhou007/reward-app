@@ -44,23 +44,36 @@ export class PKComponent implements OnInit {
 
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
-
-    this.userService.doLogin().then((userInfo: UserInfoEntity) => {
-      if (this.userId) {
-        const formData = {
-          id: voteObj.id,
-          articleId: this.articleDetailObj.id,
-          userId: this.userId
-        };
-        this.rewardModelService.vote(formData).subscribe(data => {
-          this.outFresh.emit();
-          this.dialogService.openTipDialog({
-            content: '投票成功'
+    if(this.articleDetailObj.articleStandId==='') {
+      this.userService.doLogin().then((userInfo: UserInfoEntity) => {
+        if (this.userId) {
+          const formData = {
+            id: voteObj.id,
+            articleId: this.articleDetailObj.id,
+            userId: this.userId
+          };
+          this.rewardModelService.vote(formData).subscribe(data => {
+            this.outFresh.emit();
+            this.dialogService.openTipDialog({
+              content: '投票成功'
+            });
           });
+        }
+
+      });
+    } else {
+      if(this.articleDetailObj.showEnd){
+        this.dialogService.openTipDialog({
+          content: '投票已结束'
+        });
+      } else if(this.articleDetailObj.articleStandId) {
+        this.dialogService.openTipDialog({
+          content: '已投票'
         });
       }
+    }
 
-    });
+
 
   }
 
