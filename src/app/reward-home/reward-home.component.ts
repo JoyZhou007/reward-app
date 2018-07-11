@@ -13,7 +13,7 @@ import {UserService} from '../shared/service/user.service';
   styleUrls: ['./reward-home.component.scss']
 })
 export class RewardHomeComponent implements OnInit {
-  public topicList: Array<any>;
+  public topicList: Array<RewardListEntity>;
   private pageNum: number = 1;
   public hasInit: boolean = false;
   public userId: string;

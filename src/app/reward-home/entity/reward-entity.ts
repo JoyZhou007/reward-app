@@ -1,7 +1,7 @@
 export class RewardListEntity {
   id: string;
   title: string;
-  date: string;
+  date2: string;
   time: string;
   comments: string;
   content: string;
@@ -15,7 +15,7 @@ export class RewardListEntity {
     let obj = new RewardListEntity();
     obj.id = '';
     obj.title = '';
-    obj.date = '';
+    obj.date2 = '';
     obj.time = '';
     obj.comments = '';
     obj.content = '';

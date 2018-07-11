@@ -170,10 +170,13 @@
             <span
               *ngIf="reply.digg!=='0'"
             >{{reply.digg}}</span>
+            <span
+              *ngIf="reply.digg==='0'"
+            >赞</span>
           </div>
           <div class="praise" (click)="clickCommentReply($event,ipt,reply)">
             <i class="iconfont icon-message"></i>
-            <span>{{reply.comments}}</span>
+            <span>评论</span>
           </div>
 
         </footer>
