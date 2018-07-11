@@ -62,7 +62,7 @@
 
     <!--投过票-->
 
-    <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!==''">
+    <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!==''" (click)="clickTip($event)">
       <div class="box-bar left-box blue-bar"
            [class.gray-bar]="articleDetailObj.articleStandId!==voteList[0].id"
            (click)="clickTip($event)"
