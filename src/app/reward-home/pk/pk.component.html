@@ -11,7 +11,12 @@
         <progressbar max="100" [value]="voteObj.width"  [striped]="true" [animate]="true"><i>{{voteObj.supportRate}}已支持</i></progressbar>
       </li>
       <li>
-        <button class="btn-vote" [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote"  (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}</button>
+        <button class="btn-vote"
+                *ngIf="!articleDetailObj.showEnd"
+                [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote"  (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}</button>
+        <button class="btn-vote btn-disabled"
+                *ngIf="articleDetailObj.showEnd"
+                >已结束</button>
       </li>
     </ng-container>
   </ul>
