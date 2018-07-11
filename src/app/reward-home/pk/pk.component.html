@@ -16,7 +16,7 @@
                 [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote"  (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}</button>
         <button class="btn-vote btn-disabled"
                 *ngIf="articleDetailObj.showEnd"
-                >已结束</button>
+                >投票已结束</button>
       </li>
     </ng-container>
   </ul>
