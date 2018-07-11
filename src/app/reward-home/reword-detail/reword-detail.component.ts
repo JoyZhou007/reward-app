@@ -245,18 +245,21 @@ export class RewordDetailComponent implements OnInit {
       this.showLoading = true;
       this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
-        this.rewardModelService.praise({
-          replyId: reply.id,
-          userId: this.userId
-        }).subscribe(data => {
-          if (reply.isDigg === 'yes') {
-            reply.isDigg = 'no';
-          } else {
-            reply.isDigg = 'yes';
-          }
-          reply.digg = data.digNum;
-          this.showLoading = false;
-        });
+        if (this.userId) {
+          this.rewardModelService.praise({
+            replyId: reply.id,
+            userId: this.userId
+          }).subscribe(data => {
+            if (reply.isDigg === 'yes') {
+              reply.isDigg = 'no';
+            } else {
+              reply.isDigg = 'yes';
+            }
+            reply.digg = data.digNum;
+            this.showLoading = false;
+          });
+        }
+
       });
 
     }

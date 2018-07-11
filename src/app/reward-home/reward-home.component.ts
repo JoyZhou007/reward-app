@@ -60,6 +60,7 @@ export class RewardHomeComponent implements OnInit {
   private getList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.userId = this.storageService.getStorageValue('userId');
+      console.log('this.userId', this.userId)
       let formData;
       if (this.userId) {
         formData = {
