@@ -258,6 +258,8 @@ export class RewordDetailComponent implements OnInit {
             reply.digg = data.digNum;
             this.showLoading = false;
           });
+        } else {
+          this.showLoading = false;
         }
 
       });
