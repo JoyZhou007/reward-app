@@ -109,18 +109,22 @@
           </div>
         </section>
         <footer>
-          <div class="praise">
+          <div class="praise" (click)="clickPraise($event,wonderReply)">
 
-            <i class="iconfont icon-praise_fill active"
+            <i class="iconfont icon-praise_fill"
                [class.active]="wonderReply.isDigg==='yes'"
                (click)="clickPraise($event,wonderReply)"></i>
-            <span (click)="clickPraise($event,wonderReply)"
+            <span
                   *ngIf="wonderReply.digg!=='0'"
             >{{wonderReply.digg}}</span>
+            <span
+              *ngIf="wonderReply.digg==='0'"
+            >赞</span>
+
           </div>
           <div class="praise" (click)="clickCommentReply($event,ipt,wonderReply)">
             <i class="iconfont icon-message"></i>
-            <span>{{wonderReply.comments}}</span>
+            <span>评论</span>
           </div>
 
         </footer>
@@ -164,7 +168,7 @@
         </section>
         <footer>
           <div class="praise" (click)="clickPraise($event,reply)">
-            <i class="iconfont icon-praise_fill active"
+            <i class="iconfont icon-praise_fill"
                [class.active]="reply.isDigg==='yes'"
             ></i>
             <span
