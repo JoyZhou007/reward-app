@@ -61,12 +61,14 @@
 
     <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!==''">
       <div class="box-bar left-box blue-bar"
+           [class.gray-bar]="articleDetailObj.articleStandId===voteList[0].id"
            (click)="clickTip($event)"
            [style.width]="voteList[0]?.width+'%'">
 
 
       </div>
       <div class="box-bar right-box red-bar"
+           [class.gray-bar]="articleDetailObj.articleStandId===voteList[1].id"
            (click)="clickTip($event)"
            [style.width]="voteList[1]?.width+'%'">
 
