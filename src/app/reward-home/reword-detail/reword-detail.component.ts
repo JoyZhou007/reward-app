@@ -131,7 +131,7 @@ export class RewordDetailComponent implements OnInit {
     const currentTime = data.currentTime;
     const countdownTime = parseInt(data.articleTime) + 5 * 24 * 60 * 60 * 1000;
     let gap = countdownTime - parseInt(currentTime);
-    if (gap > 0 && gap < 5 * 24 * 60 * 60 * 1000) {
+    if (gap >= 0 && gap <= 5 * 24 * 60 * 60 * 1000) {
       let day = Math.floor(gap / (24 * 60 * 60 * 1000));
       let hours = Math.floor((gap - day * 24 * 60 * 60 * 1000) / (60 * 60 * 1000));
       this.articleDetailObj.countDownStr = `${day} 天 ${hours} 小时`;
