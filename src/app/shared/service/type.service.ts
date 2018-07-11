@@ -57,11 +57,28 @@ export class TypeService {
    * @returns {string}
    * @param name
    */
-  public formatName(name: any): any {
-    console.log('[...name]');
-    return name.split('').map((item, index, arr) => {
-      return Math.floor(arr.length / 2) === index ? '*' : item;
-    }).join('');
+  // public formatName(name: any): any {
+  //   console.log('[...name]');
+  //   return name.split('').map((item, index, arr) => {
+  //     return Math.floor(arr.length / 2) === index ? '*' : item;
+  //   }).join('');
+  // }
+
+  public formatName(name: any): string {
+    let newStr;
+    if (name.length === 2) {
+      newStr = name.substr(0, 1) + '*';
+    } else if (name.length > 2) {
+      let char = '';
+      for (let i = 0, len = name.length - 2; i < len; i++) {
+        char += '*';
+      }
+      newStr = name.substr(0, 1) + char + name.substr(-1, 1);
+    } else {
+      newStr = name;
+    }
+
+    return newStr;
   }
 
   /**

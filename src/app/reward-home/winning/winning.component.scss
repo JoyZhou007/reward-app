@@ -87,7 +87,8 @@
             display: flex;
             .name {
               flex: 0 0 40%;
-              text-align: center;
+              text-align: left;
+              padding-left: rem(10);
               margin-right: rem(10);
             }
             .phone{
