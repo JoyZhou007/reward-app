@@ -389,7 +389,7 @@ export class RewordDetailComponent implements OnInit {
   private initScript(id: string) {
     this.storageService.setStorageValue('articleId', id);
     let ele = document.createElement('script');
-    ele.setAttribute('src', './assets/js/share-home.js');
+    ele.setAttribute('src', './assets/js/share-detail.js');
     document.body.appendChild(ele);
   }
 
