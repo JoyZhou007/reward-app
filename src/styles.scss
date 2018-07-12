@@ -87,7 +87,6 @@ a, a:hover {
   color: #333;
 }
 
-
 $blue-normal: #3a74d8;
 $blue-light: #4080cf;
 $blue-1: #f4f7f9;
@@ -126,17 +125,16 @@ body {
   font-size: rem(12) !important;
 }
 
-html{
+html {
   width: 100%;
   font-size: $base-rem / $ue-width * 100vw !important;
   @media screen and (max-width: 320px) {
-    html {font-size: 32px !important}
+    font-size: 32px !important;
   }
   @media screen and (min-width: 540px) {
-    html {font-size: 54px}
+    font-size: 54px !important;
   }
 }
-
 
 //@media screen and (min-width: 320px) {
 //  html {font-size: 32px}
