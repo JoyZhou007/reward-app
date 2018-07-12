@@ -6,17 +6,21 @@
       <li>
         <h6>{{voteObj.option}}</h6>
         <!--<div class="bar" [style.width]="voteObj.supportRate">-->
-          <!--{{voteObj.supportRate}} 已支持-->
+        <!--{{voteObj.supportRate}} 已支持-->
         <!--</div>-->
-        <progressbar max="100" [value]="voteObj.width"  [striped]="true" [animate]="true"><i>{{voteObj.supportRate}}已支持</i></progressbar>
+        <progressbar max="100" [value]="voteObj.width" [striped]="true" [animate]="true">
+          <i>{{voteObj.supportRate}}已支持</i></progressbar>
       </li>
       <li>
         <button class="btn-vote"
                 *ngIf="!articleDetailObj.showEnd"
-                [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote"  (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}</button>
+                [class.btn-disabled]="articleDetailObj.articleStandId!=='' && !voteObj.hasVote"
+                (click)="clickVote($event,voteObj)">{{voteObj.hasVote?'已投票':'投票'}}
+        </button>
         <button class="btn-vote btn-disabled"
                 *ngIf="articleDetailObj.showEnd"
-                >投票已结束</button>
+        >投票已结束
+        </button>
       </li>
     </ng-container>
   </ul>
@@ -26,19 +30,19 @@
   <h3><i class="icon-square"></i> 选择观点</h3>
 
 
-  <div class="vote" >
+  <div class="vote">
     <div class="tit-pk">
       <i></i> PK <i></i>
     </div>
     <!--未投票-->
-    <div class="vote-box" *ngIf="articleDetailObj.articleStandId===''">
+    <div class="vote-box" *ngIf="articleDetailObj.articleStandId==='' && !articleDetailObj.showEnd">
       <div class="box-bar left-box blue-bar">
 
         <div class="option">
           {{voteList[0]?.option}}
         </div>
         <!--<div class="rate">-->
-          <!--{{voteList[0]?.supportRate}}-->
+        <!--{{voteList[0]?.supportRate}}-->
         <!--</div>-->
         <div class="btn-support" (click)="clickVote($event,voteList[0])">
           <span class="btn-wrap">
@@ -52,7 +56,7 @@
           {{voteList[1]?.option}}
         </div>
         <!--<div class="rate">-->
-          <!--{{voteList[1]?.supportRate}}-->
+        <!--{{voteList[1]?.supportRate}}-->
         <!--</div>-->
         <div class="btn-support" (click)="clickVote($event,voteList[1])">
          <span class="btn-wrap">
@@ -61,22 +65,23 @@
         </div>
       </div>
       <!--<div class="pk">-->
-        <!--pk-->
+      <!--pk-->
       <!--</div>-->
     </div>
 
     <!--投过票-->
 
-    <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!==''" (click)="clickTip($event)">
+    <div class="vote-box-show" *ngIf="articleDetailObj.articleStandId!=='' || articleDetailObj.showEnd"
+         (click)="clickTip($event)">
       <div class="box-bar left-box blue-bar"
-           [class.gray-bar]="articleDetailObj.articleStandId!==voteList[0].id"
+           [class.gray-bar]="articleDetailObj.articleStandId &&articleDetailObj.articleStandId!==voteList[0].id"
            (click)="clickTip($event)"
            [style.width]="voteList[0]?.width+'%'">
 
 
       </div>
       <div class="box-bar right-box red-bar"
-           [class.gray-bar]="articleDetailObj.articleStandId!==voteList[1].id"
+           [class.gray-bar]="articleDetailObj.articleStandId&&articleDetailObj.articleStandId!==voteList[1].id"
            (click)="clickTip($event)"
            [style.width]="voteList[1]?.width+'%'">
 

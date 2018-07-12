@@ -145,6 +145,7 @@ export class VoteEntity {
   option: string;
   supportRate: string;
   width: number;
+  color: string;
 
   static init() {
     let obj = new VoteEntity();
@@ -153,6 +154,7 @@ export class VoteEntity {
     obj.option = '';
     obj.supportRate = '0%';
     obj.width = 0;
+    obj.color = '';
     return obj;
   }
 }
