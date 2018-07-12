@@ -370,4 +370,9 @@ export class RewordDetailComponent implements OnInit {
     this.getDetail(false);
   }
 
+  public autoSize(ipt: any) {
+    // const offset = ipt.offsetHeight - ipt.clientHeight;
+    // ipt.style.height = ipt.scrollHeight  + 'px';
+  }
+
 }

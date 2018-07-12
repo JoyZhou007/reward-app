@@ -165,12 +165,12 @@ main {
       .active-send{
         color: $blue-normal;
       }
-      input {
+      .ipt-btn {
         flex: 1;
-        height: rem(20);
         border: rem(1) solid $blue-light;
         border-radius: rem(5);
-        padding: rem(15) rem(10);
+        padding: rem(3) rem(10);
+        line-height: rem(12);
         background-color: $white-1;
       }
     }

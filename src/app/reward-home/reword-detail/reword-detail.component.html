@@ -68,7 +68,7 @@
     <section class="box">
       <header class="input">
         <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
-        <input type="text" placeholder="说说我的想法" #ipt [(ngModel)]="commentValue" (keyup.enter)="sendComment($event,ipt)">
+        <textarea class="ipt-btn" type="text" placeholder="说说我的想法" #ipt (keydown)="autoSize(ipt)" [(ngModel)]="commentValue" (keyup.enter)="sendComment($event,ipt)"> </textarea>
         <span class="btn-send"
               (click)="sendComment($event,ipt)"
               [class.active-send]="ipt.value!==''">发送</span>

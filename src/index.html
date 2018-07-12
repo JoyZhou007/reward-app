@@ -20,54 +20,54 @@
 <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
   let html = document.documentElement;
-  (function () {
-    let html = document.documentElement;
-
-    function onWindowResize() {
-      html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
-    }
-
-    //采用节流实现限制回调函数调用频率
-    function ttrottle(fn, time) {
-      let isNeedInvoke = true;
-      return function (...args) {
-        if (!isNeedInvoke) return;
-        let context = this;
-        let _arguments = args;
-        isNeedInvoke = false;
-        setTimeout(() => {
-          fn.apply(context, _arguments);
-          isNeedInvoke = true;
-        }, time);
-      };
-    };
-
-    // window.onresize = ttrottle(onWindowResize, 500);
-
-    window.addEventListener('resize', onWindowResize);
-    onWindowResize();
-
-
-  })();
-
-
-  // (function (doc, win) {
-  //   let docEl = doc.documentElement,
-  //     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-  //     recalc = function () {
-  //       let clientWidth = docEl.clientWidth;
-  //       if (!clientWidth) return;
-  //       if (clientWidth >= 640) {
-  //         docEl.style.fontSize = '100px';
-  //       } else {
-  //         docEl.style.fontSize = (clientWidth / 10) + 'px';
-  //       }
-  //     };
+  // (function () {
+  //   let html = document.documentElement;
   //
-  //   if (!doc.addEventListener) return;
-  //   win.addEventListener(resizeEvt, recalc, false);
-  //   doc.addEventListener('DOMContentLoaded', recalc, false);
-  // })(document, window);
+  //   function onWindowResize() {
+  //     html.style.fontSize = html.getBoundingClientRect().width / 10 + 'px';
+  //   }
+  //
+  //   //采用节流实现限制回调函数调用频率
+  //   function ttrottle(fn, time) {
+  //     let isNeedInvoke = true;
+  //     return function (...args) {
+  //       if (!isNeedInvoke) return;
+  //       let context = this;
+  //       let _arguments = args;
+  //       isNeedInvoke = false;
+  //       setTimeout(() => {
+  //         fn.apply(context, _arguments);
+  //         isNeedInvoke = true;
+  //       }, time);
+  //     };
+  //   };
+  //
+  //   // window.onresize = ttrottle(onWindowResize, 500);
+  //
+  //   window.addEventListener('resize', onWindowResize);
+  //   onWindowResize();
+  //
+  //
+  // })();
+
+
+  (function (doc, win) {
+    let docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        let clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth >= 640) {
+          docEl.style.fontSize = '100px';
+        } else {
+          docEl.style.fontSize = (clientWidth / 10) + 'px';
+        }
+      };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
 
 
 </script>

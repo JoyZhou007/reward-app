@@ -127,12 +127,12 @@ body {
 
 html {
   width: 100%;
-  font-size: $base-rem / $ue-width * 100vw !important;
+  font-size: $base-rem / $ue-width * 100vw;
   @media screen and (max-width: 320px) {
-    font-size: 32px !important;
+    font-size: 32px;
   }
   @media screen and (min-width: 540px) {
-    font-size: 54px !important;
+    font-size: 54px;
   }
 }
 
