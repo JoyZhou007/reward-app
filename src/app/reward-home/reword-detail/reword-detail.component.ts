@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {TypeService} from '../../shared/service/type.service';
 import {RewardModelService} from '../service/reward-model.service';
 import {DateFormatService} from '../../shared/service/date-format.service';
@@ -41,6 +41,7 @@ export class RewordDetailComponent implements OnInit {
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
+              public render: Renderer2,
               public router: Router,
               public userService: UserService,
               public dialogService: DialogService,
@@ -387,10 +388,15 @@ export class RewordDetailComponent implements OnInit {
    * 初始化分享script
    */
   private initScript(id: string) {
+    let old = document.getElementById('home-share');
+    if (old) {
+      this.render.removeChild(document.body, old);
+    }
     this.storageService.setStorageValue('articleId', id);
-    let ele = document.createElement('script');
+    let ele = this.render.createElement('script');
     ele.setAttribute('src', './assets/js/share-detail.js');
-    document.body.appendChild(ele);
+    ele.setAttribute('id', 'detail-share');
+    this.render.appendChild(document.body, ele);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, Renderer2} from '@angular/core';
 import {Router} from '@angular/router';
 import {RewardModelService} from './service/reward-model.service';
 import {DateFormatService} from '../shared/service/date-format.service';
@@ -19,6 +19,7 @@ export class RewardHomeComponent implements OnInit {
   public userId: string;
 
   constructor(public router: Router,
+              public render:Renderer2,
               public dialogService: DialogService,
               public storageService: StorageService,
               public userService: UserService,
@@ -133,8 +134,13 @@ export class RewardHomeComponent implements OnInit {
   }
 
   private initScript() {
-    let ele = document.createElement('script');
-    ele.setAttribute('src','./assets/js/share-home.js')
-    document.body.appendChild(ele);
+    let old = document.getElementById('detail-share');
+    if (old) {
+      this.render.removeChild(document.body, old);
+    }
+    let ele = this.render.createElement('script');
+    ele.setAttribute('src', './assets/js/share-home.js');
+    ele.setAttribute('id', 'home-share');
+    this.render.appendChild(document.body, ele);
   }
 }
