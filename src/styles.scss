@@ -87,17 +87,6 @@ a, a:hover {
   color: #333;
 }
 
-$ue-width: 375; /* ue图的宽度 */
-$base-rem: $ue-width/10;
-
-@function rem($px) {
-  $rem: $base-rem;
-  @return $px / $rem * 1rem;
-}
-
-body {
-  font-size: rem(12) !important;
-}
 
 $blue-normal: #3a74d8;
 $blue-light: #4080cf;
@@ -125,13 +114,36 @@ $red-normal: #eb513d;
   }
 }
 
+$ue-width: 375; /* ue图的宽度 */
+$base-rem: $ue-width/10;
 
-@media screen and (min-width: 320px) {
-  html {font-size: 32px}
+@function rem($px) {
+  $rem: $base-rem;
+  @return $px / $rem * 1rem;
 }
-@media screen and (min-width: 481px) and (max-width:640px) {
-  html {font-size: 48px}
+
+body {
+  font-size: rem(12) !important;
 }
-@media screen and (min-width: 641px) {
-  html {font-size: 64px}
+
+html{
+  width: 100%;
+  font-size: $base-rem / $ue-width * 100vw !important;
+  @media screen and (max-width: 320px) {
+    html {font-size: 32px !important}
+  }
+  @media screen and (min-width: 540px) {
+    html {font-size: 54px}
+  }
 }
+
+
+//@media screen and (min-width: 320px) {
+//  html {font-size: 32px}
+//}
+//@media screen and (min-width: 481px) and (max-width:640px) {
+//  html {font-size: 48px}
+//}
+//@media screen and (min-width: 641px) {
+//  html {font-size: 64px}
+//}
