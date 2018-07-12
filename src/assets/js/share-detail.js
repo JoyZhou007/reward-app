@@ -6,7 +6,7 @@ if (window.mysteeljs || window.webkit) {
   const type = "19";//分享类型
   const title = articleTitle;//分享标题按
   const desc = "【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～";//分享描述
-  const link = `http://192.168.20.72:4200/reward-detail/${articleId}`;//分享链接
+  const link = "http://192.168.20.72:4200/reward-detail/" + articleId;//分享链接
   const imgUrl = 'http://m.steelphone.com/share.png';//分享图标
 
   if (window.mysteeljs) {
