@@ -19,7 +19,7 @@
 
 <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-  (function () {
+  /*(function () {
     let html = document.documentElement;
 
     function onWindowResize() {
@@ -47,7 +47,28 @@
     onWindowResize();
 
 
-  })();
+  })();*/
+
+
+  (function (doc, win) {
+    console.log(12222)
+    let docEl = doc.documentElement,
+      resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+      recalc = function () {
+        let clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth >= 640) {
+          docEl.style.fontSize = '100px';
+        } else {
+          docEl.style.fontSize = (clientWidth / 10) + 'px';
+        }
+      };
+
+    if (!doc.addEventListener) return;
+    win.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+  })(document, window);
+
 
 </script>
 
@@ -99,9 +120,9 @@
       console.log('已登录 window');
       window.localStorage.setItem('userId', userData.userId);
     } else {
-      console.log('未登录','window.local',window.localStorage.getItem('doLogin'));
+      console.log('未登录', 'window.local', window.localStorage.getItem('doLogin'));
       window.localStorage.setItem('userId', '');
-      if ( window.localStorage.getItem('doLogin') === '1'){
+      if (window.localStorage.getItem('doLogin') === '1') {
         window['webkit'].messageHandlers.getUserInfo.postMessage('true');
       }
     }
