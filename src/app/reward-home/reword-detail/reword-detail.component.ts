@@ -59,19 +59,21 @@ export class RewordDetailComponent implements OnInit {
           this.userId = newValue;
         });
     });
-  }
-
-  ngOnInit() {
 
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
+      this.initScript(this.articleId);
       this.getDetail().then(() => {
         this.getTopicId().then((id) => {
           this.showLoading = false;
           this.topicId = id;
+          this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
         });
       });
     });
+  }
+
+  ngOnInit() {
 
 
   }
@@ -380,5 +382,15 @@ export class RewordDetailComponent implements OnInit {
     this.userService.doLogin();
   }
 
+
+  /**
+   * 初始化分享script
+   */
+  private initScript(id: string) {
+    this.storageService.setStorageValue('articleId', id);
+    let ele = document.createElement('script');
+    ele.setAttribute('src', './assets/js/share-home.js');
+    document.body.appendChild(ele);
+  }
 
 }
