@@ -19,6 +19,7 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { ProgressbarModule } from 'ngx-bootstrap';
+import { TextareaAutoHeightDirective } from './shared/directives/textarea-auto-height.directive';
 
 registerLocaleData(zh);
 
@@ -30,6 +31,7 @@ registerLocaleData(zh);
     WinningComponent,
     DialogComponent,
     PKComponent,
+    TextareaAutoHeightDirective,
   ],
   imports: [
     BrowserModule,

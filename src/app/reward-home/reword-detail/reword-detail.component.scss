@@ -167,11 +167,13 @@ main {
       }
       .ipt-btn {
         flex: 1;
+        height: rem(20);
         border: rem(1) solid $blue-light;
         border-radius: rem(5);
-        padding: rem(3) rem(10);
-        line-height: rem(12);
+        padding: rem(5) rem(10);
+        line-height: rem(20);
         background-color: $white-1;
+        //overflow: hidden;
       }
     }
     h3 {

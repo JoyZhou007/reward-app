@@ -123,4 +123,62 @@ export class TypeService {
       }, time);
     };
   };
+
+
+  /**
+   * 获取中英文混合字符串定义长度
+   */
+  public getStringLocaleLen(text: any) {
+    if (!text) {
+      return 0;
+    }
+    let cnCharLen = 3;
+    let textLen: number = 0;
+    // 英文
+    let regExpEn = /[a-z|A-Z|0-9]|[`|!|@|#|$|%|^|&|*|(|)|\-|_|+|{|}|<|>|?|,|.|/|[|'|;|:|"|\\]/gi;
+    // 换行
+    let regExpSpace: any = /\s/g;
+    for (let i = 0; i < text.length; i++) {
+      regExpEn.lastIndex = 0;
+      if (regExpEn.test(text[i]) || regExpSpace.test(text[i])) {
+        textLen += 1;
+      } else {
+        textLen += cnCharLen;
+      }
+    }
+    return textLen;
+  }
+
+  /**
+   * 按照中英文混合长度截取字符串
+   */
+  localeSubString(text: any, start: number, maxLen: number) {
+    if (!text) {
+      return '';
+    }
+    if (start > text.length) {
+      return '';
+    }
+    let cnCharLen = 3;
+    let textLen: number = 0;
+    let returnStr: string = '';
+    // 英文
+    let regExpEn = /[a-z|A-Z|0-9]|[`|!|@|#|$|%|^|&|*|(|)|\-|_|+|{|}|<|>|?|,|.|/|[|'|;|:|"|\\]/gi;
+    // 换行
+    let regExpSpace: any = /\s/g;
+    for (let i = start; i < text.length; i++) {
+      regExpEn.lastIndex = 0;
+      if (regExpEn.test(text[i]) || regExpSpace.test(text[i])) {
+        textLen += 1;
+      } else {
+        textLen += cnCharLen;
+      }
+      if (textLen > maxLen) {
+        break;
+      } else {
+        returnStr += text[i];
+      }
+    }
+    return returnStr;
+  }
 }
