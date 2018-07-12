@@ -79,21 +79,21 @@ main {
       }
 
     }
+    .operate {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: rem(25);
+      span {
+        font-size: rem(16);
+        margin-right: rem(20);
+      }
+    }
     .foot {
       display: flex;
       height: rem(30);
       flex-wrap: wrap;
-      .operate {
-        flex: 0 0 100%;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding-right: rem(25);
-        span {
-          font-size: rem(24);
-          margin-right: rem(20);
-        }
-      }
+
       .left-foot,
       .right-foot {
         flex: 1;

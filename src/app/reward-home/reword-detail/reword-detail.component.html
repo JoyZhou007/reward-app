@@ -24,16 +24,14 @@
         <section class="content" [class.hide-more]="!showMore">
           <div [innerHTML]="articleDetailObj?.body">
           </div>
-
-
         </section>
 
       </div>
+      <div class="operate">
+        <span class="icon-cheveron-down" *ngIf="!showMore" (click)="showMore=true"></span>
+        <span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>
+      </div>
       <div class="foot">
-        <div class="operate">
-          <span class="icon-cheveron-down" *ngIf="!showMore" (click)="showMore=true"></span>
-          <span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>
-        </div>
         <div class="left-foot">
           <!--<i class="iconfont icon-systemprompt"></i>-->
           <ng-container *ngIf="articleDetailObj.showCountdown">
