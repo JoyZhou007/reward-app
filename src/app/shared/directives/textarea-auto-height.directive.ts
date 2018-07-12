@@ -21,6 +21,11 @@ export class TextareaAutoHeightDirective {
     this.adjustHeight();
   }
 
+  @HostListener('blur', ['$event.target'])
+  blur(textArea: HTMLTextAreaElement): void {
+    this.adjustHeight();
+  }
+
   public adjustHeight(minHeight?: number) {
     if (!minHeight) {
       minHeight = 32;
@@ -32,8 +37,8 @@ export class TextareaAutoHeightDirective {
       if (countLen > this.appMaxLength) {
         this.element.nativeElement.value = this.typeService.localeSubString(el.value, 0, this.appMaxLength);
         this.dialogService.openTipDialog({
-          content: '最多输入200个字符'
-        })
+          content: `最多输入${this.appMaxLength}个字符`
+        });
 
       }
     }

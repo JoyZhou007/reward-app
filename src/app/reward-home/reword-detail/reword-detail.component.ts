@@ -67,7 +67,7 @@ export class RewordDetailComponent implements OnInit {
       this.articleId = next.get('id');
       this.getDetail().then(() => {
         this.getTopicId().then((id) => {
-          this.hasInit = true;
+          this.showLoading = false;
           this.topicId = id;
         });
       });
@@ -154,7 +154,7 @@ export class RewordDetailComponent implements OnInit {
    * 获取评论列表
    * @returns {Promise<any>}
    */
-  private async getReplyList(): Promise<any> {
+  private async getReplyList(isSendComment: boolean = false): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.userId = this.storageService.getStorageValue('userId');
 
@@ -163,7 +163,7 @@ export class RewordDetailComponent implements OnInit {
         formData = {
           id: this.articleDetailObj.id,
           channelId: this.articleDetailObj.channelId,
-          pageNum: this.pageNum,
+          pageNum: isSendComment ? 1 : this.pageNum,
           userId: this.userId
         };
       } else { //未登录
@@ -176,7 +176,7 @@ export class RewordDetailComponent implements OnInit {
 
       this.rewardModelService.getReplyList(formData).subscribe(data => {
 
-        let wonderList = data.wonderFulReply || [];
+        let wonderList = [...data.wonderFulReply];
         this.wonderReplyList = [];
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
@@ -194,7 +194,7 @@ export class RewordDetailComponent implements OnInit {
           this.wonderReplyList.push(replyObj);
         });
 
-        let allReplyList = data.allReply || [];
+        let allReplyList = [...data.allReply];
         if (!allReplyList.length) {
           // if (this.pageNum !== 1) {
           //   this.dialogService.openTipDialog({
@@ -227,7 +227,7 @@ export class RewordDetailComponent implements OnInit {
             this.allReplyList.push(replyObj);
           });
         }
-
+        this.showLoading = false;
         resolve(data);
 
       });
@@ -299,8 +299,11 @@ export class RewordDetailComponent implements OnInit {
           this.wonderReplyList = [];
           this.pageNum = 1;
           this.commentValue = '';
+          ipt['value'] = '';
           ipt.blur();
-          this.getReplyList();
+          clearTimeout(this.scrollTimer);
+          this.showLoading = true;
+          this.getReplyList(true);
         });
       });
 
@@ -311,7 +314,7 @@ export class RewordDetailComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if (this.hasInit) {
+    if (!this.showLoading) {
       clearTimeout(this.scrollTimer);
       this.scrollTimer = setTimeout(() => {
         if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
@@ -370,8 +373,11 @@ export class RewordDetailComponent implements OnInit {
     this.getDetail(false);
   }
 
+  /**
+   *检查并登录
+   */
   public checkDoLogin() {
-    this.userService.doLogin()
+    this.userService.doLogin();
   }
 
 
