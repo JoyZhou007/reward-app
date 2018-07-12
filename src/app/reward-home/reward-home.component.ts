@@ -24,6 +24,8 @@ export class RewardHomeComponent implements OnInit {
               public userService: UserService,
               public dateFormatService: DateFormatService,
               public rewardModelService: RewardModelService) {
+    this.initScript();
+
     this.topicList = [];
 
 
@@ -60,7 +62,7 @@ export class RewardHomeComponent implements OnInit {
   private getList(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.userId = this.storageService.getStorageValue('userId');
-      console.log('this.userId', this.userId)
+      console.log('this.userId', this.userId);
       let formData;
       if (this.userId) {
         formData = {
@@ -130,4 +132,9 @@ export class RewardHomeComponent implements OnInit {
 
   }
 
+  private initScript() {
+    let ele = document.createElement('script');
+    ele.setAttribute('src','./assets/js/share-home.js')
+    document.body.appendChild(ele);
+  }
 }

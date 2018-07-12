@@ -67,7 +67,7 @@ export class UserService {
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 0);
         }
-      } else{
+      } else {
 
       }
     });
@@ -94,16 +94,24 @@ export class UserService {
           } else {
             console.log('未登录');
             window['mysteeljs'].getUserInfo('true');
-            resolve('')
+            resolve('');
           }
         } else { //新控件 ios
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 1);
-          resolve('')
+          resolve('');
         }
       }
     });
 
+  }
+
+  /**
+   * 检查是否安装了app
+   * @returns {boolean}
+   */
+  public checkHasInstallApp() {
+    return window['mysteeljs'] || (typeof window['webkit'] != 'undefined' && typeof window['webkit'].messageHandlers.getUserInfo != 'undefined');
   }
 
 }
