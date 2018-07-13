@@ -134,18 +134,20 @@ export class RewardHomeComponent implements OnInit {
   }
 
   private initScript() {
-    let old = document.getElementById('detail-share');
-    if (old) {
-      this.render.removeChild(document.body, old);
-    }
+
+    let oldScriptList = Array.from(document.getElementsByClassName('share-script'));
+    oldScriptList.forEach(value => {
+      this.render.removeChild(document.body, value);
+    });
+
     let ele = this.render.createElement('script');
     ele.setAttribute('src', './assets/js/share-home.js');
-    ele.setAttribute('id', 'home-share');
+    ele.setAttribute('class', 'share-script');
     this.render.appendChild(document.body, ele);
 
-    let old = document.getElementById('wxFunc');
-    if (old) {
-      this.render.removeChild(document.body, old);
+    let oldWx = document.getElementById('wxFunc');
+    if (oldWx) {
+      this.render.removeChild(document.body, oldWx);
     }
 
     let eleWx = this.render.createElement('script');

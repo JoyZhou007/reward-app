@@ -392,20 +392,22 @@ export class RewordDetailComponent implements OnInit {
    * 初始化分享script
    */
   private initScript(id: string) {
-    let old = document.getElementById('home-share');
-    if (old) {
-      this.render.removeChild(document.body, old);
-    }
+
+    let oldScriptList = Array.from(document.getElementsByClassName('share-script'));
+    oldScriptList.forEach(value => {
+      this.render.removeChild(document.body, value);
+    });
+
     // this.storageService.setStorageValue('articleId', id);
     this.render.setAttribute(document.body, 'data-articleId', id);
     let ele = this.render.createElement('script');
     ele.setAttribute('src', './assets/js/share-detail.js');
-    ele.setAttribute('id', 'detail-share');
+    ele.setAttribute('class', 'share-script');
     this.render.appendChild(document.body, ele);
 
-    let old = document.getElementById('wxFunc');
-    if (old) {
-      this.render.removeChild(document.body, old);
+    let oldWx = document.getElementById('wxFunc');
+    if (oldWx) {
+      this.render.removeChild(document.body, oldWx);
     }
 
     let eleWx = this.render.createElement('script');

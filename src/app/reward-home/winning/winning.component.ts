@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {TypeService} from '../../shared/service/type.service';
 import {ActivatedRoute} from '@angular/router';
 import {RewardModelService} from '../service/reward-model.service';
@@ -16,10 +16,12 @@ export class WinningComponent implements OnInit {
   public wxList: WinnerEntity[] = [];
 
   constructor(public typeService: TypeService,
+              public render: Renderer2,
               public rewardModelService: RewardModelService,
               public activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
+      this.initScript(this.articleId);
       this.getWinner();
     });
   }
@@ -54,5 +56,34 @@ export class WinningComponent implements OnInit {
 
       });
     });
+  }
+
+  /**
+   * 初始化分享script
+   */
+  private initScript(id: string) {
+
+
+    let oldScriptList = Array.from(document.getElementsByClassName('share-script'));
+    oldScriptList.forEach(value => {
+      this.render.removeChild(document.body, value);
+    });
+
+    // this.storageService.setStorageValue('articleId', id);
+    this.render.setAttribute(document.body, 'data-articleId', id);
+    let ele = this.render.createElement('script');
+    ele.setAttribute('src', './assets/js/share-winner.js');
+    ele.setAttribute('class', 'share-script');
+    this.render.appendChild(document.body, ele);
+
+    let oldWx = document.getElementById('wxFunc');
+    if (oldWx) {
+      this.render.removeChild(document.body, oldWx);
+    }
+
+    let eleWx = this.render.createElement('script');
+    eleWx.setAttribute('id', 'wxFunc');
+    eleWx.setAttribute('src', '//m.steelphone.com/app/invite/jssign.ms?functionName=jssign&url=' + encodeURIComponent(location.href.split('#')[0]));
+    this.render.appendChild(document.body, eleWx);
   }
 }
