@@ -142,5 +142,9 @@ export class RewardHomeComponent implements OnInit {
     ele.setAttribute('src', './assets/js/share-home.js');
     ele.setAttribute('id', 'home-share');
     this.render.appendChild(document.body, ele);
+
+    let eleWx = this.render.createElement('script');
+    ele.setAttribute('src', '//m.steelphone.com/app/invite/jssign.ms?functionName=jssign&url=' + encodeURIComponent(location.href.split('#')[0]));
+    this.render.appendChild(document.body, eleWx);
   }
 }
