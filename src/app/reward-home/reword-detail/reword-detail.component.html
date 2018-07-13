@@ -52,7 +52,7 @@
         <div class="right-foot">
 
           <div class="comment" (click)="showRewardTip($event)">
-            <img src="../../../assets/icons/icon/money.png" class="icon-money"/>
+            <img src="./assets/icons/icon/money.png" class="icon-money"/>
             <span>评论赢赏金</span>
           </div>
         </div>
@@ -67,7 +67,7 @@
 
     <section class="box">
       <header class="input">
-        <div class="avatar"><img src="../../../assets/icons/icon/avatar.png" alt=""></div>
+        <div class="avatar"><img src="./assets/icons/icon/avatar.png" alt=""></div>
         <textarea class="ipt-btn" type="text" placeholder="说说我的想法" #ipt
                   (input)="checkDoLogin()"
                   (focus)="checkDoLogin()"
@@ -82,7 +82,7 @@
         <header>
           <div class="avatar">
             <img [src]="wonderReply.faceIco" alt="" *ngIf="wonderReply.faceIco">
-            <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!wonderReply.faceIco">
+            <img src="./assets/icons/icon/avatar.png" alt="" *ngIf="!wonderReply.faceIco">
           </div>
           <div class="name">
             <h6><i>{{wonderReply.name}}</i> <em *ngIf="wonderReply.optionName && !wonderReply.toReplyId">我认为：{{wonderReply.optionName}}</em>
@@ -139,7 +139,7 @@
         <header>
           <div class="avatar">
             <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">
-            <img src="../../../assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
+            <img src="./assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
           </div>
           <div class="name">
             <h6><i>{{reply.name}}</i> <em *ngIf="reply.optionName && !reply.toReplyId">我认为：{{reply.optionName}}</em>

@@ -21,7 +21,7 @@
             <header>
               <div class="avatar">
                 <img [src]="articleObj.faceIco" alt="" *ngIf="!!articleObj.faceIco">
-                <img src="../../assets/icons/icon/avatar.png" alt="" *ngIf="!articleObj.faceIco">
+                <img src="./assets/icons/icon/avatar.png" alt="" *ngIf="!articleObj.faceIco">
               </div>
               <div class="name">
                 <h6>{{articleObj?.name}} <em *ngIf="!!articleObj.optionName">我选：{{articleObj?.optionName}}</em></h6>
