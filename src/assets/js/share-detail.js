@@ -1,9 +1,12 @@
-const articleId = window.localStorage.getItem('articleId');
-const articleTitle = window.localStorage.getItem('articleTitle');
+// const articleId = window.localStorage.getItem('articleId');
+// const articleTitle = window.localStorage.getItem('articleTitle');
+const articleId = document.body.getAttribute('data-articleId');
+const articleTitle = document.body.getAttribute('data-articleTitle');
+
 const shareData={
-  title: articleTitle, // 分享标题
+  title: document.body.getAttribute('data-articleTitle'), // 分享标题
   desc: '【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～', // 分享描述
-  link: "http://192.168.20.72:4200/reward-detail/" + articleId, // 分享链接
+  link: "http://192.168.20.72:4200/reward-detail/" + document.body.getAttribute('data-articleId'), // 分享链接
   imgUrl: 'http://m.steelphone.com/share.png', // 分享图标
   success: function (msg) {
     //console.log(msg);

@@ -143,8 +143,14 @@ export class RewardHomeComponent implements OnInit {
     ele.setAttribute('id', 'home-share');
     this.render.appendChild(document.body, ele);
 
+    let old = document.getElementById('wxFunc');
+    if (old) {
+      this.render.removeChild(document.body, old);
+    }
+
     let eleWx = this.render.createElement('script');
-    ele.setAttribute('src', '//m.steelphone.com/app/invite/jssign.ms?functionName=jssign&url=' + encodeURIComponent(location.href.split('#')[0]));
+    eleWx.setAttribute('id', 'wxFunc');
+    eleWx.setAttribute('src', '//m.steelphone.com/app/invite/jssign.ms?functionName=jssign&url=' + encodeURIComponent(location.href.split('#')[0]));
     this.render.appendChild(document.body, eleWx);
   }
 }
