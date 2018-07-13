@@ -1,5 +1,5 @@
 
-const shareData={
+var shareData={
   title: '悬赏问答”获奖名单新鲜出炉，赶快来认领你的现金红包！', // 分享标题
   desc: '【我的钢铁】每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧！', // 分享描述
   link: 'http://192.168.20.72:4200', // 分享链接
@@ -11,12 +11,12 @@ const shareData={
 
 if (window.mysteeljs || window.webkit) {
 
-  const id = "";//分享id
-  const type = "";//分享类型
-  const title = shareData.title;//分享标题按
-  const desc = shareData.desc;//分享描述
-  const link = shareData.link;//分享链接
-  const imgUrl = shareData.imgUrl;//分享图标
+  var id = "";//分享id
+  var type = "";//分享类型
+  var title = shareData.title;//分享标题按
+  var desc = shareData.desc;//分享描述
+  var link = shareData.link;//分享链接
+  var imgUrl = shareData.imgUrl;//分享图标
 
   if (window.mysteeljs) {
     window.mysteeljs && window.mysteeljs.hideShareMenu(false);
@@ -24,7 +24,7 @@ if (window.mysteeljs || window.webkit) {
   }
   else if (window.webkit.messageHandlers && window.webkit.messageHandlers && window.webkit.messageHandlers.hideShareMenu) {
     window.webkit.messageHandlers.hideShareMenu.postMessage("false");
-    const shareData = [title, desc, link, imgUrl, id, type];
+    var shareData = [title, desc, link, imgUrl, id, type];
     window.webkit.messageHandlers.share.postMessage(shareData);
   }
 }

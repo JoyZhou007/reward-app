@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'app';
 
   constructor() {
-    const vConsole = new VConsole();
+    // const vConsole = new VConsole();
     this.checkBrowser();
   }
 

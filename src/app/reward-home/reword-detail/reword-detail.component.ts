@@ -63,13 +63,16 @@ export class RewordDetailComponent implements OnInit {
 
     this.activatedRoute.paramMap.subscribe(next => {
       this.articleId = next.get('id');
-      this.initScript(this.articleId);
+
       this.getDetail().then(() => {
+
         this.getTopicId().then((id) => {
           this.showLoading = false;
           this.topicId = id;
-          this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
+          // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
           this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
+          //放在title后面
+          this.initScript(this.articleId);
         });
       });
     });
@@ -393,7 +396,7 @@ export class RewordDetailComponent implements OnInit {
     if (old) {
       this.render.removeChild(document.body, old);
     }
-    this.storageService.setStorageValue('articleId', id);
+    // this.storageService.setStorageValue('articleId', id);
     this.render.setAttribute(document.body, 'data-articleId', id);
     let ele = this.render.createElement('script');
     ele.setAttribute('src', './assets/js/share-detail.js');
