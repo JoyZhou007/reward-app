@@ -1,4 +1,4 @@
-<nav class="install-bar-wrapper">
+<nav class="install-bar-wrapper" *ngIf="!userService.checkHasInstallApp()">
   <a class="bar" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.mysteel.android.steelphone">
     {{btnText}}
   </a>
