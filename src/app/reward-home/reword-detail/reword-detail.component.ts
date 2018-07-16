@@ -281,6 +281,7 @@ export class RewordDetailComponent implements OnInit {
    * @param ipt
    */
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
+    let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
     if (this.commentValue && this.commentValue.trim() !== '') {
 
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
@@ -290,7 +291,7 @@ export class RewordDetailComponent implements OnInit {
 
       this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
-        let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
+
         let formData = {
           topicId: this.topicId,
           channlId: this.articleDetailObj.channelId,

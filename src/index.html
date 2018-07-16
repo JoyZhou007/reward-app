@@ -15,11 +15,20 @@
   <link rel="stylesheet" type="text/css" href="assets/font-icon/iconfont.css">
 </head>
 <body>
-<app-root></app-root>
+<app-root>
+</app-root>
 
 <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-  let html = document.documentElement;
+  var ua = navigator.userAgent;
+  if (ua.indexOf("Android") >= 0) {
+    var androidversion = parseFloat(ua.slice(ua.indexOf("Android") + 8));
+    if (androidversion < 4.4) {
+      alert('您的系统版本过低，不支持')
+    }
+  }
+</script>
+<script>
   // (function () {
   //   let html = document.documentElement;
   //
@@ -71,7 +80,6 @@
 
 
 </script>
-
 
 
 <!-- *手机版后台分享*-->
