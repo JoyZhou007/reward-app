@@ -48,7 +48,7 @@
       </ul>
 
       <ul class="article" *ngIf="!userService.checkHasInstallApp()">
-        <li *ngFor="let articleObj of topicList | slice:1:5">
+        <li *ngFor="let articleObj of topicList | slice:0:5">
           <h3 (click)="clickOpenDetail($event,articleObj)"><i class="icon-square"></i>{{articleObj?.title}}</h3>
           <div class="body" (click)="clickOpenDetail($event,articleObj)" *ngIf="!!articleObj.content">
             <header>
