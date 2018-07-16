@@ -1,0 +1,20 @@
+@import "../../../../styles";
+
+.install-bar-wrapper {
+  position: fixed;
+  bottom: rem(10);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .bar {
+    width: 80%;
+    padding: rem(10) 0;
+    border-radius: rem(20);
+    background-color: $blue-normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+  }
+}

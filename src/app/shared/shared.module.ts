@@ -14,6 +14,7 @@ import {EscapeHtmlService} from './service/escape-html.service';
 import {NotificationService} from './service/notification.service';
 import {DialogService} from './service/dialog.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
+import { InstallAppBarComponent } from './components/install-app-bar/install-app-bar.component';
 
 @NgModule({
   imports: [
@@ -26,9 +27,10 @@ import {Ng2Webstorage} from 'ngx-webstorage';
     // separator: "|"
     // caseSensitive: false
   ],
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, InstallAppBarComponent],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    InstallAppBarComponent
   ]
 })
 export class SharedModule {
