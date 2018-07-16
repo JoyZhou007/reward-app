@@ -1,7 +1,6 @@
 // var articleId = window.localStorage.getItem('articleId');
 // var articleTitle = window.localStorage.getItem('articleTitle');
 var articleId = document.body.getAttribute('data-articleId');
-console.log('当前article',articleId,articleTitle)
 var shareData={
   title: '悬赏问答”获奖名单新鲜出炉，赶快来认领你的现金红包！', // 分享标题
   desc: '【我的钢铁】每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧！', // 分享描述
@@ -11,7 +10,6 @@ var shareData={
     //console.log(msg);
   }
 }
-console.log('shareData????', shareData);
 
 if (window.mysteeljs || window.webkit) {
 

@@ -134,65 +134,72 @@
 
       </div>
 
-      <h3><i class="icon-square"></i>全部评论</h3>
-      <div class="detail-content all-reply" *ngFor="let reply of allReplyList;">
-        <header>
-          <div class="avatar">
-            <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">
-            <img src="./assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
-          </div>
-          <div class="name">
-            <h6><i>{{reply.name}}</i> <em *ngIf="reply.optionName && !reply.toReplyId">我认为：{{reply.optionName}}</em>
-            </h6>
-            <span>{{reply.createTimeStr}}</span>
-          </div>
-        </header>
-        <section class="main-comment">
 
-          {{reply.showSimpleContent? reply.simpleContent: reply.content}}
+      <ng-container *ngIf="userService.checkHasInstallApp()">
+        <h3><i class="icon-square"></i>全部评论</h3>
+        <div class="detail-content all-reply"
+             *ngFor="let reply of allReplyList;">
+          <header>
+            <div class="avatar">
+              <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">
+              <img src="./assets/icons/icon/avatar.png" alt="" *ngIf="!reply.faceIco">
+            </div>
+            <div class="name">
+              <h6><i>{{reply.name}}</i> <em *ngIf="reply.optionName && !reply.toReplyId">我认为：{{reply.optionName}}</em>
+              </h6>
+              <span>{{reply.createTimeStr}}</span>
+            </div>
+          </header>
+          <section class="main-comment">
 
-          <div class="operate">
+            {{reply.showSimpleContent? reply.simpleContent: reply.content}}
+
+            <div class="operate">
             <span class="icon-cheveron-down"
                   *ngIf="reply.showSimpleContent"
                   (click)="reply.showSimpleContent=false"></span>
-          </div>
-        </section>
-        <section class="origin-comment" *ngIf="!!reply.toReplyId">
-          <div>
-            <span>{{reply.toReplyName}}：</span>{{reply.showSimpleOriginContent?reply.simpleOriginContent:reply.toReplyContent}}
-          </div>
-          <div class="operate">
+            </div>
+          </section>
+          <section class="origin-comment" *ngIf="!!reply.toReplyId">
+            <div>
+              <span>{{reply.toReplyName}}：</span>{{reply.showSimpleOriginContent?reply.simpleOriginContent:reply.toReplyContent}}
+            </div>
+            <div class="operate">
             <span class="icon-cheveron-down"
                   *ngIf="reply.showSimpleOriginContent"
                   (click)="reply.showSimpleOriginContent=false"
             ></span>
-          </div>
-        </section>
-        <footer>
-          <div class="praise" (click)="clickPraise($event,reply)">
-            <i class="iconfont icon-praise_fill"
-               [class.active]="reply.isDigg==='yes'"
-            ></i>
-            <span
-              *ngIf="reply.digg!=='0'"
-            >{{reply.digg}}</span>
-            <span
-              *ngIf="reply.digg==='0'"
-            >赞</span>
-          </div>
-          <div class="praise" (click)="clickCommentReply($event,ipt,reply)">
-            <i class="iconfont icon-message"></i>
-            <span>评论</span>
-          </div>
+            </div>
+          </section>
+          <footer>
+            <div class="praise" (click)="clickPraise($event,reply)">
+              <i class="iconfont icon-praise_fill"
+                 [class.active]="reply.isDigg==='yes'"
+              ></i>
+              <span
+                *ngIf="reply.digg!=='0'"
+              >{{reply.digg}}</span>
+              <span
+                *ngIf="reply.digg==='0'"
+              >赞</span>
+            </div>
+            <div class="praise" (click)="clickCommentReply($event,ipt,reply)">
+              <i class="iconfont icon-message"></i>
+              <span>评论</span>
+            </div>
 
-        </footer>
+          </footer>
 
 
-      </div>
+        </div>
+      </ng-container>
+
     </section>
   </main>
 
-  <footer class="footer" *ngIf="!!articleDetailObj.replyArticleURL || articleDetailObj.hasWinners==='true'">
+  <footer class="footer"
+          [hidden]="!userService.checkHasInstallApp()"
+          *ngIf="!!articleDetailObj.replyArticleURL || articleDetailObj.hasWinners==='true'">
     <span (click)="clickGoToWin($event)"
           *ngIf="articleDetailObj.hasWinners==='true'"
     >获奖名单</span>
@@ -201,7 +208,10 @@
        *ngIf="!!articleDetailObj.replyArticleURL"
     >百家之言</a>
   </footer>
+
+  <app-install-app-bar [btnText]="'打开APP，查看全部评论'"></app-install-app-bar>
 </div>
+
 
 
 

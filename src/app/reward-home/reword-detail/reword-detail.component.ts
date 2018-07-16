@@ -55,7 +55,6 @@ export class RewordDetailComponent implements OnInit {
 
       this.storageService.localStorage.observe('userId')
         .subscribe((newValue) => {
-          console.log('observe userId', newValue);
           this.userId = newValue;
         });
     });

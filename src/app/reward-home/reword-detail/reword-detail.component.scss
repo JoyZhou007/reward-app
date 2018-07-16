@@ -1,349 +1,355 @@
 @import "../../../styles";
 
-.detail-container{
+.detail-container {
   //height: 100vh;
-}
-.top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: rem(35);
-  background-color: $blue-normal;
-  display: flex;
-  color: $white;
-  justify-content: flex-start;
-  padding: 0 rem(15);
-  align-items: center;
-  font-size: rem(14);
-  z-index: 1;
-  span {
-    flex: 1;
-  }
-  .btn-wrap {
-    flex: 1;
-    padding-right: rem(10);
-    display: flex;
-    justify-content: flex-end;
-    a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: rem(55);
-      height: rem(25);
-      color: $white;
-      font-size: rem(14);
-      line-height: rem(25);
-      border-radius: rem(15);
-      border: rem(1) solid $white;
-    }
-  }
-}
-main {
-  padding: rem(45) rem(15) rem(60);
-  //overflow-y: auto;
-  //height: calc(100vh - 2rem);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  .topic {
-    //margin-top: rem(50);
-    //border-bottom: rem(1) solid #ddd;
-    h3 {
-      //padding: 0 rem(10);
-      color: black;
-      font-size: rem(18);
-    }
-    .body {
-      margin: rem(10) 0 0 0;
-      padding: 0 rem(10) 0 0;
-      .avator {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        img {
-          width: rem(30);
-          margin-right: rem(8);
-        }
-        span {
-          flex: 2;
-        }
-      }
-      .content {
-        margin-top: rem(5);
-        line-height: rem(20);
-        font-size: rem(14);
-      }
-      .hide-more{
-        height: rem(55);
-        overflow: hidden;
-      }
 
+  .top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: rem(35);
+    background-color: $blue-normal;
+    display: flex;
+    color: $white;
+    justify-content: flex-start;
+    padding: 0 rem(15);
+    align-items: center;
+    font-size: rem(14);
+    z-index: 1;
+    span {
+      flex: 1;
     }
-    .operate {
+    .btn-wrap {
+      flex: 1;
+      padding-right: rem(10);
       display: flex;
       justify-content: flex-end;
-      align-items: center;
-      padding-right: rem(25);
-      span {
-        font-size: rem(16);
-        margin-right: rem(20);
-      }
-    }
-    .foot {
-      display: flex;
-      height: rem(30);
-      flex-wrap: wrap;
-
-      .left-foot,
-      .right-foot {
-        flex: 1;
+      a {
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-around;
-      }
-      .left-foot {
-        //display: flex;
-        //align-items: center;
-        .my-progress {
-          color: $orange-normal !important;
-          font-weight: bold;
-        }
-        i {
-          font-size: rem(26);
-          color: $gray-normal;
-          transform: translateY(-1px);
-        }
-        .txt-ctrl {
-          color: $gray-normal;
-          text-align: center;
-        }
-        .time {
-          padding-left: rem(10);
-          text-align: left;
-          flex: 1;
-          color: $gray-normal;
-        }
-      }
-      .right-foot {
-        padding-right: rem(10);
-        .comment {
-          flex: 1;
-          text-align: right;
-          padding-right: rem(10);
-          color: red;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          span {
-            padding-left: rem(5);
-          }
-        }
-
-        .icon-money {
-          height: rem(20);
-        }
+        width: rem(55);
+        height: rem(25);
+        color: $white;
+        font-size: rem(14);
+        line-height: rem(25);
+        border-radius: rem(15);
+        border: rem(1) solid $white;
       }
     }
   }
 
-  .box {
-    margin-top: rem(30);
-    .input {
-      display: flex;
-      align-items: center;
-      .avatar {
-        padding-right: rem(10);
-        img {
-          height: rem(40);
+  main {
+    padding: rem(45) rem(15) rem(60);
+    //overflow-y: auto;
+    //height: calc(100vh - 2rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    .topic {
+      //margin-top: rem(50);
+      //border-bottom: rem(1) solid #ddd;
+      h3 {
+        //padding: 0 rem(10);
+        color: black;
+        font-size: rem(18);
+      }
+      .body {
+        margin: rem(10) 0 0 0;
+        padding: 0 rem(10) 0 0;
+        .avator {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          img {
+            width: rem(30);
+            margin-right: rem(8);
+          }
+          span {
+            flex: 2;
+          }
         }
-      }
-      .btn-send{
-        color: $gray-1;
-        margin-left: rem(8);
-        font-weight: bold;
-      }
-      .active-send{
-        color: $blue-normal;
-      }
-      .ipt-btn {
-        flex: 1;
-        height: rem(20);
-        border: rem(1) solid $blue-light;
-        border-radius: rem(5);
-        padding: rem(5) rem(10);
-        line-height: rem(20);
-        background-color: $white-1;
-        //overflow: hidden;
-      }
-    }
-    h3 {
-      margin-top: rem(10);
-      height: rem(30);
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: rem(16);
-      .icon-square {
-        display: inline-block;
-        width: rem(5);
-        height: rem(20);
-        margin-right: rem(5);
-        background-color: $blue-normal;
-      }
-    }
-    .vote {
-      display: grid;
-      grid-template-rows: rem(50) rem(50);
-      grid-template-columns: repeat(2, 1fr);
-      padding-bottom: rem(10);
-      border: rem(1) solid #eee;
-      border-radius: rem(10);
-      box-shadow: 0 2px rem(2);
-      margin-top: rem(10);
-      li {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        h6 {
+        .content {
+          margin-top: rem(5);
+          line-height: rem(20);
           font-size: rem(14);
-          line-height: rem(25);
         }
-        .btn-vote {
-          color: blue;
+        .hide-more {
+          height: rem(55);
+          overflow: hidden;
+        }
+
+      }
+      .operate {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: rem(25);
+        span {
+          font-size: rem(16);
+          margin-right: rem(20);
+        }
+      }
+      .foot {
+        display: flex;
+        height: rem(30);
+        flex-wrap: wrap;
+
+        .left-foot,
+        .right-foot {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+        }
+        .left-foot {
+          //display: flex;
+          //align-items: center;
+          .my-progress {
+            color: $orange-normal !important;
+            font-weight: bold;
+          }
+          i {
+            font-size: rem(26);
+            color: $gray-normal;
+            transform: translateY(-1px);
+          }
+          .txt-ctrl {
+            color: $gray-normal;
+            text-align: center;
+          }
+          .time {
+            padding-left: rem(10);
+            text-align: left;
+            flex: 1;
+            color: $gray-normal;
+          }
+        }
+        .right-foot {
+          padding-right: rem(10);
+          .comment {
+            flex: 1;
+            text-align: right;
+            padding-right: rem(10);
+            color: red;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            span {
+              padding-left: rem(5);
+            }
+          }
+
+          .icon-money {
+            height: rem(20);
+          }
         }
       }
     }
 
-    .detail-content {
-      //padding-bottom: rem(25);
-      header {
+    .box {
+      margin-top: rem(30);
+      .input {
         display: flex;
-        justify-content: flex-start;
         align-items: center;
         .avatar {
+          padding-right: rem(10);
           img {
             height: rem(40);
           }
         }
-        .name {
-          padding-left: rem(10);
+        .btn-send {
+          color: $gray-1;
+          margin-left: rem(8);
+          font-weight: bold;
+        }
+        .active-send {
+          color: $blue-normal;
+        }
+        .ipt-btn {
+          flex: 1;
+          height: rem(20);
+          border: rem(1) solid $blue-light;
+          border-radius: rem(5);
+          padding: rem(5) rem(10);
+          line-height: rem(20);
+          background-color: $white-1;
+          //overflow: hidden;
+        }
+      }
+      h3 {
+        margin-top: rem(10);
+        height: rem(30);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: rem(16);
+        .icon-square {
+          display: inline-block;
+          width: rem(5);
+          height: rem(20);
+          margin-right: rem(5);
+          background-color: $blue-normal;
+        }
+      }
+      .vote {
+        display: grid;
+        grid-template-rows: rem(50) rem(50);
+        grid-template-columns: repeat(2, 1fr);
+        padding-bottom: rem(10);
+        border: rem(1) solid #eee;
+        border-radius: rem(10);
+        box-shadow: 0 2px rem(2);
+        margin-top: rem(10);
+        li {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
           h6 {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            font-size: rem(16);
-            margin-bottom: rem(8);
-            color: $blue-normal;
-            i{
-              //flex: 0 0 30%;
-              font-weight: normal;
+            font-size: rem(14);
+            line-height: rem(25);
+          }
+          .btn-vote {
+            color: blue;
+          }
+        }
+      }
+
+      .detail-content {
+        //padding-bottom: rem(25);
+        header {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .avatar {
+            img {
+              height: rem(40);
             }
           }
+          .name {
+            padding-left: rem(10);
+            h6 {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              font-size: rem(16);
+              margin-bottom: rem(8);
+              color: $blue-normal;
+              i {
+                //flex: 0 0 30%;
+                font-weight: normal;
+              }
+            }
+            span {
+              color: #999999;
+            }
+            em {
+              display: inline-block;
+              padding: rem(3) rem(5);
+              margin-left: rem(10);
+              color: $white;
+              font-size: rem(12);
+              font-weight: normal;
+              background-color: $blue-normal;
+            }
+          }
+        }
+
+        .main-comment {
+          margin-top: rem(5);
+          padding-left: rem(50);
+          line-height: rem(25);
+          font-size: rem(14);
+          .operate {
+            text-align: right;
+            padding-right: rem(10);
+            font-size: rem(18);
+            color: #449fdb;
+          }
+        }
+        .origin-comment {
+          //display: flex;
+          //align-items: center;
+          margin-left: rem(50);
+          padding: rem(10);
+          background-color: $blue-1;
+          line-height: rem(25);
+          margin-bottom: rem(10);
+          margin-top: rem(10);
           span {
-            color: #999999;
+            color: #449fdb;
           }
-          em {
-            display: inline-block;
-            padding: rem(3) rem(5);
-            margin-left: rem(10);
-            color: $white;
-            font-size: rem(12);
-            font-weight: normal;
-            background-color: $blue-normal;
+          .operate {
+            text-align: right;
+            padding-right: rem(10);
+            font-size: rem(18);
           }
         }
-      }
-
-      .main-comment {
-        margin-top: rem(5);
-        padding-left: rem(50);
-        line-height: rem(25);
-        font-size: rem(14);
-        .operate{
-          text-align: right;
-          padding-right: rem(10);
-          font-size: rem(18);
-          color: #449fdb;
-        }
-      }
-      .origin-comment {
-        //display: flex;
-        //align-items: center;
-        margin-left: rem(50);
-        padding: rem(10);
-        background-color: $blue-1;
-        line-height: rem(25);
-        margin-bottom: rem(10);
-        margin-top: rem(10);
-        span {
-          color: #449fdb;
-        }
-        .operate{
-          text-align: right;
-          padding-right: rem(10);
-          font-size: rem(18);
-        }
-      }
-      footer {
-        display: flex;
-        margin-top: rem(8);
-        justify-content: flex-end;
-        margin-bottom: rem(15);
-        .praise {
+        footer {
           display: flex;
-          align-items: center;
-          margin-right: rem(8);
-          border: rem(1) solid #d0d7dd;
-          padding: rem(3) rem(12);
-          border-radius: rem(20);
-        }
-        i {
-          font-size: rem(20);
-          margin-right: rem(5);
+          margin-top: rem(8);
+          justify-content: flex-end;
+          margin-bottom: rem(15);
+          .praise {
+            display: flex;
+            align-items: center;
+            margin-right: rem(8);
+            border: rem(1) solid #d0d7dd;
+            padding: rem(3) rem(12);
+            border-radius: rem(20);
+          }
+          i {
+            font-size: rem(20);
+            margin-right: rem(5);
 
-        }
-        .active {
-          color: $orange-normal;
+          }
+          .active {
+            color: $orange-normal;
+          }
         }
       }
-    }
-    .wonder{
-      margin-bottom: rem(25);
+      .wonder {
+        margin-bottom: rem(25);
+      }
+
+      .all-reply {
+        border-bottom: rem(1) solid #eee;
+        margin-bottom: rem(25);
+      }
     }
 
-    .all-reply{
-      border-bottom: rem(1) solid #eee;
-      margin-bottom: rem(25);
-    }
   }
 
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  background-color: #333;
-  height: rem(50);
-  color: $white;
-  align-items: center;
-  span,a{
-    flex: 1;
-    //height: rem(50);
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    //border-right: rem(1) solid #ddd;
+    background-color: #333;
+    height: rem(50);
     color: $white;
+    align-items: center;
+    span, a {
+      flex: 1;
+      //height: rem(50);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      //border-right: rem(1) solid #ddd;
+      color: $white;
 
+    }
+    .line {
+      width: 1px;
+      height: rem(25);
+      background-color: $white;
+    }
   }
-  .line{
-    width: 1px;
-    height: rem(25);
-    background-color: $white;
-  }
+
+
+
 }
+

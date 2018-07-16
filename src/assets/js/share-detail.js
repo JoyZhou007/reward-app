@@ -2,7 +2,6 @@
 // var articleTitle = window.localStorage.getItem('articleTitle');
 var articleId = document.body.getAttribute('data-articleId');
 var articleTitle = document.body.getAttribute('data-articleTitle');
-console.log('当前article',articleId,articleTitle)
 var shareData={
   title: articleTitle, // 分享标题
   desc: '【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～', // 分享描述
@@ -12,7 +11,6 @@ var shareData={
     //console.log(msg);
   }
 }
-console.log('shareData????', shareData);
 
 if (window.mysteeljs || window.webkit) {
 
