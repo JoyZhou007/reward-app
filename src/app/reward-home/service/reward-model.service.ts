@@ -17,8 +17,8 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getList(data: any): Observable<any> {
-    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/list.htm?userId=${data.userId}&pageNO=${data.pageNO}&pageSize=15` :
-      `/v4/articleStand/list.htm?pageNO=${data.pageNO}&pageSize=15`;
+    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/list.ms?userId=${data.userId}&pageNO=${data.pageNO}&pageSize=15` :
+      `/v4/articleStand/list.ms?pageNO=${data.pageNO}&pageSize=15`;
     return this.httpService.get(api);
   }
 
@@ -28,8 +28,8 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getDetail(data: any): Observable<any> {
-    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/getContent.htm?userId=${data.userId}&articleId=${data.articleId}` :
-      `/v4/articleStand/getContent.htm?articleId=${data.articleId}`;
+    const api = data.hasOwnProperty('userId') ? `/v4/articleStand/getContent.ms?userId=${data.userId}&articleId=${data.articleId}` :
+      `/v4/articleStand/getContent.ms?articleId=${data.articleId}`;
     return this.httpService.get(api);
   }
 
@@ -39,7 +39,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getWinnerList(data: any): Observable<any> {
-    const api = `/v4/articleStand/winnerList.htm?articleId=${data}`;
+    const api = `/v4/articleStand/winnerList.ms?articleId=${data}`;
     return this.httpService.get(api);
   }
 
@@ -49,8 +49,8 @@ export class RewardModelService {
    */
   public getReplyList(data: any): Observable<any> {
     const api = data.hasOwnProperty('userId') ?
-      `/article/getReply.htm?userId=${data.userId}&id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15` :
-      `/article/getReply.htm?id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15`;
+      `/article/reply/getReply.ms?userId=${data.userId}&id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15` :
+      `/article/reply/getReply.ms?id=${data.id}&channelId=${data.channelId}&page=${data.pageNum}&size=15`;
     return this.httpService.get(api);
   }
 
@@ -61,7 +61,7 @@ export class RewardModelService {
    */
   public praise(data: any): Observable<any> {
 
-    return this.httpService.get(`/article/praise.htm?userId=${data.userId}&id=${data.replyId}`);
+    return this.httpService.get(`/article/reply/praise.ms?userId=${data.userId}&id=${data.replyId}`);
 
   }
 
@@ -71,7 +71,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public doComment(data: any): Observable<any> {
-    return this.httpService.get(`/comment/reply/create.htm?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
+    return this.httpService.get(`/comment/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
   }
 
   /**
@@ -80,7 +80,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public getTopicId(data: any): Observable<any> {
-    return this.httpService.get(`/article/detail.htm?id=${data.id}&userId=1&type=${data.type}`);
+    return this.httpService.get(`/article/detail.ms?id=${data.id}&userId=1&type=${data.type}`);
   }
 
   /**
@@ -89,6 +89,6 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public vote(data): Observable<any> {
-    return this.httpService.get(`/article/submitStand.htm?id=${data.id}&articleId=${data.articleId}&userId=${data.userId}`);
+    return this.httpService.get(`/article/submitStand.ms?id=${data.id}&articleId=${data.articleId}&userId=${data.userId}`);
   }
 }

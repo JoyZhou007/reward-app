@@ -34,7 +34,6 @@ export class RewordDetailComponent implements OnInit {
   public hasInit: boolean = false;
   private scrollTimer: any;
   public showLoading: boolean = true;
-  public topicId: any = '';
   public userInfo: UserInfoEntity;
   public userId: string;
   public subStrLen: number = 70;
@@ -65,15 +64,11 @@ export class RewordDetailComponent implements OnInit {
       this.articleId = next.get('id');
 
       this.getDetail().then(() => {
-
-        this.getTopicId().then((id) => {
-          this.showLoading = false;
-          this.topicId = id;
-          // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
-          this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
-          //放在title后面
-          this.initScript(this.articleId);
-        });
+        this.showLoading = false;
+        // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
+        this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
+        //放在title后面
+        this.initScript(this.articleId);
       });
     });
   }
@@ -285,15 +280,15 @@ export class RewordDetailComponent implements OnInit {
     if (content && content.trim()) {
 
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
-      if (this.topicId === '') {
-        this.topicId = await this.getTopicId();
-      }
+      // if (this.topicId === '') {
+      //   this.topicId = await this.getTopicId();
+      // }
 
       this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
 
         let formData = {
-          topicId: this.topicId,
+          topicId: this.articleDetailObj.topicId,
           channlId: this.articleDetailObj.channelId,
           objectType: this.articleDetailObj.type,
           objectId: this.articleDetailObj.id,
