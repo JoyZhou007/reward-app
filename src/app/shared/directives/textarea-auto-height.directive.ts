@@ -23,6 +23,12 @@ export class TextareaAutoHeightDirective {
 
   @HostListener('blur', ['$event.target'])
   blur(textArea: HTMLTextAreaElement): void {
+    console.log('监听失去焦点')
+    this.adjustHeight();
+  }
+  @HostListener('focus', ['$event.target'])
+  focus(textArea: HTMLTextAreaElement): void {
+    console.log('监听焦点')
     this.adjustHeight();
   }
 

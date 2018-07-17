@@ -303,6 +303,7 @@ export class RewordDetailComponent implements OnInit {
           this.pageNum = 1;
           this.commentValue = '';
           ipt['value'] = '';
+          ipt.focus();
           ipt.blur();
           clearTimeout(this.scrollTimer);
           this.showLoading = true;
