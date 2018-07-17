@@ -339,21 +339,7 @@ export class RewordDetailComponent implements OnInit {
 
   }
 
-  /**
-   * 获取topicId
-   * @returns {promise<any>}
-   */
-  private getTopicId(): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      this.rewardModelService.getTopicId({
-        id: this.articleDetailObj.id,
-        type: this.articleDetailObj.type
-      }).subscribe(data => {
-        let topicId = data.topicId || '';
-        resolve(topicId);
-      });
-    });
-  }
+
 
   public clickCommentReply(event: MouseEvent, ipt: HTMLElement, reply: ReplyEntity): void {
     ipt.focus();

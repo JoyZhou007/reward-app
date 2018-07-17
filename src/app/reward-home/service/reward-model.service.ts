@@ -75,20 +75,11 @@ export class RewardModelService {
   }
 
   /**
-   * 获取文章topicId
-   * @param data
-   * @returns {Observable<any>}
-   */
-  public getTopicId(data: any): Observable<any> {
-    return this.httpService.get(`/article/detail.ms?id=${data.id}&userId=1&type=${data.type}`);
-  }
-
-  /**
    * 投票
    * @param data
    * @returns {Observable<any>}
    */
   public vote(data): Observable<any> {
-    return this.httpService.get(`/article/submitStand.ms?id=${data.id}&articleId=${data.articleId}&userId=${data.userId}`);
+    return this.httpService.get(`/v4/articleStand/submitStand.ms?id=${data.id}&articleId=${data.articleId}&userId=${data.userId}`);
   }
 }
