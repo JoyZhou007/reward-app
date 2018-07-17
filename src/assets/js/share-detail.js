@@ -2,10 +2,10 @@
 // var articleTitle = window.localStorage.getItem('articleTitle');
 var articleId = document.body.getAttribute('data-articleId');
 var articleTitle = document.body.getAttribute('data-articleTitle');
-var shareData={
+var shareData = {
   title: articleTitle, // 分享标题
   desc: '【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～', // 分享描述
-  link: "http://192.168.20.72:4200/reward-detail/" + articleId, // 分享链接
+  link: "http://192.168.200.198/reward-app/reward-detail/" + articleId, // 分享链接
   imgUrl: 'http://m.steelphone.com/share.png', // 分享图标
   success: function (msg) {
     //console.log(msg);
@@ -31,7 +31,6 @@ if (window.mysteeljs || window.webkit) {
     window.webkit.messageHandlers.share.postMessage(shareData);
   }
 }
-
 
 
 wx.ready(function () {

@@ -328,9 +328,9 @@ export class RewordDetailComponent implements OnInit {
             this.pageNum++;
             this.getReplyList();
           } else {
-            this.dialogService.openTipDialog({
-              content: '已经是最后一页'
-            });
+            // this.dialogService.openTipDialog({
+            //   content: '已经是最后一页'
+            // });
           }
         }
       }, 300);
