@@ -36,6 +36,8 @@ export class RewardListEntity {
 export class RewardDetailEntity {
   title: string;
   body: string;
+  simpleBody: string;
+  showSimpleBody: boolean;
   showReward: string; // yes | no
   countDownStr: string;
   showCountdown: boolean; //倒计时显示
@@ -54,6 +56,8 @@ export class RewardDetailEntity {
     let obj = new RewardDetailEntity();
     obj.title = '';
     obj.body = '';
+    obj.simpleBody = '';
+    obj.showSimpleBody = false;
     obj.showReward = 'no';
     obj.showCountdown = false;
     obj.countDownStr = '';

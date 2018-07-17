@@ -37,6 +37,7 @@ export class RewordDetailComponent implements OnInit {
   public userInfo: UserInfoEntity;
   public userId: string;
   public subStrLen: number = 60;
+  public subStrLenBody: number = 100;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -99,7 +100,7 @@ export class RewordDetailComponent implements OnInit {
       }
       this.rewardModelService.getDetail(formData).subscribe(data => {
         let initData = RewardDetailEntity.init();
-        this.articleDetailObj= {...initData,...data};
+        this.articleDetailObj = {...initData, ...data};
         // this.articleDetailObj = Object.assign(initData, data);
         this.checkCountdown(data);
         this.PKComponent.articleDetailObj = this.articleDetailObj;
@@ -110,6 +111,10 @@ export class RewordDetailComponent implements OnInit {
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
+        if (this.articleDetailObj.body.length > this.subStrLenBody) {
+          this.articleDetailObj.showSimpleBody = true;
+          this.articleDetailObj.simpleBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
+        }
         if (isGetReply) {
           this.getReplyList().then(() => {
             resolve(data);

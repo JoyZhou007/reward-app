@@ -21,17 +21,16 @@
     <div class="topic">
       <h3>{{articleDetailObj?.title}}</h3>
       <div class="body">
-        <section class="content" >
+        <section class="content">
           <div class="topic-content"
-               [class.hide-more]="!showMore"
-               [innerHTML]="articleDetailObj?.body">
+               [innerHTML]="articleDetailObj.showSimpleBody?articleDetailObj.simpleBody:articleDetailObj.body">
           </div>
         </section>
 
       </div>
-      <div class="operate">
-        <span class="icon-cheveron-down" *ngIf="!showMore" (click)="showMore=true"></span>
-        <span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>
+      <div class="operate" *ngIf="articleDetailObj.showSimpleBody">
+        <span class="icon-cheveron-down"  (click)="articleDetailObj.showSimpleBody=false"></span>
+        <!--<span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>-->
       </div>
       <div class="foot">
         <div class="left-foot">
@@ -119,7 +118,7 @@
                [class.active]="wonderReply.isDigg==='yes'"
                (click)="clickPraise($event,wonderReply)"></i>
             <span
-                  *ngIf="wonderReply.digg!=='0'"
+              *ngIf="wonderReply.digg!=='0'"
             >{{wonderReply.digg}}</span>
             <span
               *ngIf="wonderReply.digg==='0'"
@@ -135,7 +134,6 @@
 
 
       </div>
-
 
 
       <ng-container *ngIf="userService.checkHasInstallApp()">

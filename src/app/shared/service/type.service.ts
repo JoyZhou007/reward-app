@@ -36,7 +36,7 @@ export class TypeService {
   //   return newStr;
   // }
 
-  public substring(str: string, len: number, flow?: string) {
+  public substring(str: string, len: number, flow: string='') {
     return str.substr(0, len) + flow;
   }
 
