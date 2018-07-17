@@ -141,8 +141,8 @@
       <ng-container *ngIf="userService.checkHasInstallApp()">
 
         <div class="detail-content all-reply"
-             *ngFor="let reply of allReplyList;">
-          <h3><i class="icon-square"></i>全部评论</h3>
+             *ngFor="let reply of allReplyList; let i=index;">
+          <h3 *ngIf="i===0"><i class="icon-square"></i>全部评论</h3>
           <header>
             <div class="avatar">
               <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">

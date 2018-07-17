@@ -156,6 +156,7 @@
       .input {
         display: flex;
         align-items: center;
+        margin-bottom: rem(20);
         .avatar {
           padding-right: rem(10);
           img {
@@ -346,6 +347,7 @@
       align-items: center;
       //border-right: rem(1) solid #ddd;
       color: $white;
+      font-size: rem(14);
 
     }
     .line {
