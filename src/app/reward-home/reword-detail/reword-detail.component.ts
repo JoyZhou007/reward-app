@@ -99,9 +99,9 @@ export class RewordDetailComponent implements OnInit {
       }
       this.rewardModelService.getDetail(formData).subscribe(data => {
         let initData = RewardDetailEntity.init();
-        this.checkCountdown(data);
-        // Object.assign(this.articleDetailObj, data);
         this.articleDetailObj= {...initData,...data};
+        // this.articleDetailObj = Object.assign(initData, data);
+        this.checkCountdown(data);
         this.PKComponent.articleDetailObj = this.articleDetailObj;
         const imgList = data.img;
         let body = data.body.toString();
@@ -140,14 +140,17 @@ export class RewordDetailComponent implements OnInit {
       this.articleDetailObj.showCountdown = true;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = false;
+      console.log('1????');
     } else if (gap > 5 * 24 * 60 * 60 * 1000) {
       this.articleDetailObj.showCountdown = false;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = false;
+      console.log('2????');
     } else if (gap < 0) {
       this.articleDetailObj.showCountdown = false;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = true;
+      console.log('3????', this.articleDetailObj.showEnd);
     }
 
   }
@@ -338,7 +341,6 @@ export class RewordDetailComponent implements OnInit {
     }
 
   }
-
 
 
   public clickCommentReply(event: MouseEvent, ipt: HTMLElement, reply: ReplyEntity): void {

@@ -1,149 +1,162 @@
 @import "../../styles";
 
-.container{
-  background-color: $blue-2;
-  main{
-    //padding-top: 40vh;
-    background: url('../../assets/icons/icon/banner-1.png') no-repeat center top;
-    background-size: 100%;
-    .describe {
-      height: rem(100);
-      //background-color: #eee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: rem(33);
-      margin-bottom: rem(20);
-      color: $white;
-      text-align: center;
-      line-height: rem(40);
-      padding-top: rem(20);
-    }
+.outer-wrap{
+  .container{
+    background-color: $blue-2;
+    main{
+      //padding-top: 40vh;
+      background: url('../../assets/icons/icon/banner-1.png') no-repeat center top;
+      background-size: 100%;
+      .describe {
+        height: rem(100);
+        //background-color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: rem(33);
+        margin-bottom: rem(20);
+        color: $white;
+        text-align: center;
+        line-height: rem(40);
+        padding-top: rem(20);
+      }
 
-    .article-wrap{
-      padding:  0 rem(15);
-      background-color: $white;
-      .article {
-        padding: 0 rem(10);
-        position: relative;
-        top: rem(-30);
-        margin: rem(180) 0 0 0;
-        border: rem(1) solid transparent;
-        border-radius: rem(10);
+      .article-wrap{
+        padding:  0 rem(15);
         background-color: $white;
-        li {
-          margin-top: rem(15);
-          border-bottom: rem(1) solid #ddd;
-          h3 {
-            color: black;
-            font-size: rem(16);
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            line-height: rem(22);
-            .icon-square {
-              display: inline-block;
-              width: rem(5);
-              height: rem(20);
-              margin-right: rem(5);
-              background-color: $blue-normal;
+        .article {
+          padding: rem(10);
+          position: relative;
+          top: rem(-30);
+          margin: rem(180) 0 0 0;
+          border: rem(1) solid transparent;
+          border-radius: rem(10);
+          background-color: $white;
+          box-shadow: 0 0 rem(5) #ddd;
+          li {
+            margin-bottom: rem(15);
+            border-bottom: rem(1) solid #ddd;
+            &:last-child{
+              border-bottom: none;
+              margin-bottom: 0;
             }
-          }
-          .body {
-            margin: rem(20) 0 rem(10) 0;
-            padding: rem(10) rem(8) rem(10) rem(8);
-            background-color: $white-1;
-            //.avator {
-            //  display: flex;
-            //  justify-content: flex-start;
-            //  align-items: center;
-            //  img {
-            //    width: rem(30);
-            //    margin-right: rem(8);
-            //  }
-            //  span {
-            //    flex: 2;
-            //  }
-            //}
-
-            header {
+            h3 {
+              color: black;
+              font-size: rem(16);
               display: flex;
+              align-items: flex-start;
               justify-content: flex-start;
-              align-items: center;
-              .avatar {
-                img {
-                  height: rem(40);
-                }
-              }
-              .name {
-                padding-left: rem(10);
-                h6 {
-                  display: flex;
-                  align-items: center;
-                  font-size: rem(16);
-                  font-weight: normal;
-                  margin-bottom: rem(8);
-                  color: $blue-normal;
-                }
-                span {
-                  color: #999999;
-                }
-                em {
-                  display: inline-block;
-                  padding: rem(3) rem(5);
-                  margin-left: rem(10);
-                  color: $white;
-                  font-size: rem(12);
-                  font-weight: normal;
-                  background-color: $blue-normal;
-                }
+              line-height: rem(22);
+              .icon-square {
+                display: inline-block;
+                width: rem(5);
+                height: rem(20);
+                margin-right: rem(5);
+                background-color: $blue-normal;
               }
             }
-            .content {
-              margin-top: rem(5);
-              line-height: rem(20);
-            }
+            .body {
+              margin: rem(20) 0 rem(10) 0;
+              padding: rem(10) rem(8) rem(10) rem(8);
+              background-color: $white-1;
+              //.avator {
+              //  display: flex;
+              //  justify-content: flex-start;
+              //  align-items: center;
+              //  img {
+              //    width: rem(30);
+              //    margin-right: rem(8);
+              //  }
+              //  span {
+              //    flex: 2;
+              //  }
+              //}
 
-          }
-          .foot {
-            display: flex;
-            height: rem(30);
-            .left-foot,
-            .right-foot {
-              flex: 1;
+              header {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .avatar {
+                  img {
+                    height: rem(30);
+                  }
+                }
+                .name {
+                  padding-left: rem(10);
+                  h6 {
+                    display: flex;
+                    align-items: center;
+                    font-size: rem(16);
+                    font-weight: normal;
+                    //margin-bottom: rem(8);
+                    color: $blue-normal;
+                  }
+                  span {
+                    color: #999999;
+                  }
+                  em {
+                    display: inline-block;
+                    padding: rem(3) rem(5);
+                    margin-left: rem(10);
+                    color: $white;
+                    font-size: rem(12);
+                    font-weight: normal;
+                    background-color: $blue-normal;
+                  }
+                }
+              }
+              .content {
+                margin-top: rem(5);
+                line-height: rem(20);
+              }
+
+            }
+            .foot {
               display: flex;
-              align-items: center;
-              justify-content: flex-start;
-            }
-            .left-foot{
-              .my-progress{
-                color: $orange-normal;
-                font-weight: bold;
-              }
-              .time{
-                color: $gray-normal;
-                margin-right: rem(10);
-              }
-            }
-            .right-foot{
-              padding-right: rem(10);
-              .comment{
+              height: rem(30);
+              .left-foot,
+              .right-foot {
                 flex: 1;
-                text-align: right;
-                color: $gray-normal;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
               }
-              .more{
-                flex: 1;
-                text-align: right;
-                color: #449fdb;
+              .left-foot{
+                .my-progress{
+                  color: $orange-normal;
+                  font-weight: bold;
+                }
+                .time{
+                  color: $gray-normal;
+                  margin-right: rem(10);
+                }
+              }
+              .right-foot{
+                padding-right: rem(10);
+                .comment{
+                  flex: 1;
+                  text-align: right;
+                  color: $gray-normal;
+                }
+                .more{
+                  flex: 1;
+                  text-align: right;
+                  color: #449fdb;
+                }
               }
             }
           }
         }
       }
-    }
 
+    }
+  }
+
+  /deep/ .install-bar-wrapper{
+    position: relative;
+    top: rem(-10);
   }
 }
+
 
 

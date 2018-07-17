@@ -1,13 +1,14 @@
 @import "../../../../styles";
 
 .install-bar-wrapper {
-  position: fixed;
-  bottom: rem(20);
+  //position: fixed;
+  //bottom: rem(20);
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  .bar {
+  margin-bottom: rem(20);
+  .bar-inner {
     width: 80%;
     padding: rem(10) 0;
     border-radius: rem(20);

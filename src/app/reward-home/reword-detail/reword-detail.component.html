@@ -135,6 +135,7 @@
       </div>
 
 
+
       <ng-container *ngIf="userService.checkHasInstallApp()">
         <h3><i class="icon-square"></i>全部评论</h3>
         <div class="detail-content all-reply"
@@ -193,7 +194,7 @@
 
         </div>
       </ng-container>
-
+      <app-install-app-bar [btnText]="'打开APP，查看全部评论'"></app-install-app-bar>
     </section>
   </main>
 
@@ -209,7 +210,7 @@
     >百家之言</a>
   </footer>
 
-  <app-install-app-bar [btnText]="'打开APP，查看全部评论'"></app-install-app-bar>
+
 </div>
 
 
