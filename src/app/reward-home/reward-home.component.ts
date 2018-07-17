@@ -47,7 +47,7 @@ export class RewardHomeComponent implements OnInit {
     });
   }
 
-rrrr54rr4rfr
+
   /**
    * 点击打开详情页面
    * @param {MouseEvent} event
@@ -76,7 +76,7 @@ rrrr54rr4rfr
       }
 
       this.rewardModelService.getList(formData).subscribe(data => {
-        let articles = data.articles || [];
+        let articles = [...data.articles];
         let currentTime = data.currentTime;
         if (!articles.length) {
           if (this.pageNum !== 1) {

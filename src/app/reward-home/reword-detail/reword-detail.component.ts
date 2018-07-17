@@ -98,9 +98,10 @@ export class RewordDetailComponent implements OnInit {
         };
       }
       this.rewardModelService.getDetail(formData).subscribe(data => {
-        this.articleDetailObj = RewardDetailEntity.init();
+        let initData = RewardDetailEntity.init();
         this.checkCountdown(data);
-        Object.assign(this.articleDetailObj, data);
+        // Object.assign(this.articleDetailObj, data);
+        this.articleDetailObj= {...initData,...data};
         this.PKComponent.articleDetailObj = this.articleDetailObj;
         const imgList = data.img;
         let body = data.body.toString();
