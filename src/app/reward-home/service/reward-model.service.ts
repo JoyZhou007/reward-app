@@ -71,7 +71,7 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   public doComment(data: any): Observable<any> {
-    return this.httpService.get(`/comment/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
+    return this.httpService.get(`/article/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyId}`);
   }
 
   /**
