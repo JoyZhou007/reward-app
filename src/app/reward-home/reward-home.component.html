@@ -1,19 +1,18 @@
 <!--<app-header [title]="'悬赏问答'">-->
-  <!--<div class="left">-->
-    <!--<span class="icon-cheveron-left">-->
-    <!--</span>-->
-  <!--</div>-->
-  <!--<div class="right">-->
-    <!--<i class="iconfont icon-fenxiang"></i>-->
-  <!--</div>-->
+<!--<div class="left">-->
+<!--<span class="icon-cheveron-left">-->
+<!--</span>-->
+<!--</div>-->
+<!--<div class="right">-->
+<!--<i class="iconfont icon-fenxiang"></i>-->
+<!--</div>-->
 <!--</app-header>-->
 <div class="outer-wrap">
   <div class="container">
+    <div class="top-img">
+      <img src="./assets/icons/icon/banner-1.png" alt="">
+    </div>
     <main>
-      <section class="describe">
-        话题已出，等你来辩
-      </section>
-
       <section class="article-wrap">
         <ul class="article" *ngIf="userService.checkHasInstallApp()">
           <li *ngFor="let articleObj of topicList">
@@ -29,7 +28,7 @@
                 </div>
               </header>
               <section class="content">
-                <span>{{articleObj.content}}</span>
+                <div class="content-detail" [innerHTML]="articleObj.showSimpleContent?articleObj.simpleContent:articleObj.content"></div>
               </section>
 
             </div>
@@ -62,7 +61,7 @@
                 </div>
               </header>
               <section class="content">
-                <span>{{articleObj.content}}</span>
+                <div class="content-detail" [innerHTML]="articleObj.showSimpleContent?articleObj.simpleContent:articleObj.content"></div>
               </section>
 
             </div>

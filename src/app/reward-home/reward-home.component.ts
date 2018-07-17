@@ -6,6 +6,7 @@ import {RewardListEntity, UserInfoEntity} from './entity/reward-entity';
 import {DialogService} from '../shared/service/dialog.service';
 import {StorageService} from '../shared/service/storage.service';
 import {UserService} from '../shared/service/user.service';
+import {TypeService} from '../shared/service/type.service';
 
 @Component({
   selector: 'app-reward-home',
@@ -17,13 +18,13 @@ export class RewardHomeComponent implements OnInit {
   private pageNum: number = 1;
   public hasInit: boolean = false;
   public userId: string;
+  private subStrLen: number = 55;
 
   constructor(public router: Router,
-              public render:Renderer2,
-              public dialogService: DialogService,
+              public render: Renderer2,
+              public typeService: TypeService,
               public storageService: StorageService,
               public userService: UserService,
-              public dateFormatService: DateFormatService,
               public rewardModelService: RewardModelService) {
     this.initScript();
 
@@ -100,6 +101,10 @@ export class RewardHomeComponent implements OnInit {
               tplObj.isDoing = false;
             }
             Object.assign(tplObj, value);
+            if (tplObj.content.length > this.subStrLen) {
+              tplObj.showSimpleContent = true;
+              tplObj.simpleContent = this.typeService.substring(tplObj.content, this.subStrLen ,'...');
+            }
             this.topicList.push(tplObj);
           });
         }

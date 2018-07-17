@@ -37,6 +37,7 @@ export class PKComponent implements OnInit {
       const tplObj = VoteEntity.init();
       Object.assign(tplObj, val);
       tplObj.width = parseInt(tplObj.supportRate);
+      tplObj.supportVal = Math.round(Number(tplObj.supportRate.split('%')[0]));
       tplObj.hasVote = tplObj.id.toString() === this.articleDetailObj.articleStandId;
       this.voteList.push(tplObj);
     });
@@ -44,8 +45,8 @@ export class PKComponent implements OnInit {
 
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
-    if(!this.articleDetailObj.showEnd){
-      if(this.articleDetailObj.articleStandId==='') {
+    if (!this.articleDetailObj.showEnd) {
+      if (this.articleDetailObj.articleStandId === '') {
         this.userService.doLogin().then((userInfo: UserInfoEntity) => {
           if (this.userId) {
             const formData = {
@@ -71,16 +72,15 @@ export class PKComponent implements OnInit {
     }
 
 
-
   }
 
   public clickTip(event: MouseEvent): void {
     event.stopPropagation();
-    if(this.articleDetailObj.showEnd){
+    if (this.articleDetailObj.showEnd) {
       this.dialogService.openTipDialog({
         content: '投票已结束'
       });
-    } else if(this.articleDetailObj.articleStandId) {
+    } else if (this.articleDetailObj.articleStandId) {
       this.dialogService.openTipDialog({
         content: '已投票'
       });

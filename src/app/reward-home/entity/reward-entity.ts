@@ -10,6 +10,8 @@ export class RewardListEntity {
   replyArticleURL: string;
   faceIco: string;
   isDoing: boolean;
+  showSimpleContent: boolean;
+  simpleContent: string;
 
   static init() {
     let obj = new RewardListEntity();
@@ -24,6 +26,8 @@ export class RewardListEntity {
     obj.replyArticleURL = '';
     obj.faceIco = '';
     obj.isDoing = false;
+    obj.showSimpleContent = false;
+    obj.simpleContent = '';
     return obj;
   }
 }
@@ -146,6 +150,7 @@ export class VoteEntity {
   hasVote: boolean;
   option: string;
   supportRate: string;
+  supportVal: number;
   width: number;
   color: string;
 
@@ -155,6 +160,7 @@ export class VoteEntity {
     obj.hasVote = false;
     obj.option = '';
     obj.supportRate = '0%';
+    obj.supportVal = 0;
     obj.width = 0;
     obj.color = '';
     return obj;

@@ -25,7 +25,7 @@
     padding: rem(10) rem(8) rem(15);
     border: rem(1) solid #eee;
     border-radius: rem(10);
-    box-shadow: 0 2px rem(2);
+    box-shadow: 0 rem(2) rem(2) #ddd;
     margin-top: rem(10);
     .bar {
       height: rem(25);
@@ -92,7 +92,7 @@
         height: 100%;
         display: flex;
         align-items: center;
-        font-size: rem(19);
+        font-size: rem(15);
         color: $white;
         flex-wrap: wrap;
       }
@@ -154,7 +154,7 @@
         height: 100%;
         display: flex;
         align-items: center;
-        font-size: rem(17);
+        font-size: rem(15);
         color: $white;
         flex-wrap: wrap;
       }

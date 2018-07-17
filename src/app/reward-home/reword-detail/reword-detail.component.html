@@ -21,8 +21,10 @@
     <div class="topic">
       <h3>{{articleDetailObj?.title}}</h3>
       <div class="body">
-        <section class="content" [class.hide-more]="!showMore">
-          <div [innerHTML]="articleDetailObj?.body">
+        <section class="content" >
+          <div class="topic-content"
+               [class.hide-more]="!showMore"
+               [innerHTML]="articleDetailObj?.body">
           </div>
         </section>
 

@@ -73,10 +73,13 @@
           margin-top: rem(5);
           line-height: rem(20);
           font-size: rem(14);
-        }
-        .hide-more {
-          height: rem(55);
-          overflow: hidden;
+          .topic-content{
+            line-height: rem(20);
+          }
+          .hide-more{
+            height: rem(80);
+            overflow: hidden;
+          }
         }
 
       }
@@ -84,7 +87,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        padding-right: rem(25);
+        //padding-right: rem(25);
         span {
           font-size: rem(16);
           margin-right: rem(20);

@@ -9,7 +9,7 @@
         <!--{{voteObj.supportRate}} 已支持-->
         <!--</div>-->
         <progressbar max="100" [value]="voteObj.width" [striped]="true" [animate]="true">
-          <i>{{voteObj.supportRate}}已支持</i></progressbar>
+          <i>{{voteObj.supportVal+'%'}}已支持</i></progressbar>
       </li>
       <li>
         <button class="btn-vote"
@@ -95,7 +95,7 @@
         </div>
         <div class="rate"
              [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0">
-          {{voteList[0]?.supportRate}}
+          {{voteList[0]?.supportVal+'%'}}
         </div>
       </div>
       <div class="right-txt">
@@ -107,7 +107,7 @@
         <div class="rate"
              [class.gray-txt]="voteList[0]?.width===0 && voteList[1]?.width===0"
         >
-          {{voteList[1]?.supportRate}}
+          {{voteList[1]?.supportVal+'%'}}
         </div>
       </div>
     </div>

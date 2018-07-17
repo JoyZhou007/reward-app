@@ -36,7 +36,7 @@ export class RewordDetailComponent implements OnInit {
   public showLoading: boolean = true;
   public userInfo: UserInfoEntity;
   public userId: string;
-  public subStrLen: number = 70;
+  public subStrLen: number = 60;
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -140,17 +140,14 @@ export class RewordDetailComponent implements OnInit {
       this.articleDetailObj.showCountdown = true;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = false;
-      console.log('1????');
     } else if (gap > 5 * 24 * 60 * 60 * 1000) {
       this.articleDetailObj.showCountdown = false;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = false;
-      console.log('2????');
     } else if (gap < 0) {
       this.articleDetailObj.showCountdown = false;
       this.articleDetailObj.showDoing = false;
       this.articleDetailObj.showEnd = true;
-      console.log('3????', this.articleDetailObj.showEnd);
     }
 
   }
