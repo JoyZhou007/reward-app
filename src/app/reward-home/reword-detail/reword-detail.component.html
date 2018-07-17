@@ -28,8 +28,10 @@
         </section>
 
       </div>
-      <div class="operate" *ngIf="articleDetailObj.showSimpleBody">
-        <span class="icon-cheveron-down"  (click)="articleDetailObj.showSimpleBody=false"></span>
+      <div class="operate">
+        <span class="icon-cheveron-down"
+              *ngIf="articleDetailObj.showSimpleBody"
+              (click)="articleDetailObj.showSimpleBody=false"></span>
         <!--<span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>-->
       </div>
       <div class="foot">
@@ -137,9 +139,10 @@
 
 
       <ng-container *ngIf="userService.checkHasInstallApp()">
-        <h3><i class="icon-square"></i>全部评论</h3>
+
         <div class="detail-content all-reply"
              *ngFor="let reply of allReplyList;">
+          <h3><i class="icon-square"></i>全部评论</h3>
           <header>
             <div class="avatar">
               <img [src]="reply.faceIco" alt="" *ngIf="!!reply.faceIco">
