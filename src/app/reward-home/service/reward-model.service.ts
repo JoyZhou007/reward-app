@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../../shared/service/http.service';
 import {UserService} from '../../shared/service/user.service';
+import {HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -71,20 +72,10 @@ export class RewardModelService {
    * @returns {Observable<any>}
    */
   // public doComment(data: any): Observable<any> {
-  //   return this.httpService.get(`/article/reply/create.ms?userId=${'894671'}&topicId=${data.topicId}&channlId=${data.channeId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyIds}`);
+  //   return this.httpService.get(`/article/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyIds}`);
   // }
   public doComment(data: any): Observable<any> {
-    return this.httpService.post('/article/reply/create.ms', {
-      topicId: data.topicId.toString(),
-      channeId: data.channeId,
-      objectType: data.objectType,
-      objectId: data.objectId,
-      objectTitle: data.objectTitle,
-      content: data.content,
-      replyIds: data.replyIds,
-      userId: 894671
-
-    });
+    return this.httpService.post('/article/reply/create.ms', data);
   }
 
   /**

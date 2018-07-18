@@ -289,7 +289,7 @@ export class RewordDetailComponent implements OnInit {
       //发送按钮的字数需要再次确认
       let countLen = this.typeService.getStringLocaleLen(content);
       if (countLen > this.commentValMaxLen) {
-        content= this.typeService.localeSubString(content, 0, this.commentValMaxLen);
+        content = this.typeService.localeSubString(content, 0, this.commentValMaxLen);
       }
 
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
@@ -297,21 +297,22 @@ export class RewordDetailComponent implements OnInit {
       //   this.topicId = await this.getTopicId();
       // }
 
-      // this.userService.doLogin().then(() => {
+      this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
         content = this.escapeHtmlService.escapeHtml(content);
-        let formData = {
-          topicId: this.articleDetailObj.topicId,
-          channeId: this.articleDetailObj.channelId,
-          objectType: this.articleDetailObj.type,
-          objectId: this.articleDetailObj.id,
-          objectTitle: this.articleDetailObj.title,
-          content: content,
-          replyIds: replyId,
-          userId: this.userId
-        };
-        console.log('form',formData)
-        this.rewardModelService.doComment(formData).subscribe(data => {
+        // let formData = {
+        //   topicId: this.articleDetailObj.topicId,
+        //   channlId: this.articleDetailObj.channelId,
+        //   objectType: this.articleDetailObj.type,
+        //   objectId: this.articleDetailObj.id,
+        //   objectTitle: this.articleDetailObj.title,
+        //   content: content,
+        //   replyIds: replyId,
+        //   userId: this.userId
+        // };
+        // console.log('form', formData);
+        const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${replyId}`;
+        this.rewardModelService.doComment(params).subscribe(data => {
           this.allReplyList = [];
           this.wonderReplyList = [];
           this.pageNum = 1;
@@ -323,7 +324,8 @@ export class RewordDetailComponent implements OnInit {
           this.showLoading = true;
           this.getReplyList(true);
         });
-      // });
+      });
+
 
     }
 
@@ -410,6 +412,23 @@ export class RewordDetailComponent implements OnInit {
     eleWx.setAttribute('id', 'wxFunc');
     eleWx.setAttribute('src', '//m.steelphone.com/app/invite/jssign.ms?functionName=jssign&url=' + encodeURIComponent(location.href.split('#')[0]));
     this.render.appendChild(document.body, eleWx);
+  }
+
+  public test() {
+    const http = new XMLHttpRequest();
+    const url = '/article/reply/create.ms';
+    const params = `userId=${894671}&topicId=${'11'}&channlId=${'1102'}&objectType=${'0'}&objectId=${'4275'}&objectTitle=${'环保限产“竞赛式”扩围 供给收缩会超预期吗？'}&content=${'试试'}&replyIds=${''}`;
+    http.open('POST', url, true);
+
+//Send the proper header information along with the request
+    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    http.onreadystatechange = function () {//Call a function when the state changes.
+      if (http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+      }
+    };
+    http.send(params);
   }
 
 }
