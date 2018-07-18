@@ -300,16 +300,16 @@ export class RewordDetailComponent implements OnInit {
       this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
         content = this.escapeHtmlService.escapeHtml(content);
-        // let formData = {
-        //   topicId: this.articleDetailObj.topicId,
-        //   channlId: this.articleDetailObj.channelId,
-        //   objectType: this.articleDetailObj.type,
-        //   objectId: this.articleDetailObj.id,
-        //   objectTitle: this.articleDetailObj.title,
-        //   content: content,
-        //   replyIds: replyId,
-        //   userId: this.userId
-        // };
+        let formData = {
+          topicId: this.articleDetailObj.topicId,
+          channlId: this.articleDetailObj.channelId,
+          objectType: this.articleDetailObj.type,
+          objectId: this.articleDetailObj.id,
+          objectTitle: this.articleDetailObj.title,
+          content: content,
+          replyIds: replyId,
+          userId: 894671
+        };
         // console.log('form', formData);
         const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${replyId}`;
         this.rewardModelService.doComment(params).subscribe(data => {

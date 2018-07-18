@@ -7,8 +7,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class HttpService {
   // public publicPath: string = '/myapp';
-  // public publicPath: string = '/activity/app/';
-  public publicPath: string = '';
+  public publicPath: string = '/activity/app';
+  // public publicPath: string = '';
 
   constructor(public http: HttpClient) {
   }
