@@ -269,6 +269,7 @@
           padding-left: rem(50);
           line-height: rem(25);
           font-size: rem(14);
+          word-break: break-word;
           .operate {
             text-align: right;
             padding-right: rem(10);
@@ -285,6 +286,7 @@
           line-height: rem(25);
           margin-bottom: rem(10);
           margin-top: rem(10);
+          word-break: break-word;
           span {
             color: #449fdb;
           }
