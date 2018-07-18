@@ -297,19 +297,20 @@ export class RewordDetailComponent implements OnInit {
       //   this.topicId = await this.getTopicId();
       // }
 
-      this.userService.doLogin().then(() => {
+      // this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
         content = this.escapeHtmlService.escapeHtml(content);
         let formData = {
           topicId: this.articleDetailObj.topicId,
-          channlId: this.articleDetailObj.channelId,
+          channeId: this.articleDetailObj.channelId,
           objectType: this.articleDetailObj.type,
           objectId: this.articleDetailObj.id,
           objectTitle: this.articleDetailObj.title,
           content: content,
-          replyId: replyId,
+          replyIds: replyId,
           userId: this.userId
         };
+        console.log('form',formData)
         this.rewardModelService.doComment(formData).subscribe(data => {
           this.allReplyList = [];
           this.wonderReplyList = [];
@@ -322,7 +323,7 @@ export class RewordDetailComponent implements OnInit {
           this.showLoading = true;
           this.getReplyList(true);
         });
-      });
+      // });
 
     }
 

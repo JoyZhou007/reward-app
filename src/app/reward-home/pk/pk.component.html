@@ -1,4 +1,4 @@
-<section class="box" *ngIf="voteList.length!==2">
+<section class="box" *ngIf="articleDetailObj.standMould=='1'">
   <h3><i class="icon-square"></i> 选择观点</h3>
 
   <ul class="vote">
@@ -26,7 +26,7 @@
   </ul>
 </section>
 
-<section class="box" *ngIf="voteList.length===2">
+<section class="box" *ngIf="articleDetailObj.standMould==='2'">
   <h3><i class="icon-square"></i> 选择观点</h3>
 
 
