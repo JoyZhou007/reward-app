@@ -188,6 +188,7 @@ export class RewordDetailComponent implements OnInit {
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
+          replyObj.content=this.escapeHtmlService.unescapeHtml(replyObj.content);
           if (replyObj.content.length > this.subStrLen) {
             replyObj.showSimpleContent = true;
             replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
@@ -291,7 +292,7 @@ export class RewordDetailComponent implements OnInit {
 
       this.userService.doLogin().then(() => {
         this.userId = this.storageService.getStorageValue('userId');
-
+        content = this.escapeHtmlService.escapeHtml(content);
         let formData = {
           topicId: this.articleDetailObj.topicId,
           channlId: this.articleDetailObj.channelId,
