@@ -21,6 +21,8 @@ export class RewordDetailComponent implements OnInit {
   public newStr: string;
   public showMore: boolean = false;
   public commentValue: string;
+  //评论最大字数
+  public commentValMaxLen: number = 500;
 
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   public articleDetailObj: RewardDetailEntity = RewardDetailEntity.init();
@@ -188,7 +190,7 @@ export class RewordDetailComponent implements OnInit {
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
-          replyObj.content=this.escapeHtmlService.unescapeHtml(replyObj.content);
+          replyObj.content = this.escapeHtmlService.unescapeHtml(replyObj.content);
           if (replyObj.content.length > this.subStrLen) {
             replyObj.showSimpleContent = true;
             replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
@@ -284,6 +286,11 @@ export class RewordDetailComponent implements OnInit {
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
     let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
     if (content && content.trim()) {
+      //发送按钮的字数需要再次确认
+      let countLen = this.typeService.getStringLocaleLen(content);
+      if (countLen > this.commentValMaxLen) {
+        content= this.typeService.localeSubString(content, 0, this.commentValMaxLen);
+      }
 
       let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       // if (this.topicId === '') {

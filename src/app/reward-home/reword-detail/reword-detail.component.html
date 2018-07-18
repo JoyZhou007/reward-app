@@ -74,7 +74,7 @@
         <textarea class="ipt-btn" type="text" placeholder="说说我的想法" #ipt
                   (input)="checkDoLogin()"
                   (focus)="checkDoLogin()"
-                  appTextareaAutoHeight [appMaxLength]="500"
+                  appTextareaAutoHeight [appMaxLength]="commentValMaxLen"
                   [(ngModel)]="commentValue" (keyup.enter)="sendComment($event,ipt)"> </textarea>
         <span class="btn-send"
               (click)="sendComment($event,ipt)"
