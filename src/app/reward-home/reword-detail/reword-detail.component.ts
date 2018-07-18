@@ -52,27 +52,48 @@ export class RewordDetailComponent implements OnInit {
               public storageService: StorageService,
               public rewardModelService: RewardModelService) {
     this.pageNum = 1;
-    this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
 
-      // this.userId = this.storageService.getStorageValue('userId');
 
-      this.storageService.localStorage.observe('userId')
-        .subscribe((newValue) => {
-          this.userId = newValue;
+    if(this.userService.checkHasInstallApp()){
+      this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
+
+        this.userId = this.storageService.getStorageValue('userId');
+
+        // this.storageService.localStorage.observe('userId')
+        //   .subscribe((newValue) => {
+        //     this.userId = newValue;
+        //   });
+        this.activatedRoute.paramMap.subscribe(next => {
+          this.articleId = next.get('id');
+
+          this.getDetail().then(() => {
+            this.showLoading = false;
+            // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
+            this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
+            //放在title后面
+            this.initScript(this.articleId);
+          });
         });
-    });
 
-    this.activatedRoute.paramMap.subscribe(next => {
-      this.articleId = next.get('id');
 
-      this.getDetail().then(() => {
-        this.showLoading = false;
-        // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
-        this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
-        //放在title后面
-        this.initScript(this.articleId);
       });
-    });
+
+    } else {
+      this.activatedRoute.paramMap.subscribe(next => {
+        this.articleId = next.get('id');
+
+        this.getDetail().then(() => {
+          this.showLoading = false;
+          // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
+          this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
+          //放在title后面
+          this.initScript(this.articleId);
+        });
+      });
+    }
+
+
+
   }
 
   ngOnInit() {
@@ -192,7 +213,8 @@ export class RewordDetailComponent implements OnInit {
         wonderList.forEach(value => {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
-          replyObj.content = this.escapeHtmlService.unescapeHtml(replyObj.content);
+          // replyObj.content = this.escapeHtmlService.unescapeHtml(replyObj.content);
+          replyObj.content= decodeURIComponent(replyObj.content)
           if (replyObj.content.length > this.subStrLen) {
             replyObj.showSimpleContent = true;
             replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
@@ -302,34 +324,35 @@ export class RewordDetailComponent implements OnInit {
       // }
 
       this.userService.doLogin().then(() => {
-        this.userId = this.storageService.getStorageValue('userId');
-        content = this.escapeHtmlService.escapeHtml(content);
-        let formData = {
-          topicId: this.articleDetailObj.topicId,
-          channlId: this.articleDetailObj.channelId,
-          objectType: this.articleDetailObj.type,
-          objectId: this.articleDetailObj.id,
-          objectTitle: this.articleDetailObj.title,
-          content: content,
-          replyIds: this.currentReplyPeople,
-          userId: 894671
-        };
-        // console.log('form', formData);
-        const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
-        this.rewardModelService.doComment(params).subscribe(data => {
-          this.allReplyList = [];
-          this.wonderReplyList = [];
-          this.pageNum = 1;
-          this.currentReplyPeople = '';
-          this.currentReplyPeopleName = '说说我的想法';
-          this.commentValue = '';
-          ipt['value'] = '';
-          ipt.focus();
-          ipt.blur();
-          clearTimeout(this.scrollTimer);
-          this.showLoading = true;
-          this.getReplyList(true);
-        });
+      this.userId = this.storageService.getStorageValue('userId');
+      // content = this.escapeHtmlService.escapeHtml(content);
+      content = encodeURIComponent(content);
+      let formData = {
+        topicId: this.articleDetailObj.topicId,
+        channlId: this.articleDetailObj.channelId,
+        objectType: this.articleDetailObj.type,
+        objectId: this.articleDetailObj.id,
+        objectTitle: this.articleDetailObj.title,
+        content: content,
+        replyIds: this.currentReplyPeople,
+        userId: 894671
+      };
+      // console.log('form', formData);
+      const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
+      this.rewardModelService.doComment(params).subscribe(data => {
+        this.allReplyList = [];
+        this.wonderReplyList = [];
+        this.pageNum = 1;
+        this.currentReplyPeople = '';
+        this.currentReplyPeopleName = '说说我的想法';
+        this.commentValue = '';
+        ipt['value'] = '';
+        ipt.focus();
+        ipt.blur();
+        clearTimeout(this.scrollTimer);
+        this.showLoading = true;
+        this.getReplyList(true);
+      });
       });
 
 
@@ -443,9 +466,10 @@ export class RewordDetailComponent implements OnInit {
     this.articleDetailObj.newBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
   }
 
-  public checkIsToDownload():void {
+  public checkIsToDownload(): void {
     if (!this.userService.checkHasInstallApp()) {
       window.location.href = this.downLoadUrl;
+      return;
     }
   }
 

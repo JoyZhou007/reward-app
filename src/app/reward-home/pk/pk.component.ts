@@ -39,7 +39,7 @@ export class PKComponent implements OnInit {
       Object.assign(tplObj, val);
       tplObj.width = parseInt(tplObj.supportRate);
       tplObj.supportVal = Math.round(Number(tplObj.supportRate.split('%')[0]));
-      tplObj.hasVote = tplObj.id.toString() === this.articleDetailObj.articleStandId;
+      tplObj.hasVote = tplObj.id === this.articleDetailObj.articleStandId;
       this.voteList.push(tplObj);
     });
   }
@@ -94,6 +94,7 @@ export class PKComponent implements OnInit {
   public checkIsToDownload(): void {
     if (!this.userService.checkHasInstallApp()) {
       window.location.href = this.downLoadUrl;
+      return;
     }
   }
 }

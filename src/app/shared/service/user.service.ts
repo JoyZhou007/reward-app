@@ -66,9 +66,10 @@ export class UserService {
         } else { //新控件
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 0);
+          resolve('')
         }
       } else {
-
+        resolve('')
       }
     });
   }
