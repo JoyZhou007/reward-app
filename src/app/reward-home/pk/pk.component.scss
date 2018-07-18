@@ -103,7 +103,7 @@
         top: 50%;
         transform: translateY(-50%);
         .option,.rate{
-          font-size: rem(17);
+          font-size: rem(12);
           line-height: rem(25);
           color: $white;
         }
@@ -113,8 +113,9 @@
         right: rem(10);
         top: 50%;
         transform: translateY(-50%);
+        text-align: right;
         .option,.rate{
-          font-size: rem(17);
+          font-size: rem(12);
           line-height: rem(25);
           color: $white;
         }

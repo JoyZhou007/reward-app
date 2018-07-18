@@ -1,14 +1,14 @@
 {
   "/v4": {
-    "target": "http://192.168.20.146:8085",
+    "target": "http://192.168.200.197:8809",
     "secure": false
   },
   "/article": {
-    "target": "http://192.168.20.146:8085",
+    "target": "http://192.168.200.197:8809",
     "secure": false
   },
   "/comment": {
-    "target": "http://192.168.20.146:8085",
+    "target": "http://192.168.200.197:8809",
     "secure": false
   }
 }

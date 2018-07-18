@@ -21,7 +21,7 @@
         </h3>
         <ul class="steel-list">
           <li *ngFor="let steelObj of appList">
-            <span class="name">{{steelObj.tplUserName}}</span>
+            <span class="name" [title]="steelObj.tplUserName">{{steelObj.tplUserName}}</span>
             <span class="phone">{{steelObj.tplNumber}}</span>
           </li>
         </ul>

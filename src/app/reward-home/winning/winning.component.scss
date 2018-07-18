@@ -88,6 +88,9 @@
             .name {
               flex: 0 0 40%;
               text-align: left;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
               padding-left: rem(10);
               margin-right: rem(10);
             }

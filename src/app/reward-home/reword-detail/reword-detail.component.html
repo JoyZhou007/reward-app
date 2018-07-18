@@ -23,16 +23,18 @@
       <div class="body">
         <section class="content">
           <div class="topic-content"
-               [innerHTML]="articleDetailObj.showSimpleBody?articleDetailObj.simpleBody:articleDetailObj.body">
+               [innerHTML]="articleDetailObj.newBody">
           </div>
         </section>
 
       </div>
-      <div class="operate">
+      <div class="operate" *ngIf="articleDetailObj.showSimpleBody">
         <span class="icon-cheveron-down"
-              *ngIf="articleDetailObj.showSimpleBody"
-              (click)="articleDetailObj.showSimpleBody=false"></span>
-        <!--<span class="icon-cheveron-up" *ngIf="showMore" (click)="showMore=false"></span>-->
+              *ngIf="!articleDetailObj.bodyHasExpend"
+              (click)="clickExpend($event)"></span>
+        <span class="icon-cheveron-up"
+              *ngIf="articleDetailObj.bodyHasExpend"
+              (click)="clickUnExpend($event)"></span>
       </div>
       <div class="foot">
         <div class="left-foot">
@@ -93,7 +95,7 @@
             <span>{{wonderReply.createTimeStr}}</span>
           </div>
         </header>
-        <section class="main-comment">
+        <section class="main-comment" (click)="clickCommentReply($event,ipt,wonderReply)">
 
           {{wonderReply.showSimpleContent? wonderReply.simpleContent: wonderReply.content}}
           <div class="operate">
@@ -154,7 +156,7 @@
               <span>{{reply.createTimeStr}}</span>
             </div>
           </header>
-          <section class="main-comment">
+          <section class="main-comment" (click)="clickCommentReply($event,ipt,reply)">
 
             {{reply.showSimpleContent? reply.simpleContent: reply.content}}
 

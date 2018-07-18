@@ -1,7 +1,7 @@
 
 var shareData={
-  title: '"悬赏问答"获奖名单新鲜出炉，赶快来认领你的现金红包！', // 分享标题
-  desc: '【我的钢铁】每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧！', // 分享描述
+  title: '“悬赏问答”全新上线，往期精彩内容大集锦', // 分享标题
+  desc: '每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧', // 分享描述
   link: 'https://m.mysteel.com/activity/xswd', // 分享链接
   imgUrl: 'http://m.steelphone.com/xswd.png', // 分享图标
   success: function (msg) {

@@ -115,7 +115,9 @@ export class RewordDetailComponent implements OnInit {
         });
         if (this.articleDetailObj.body.length > this.subStrLenBody) {
           this.articleDetailObj.showSimpleBody = true;
-          this.articleDetailObj.simpleBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
+          this.articleDetailObj.newBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
+        } else {
+          this.articleDetailObj.newBody = this.articleDetailObj.body;
         }
         if (isGetReply) {
           this.getReplyList().then(() => {
@@ -414,21 +416,25 @@ export class RewordDetailComponent implements OnInit {
     this.render.appendChild(document.body, eleWx);
   }
 
-  public test() {
-    const http = new XMLHttpRequest();
-    const url = '/article/reply/create.ms';
-    const params = `userId=${894671}&topicId=${'11'}&channlId=${'1102'}&objectType=${'0'}&objectId=${'4275'}&objectTitle=${'环保限产“竞赛式”扩围 供给收缩会超预期吗？'}&content=${'试试'}&replyIds=${''}`;
-    http.open('POST', url, true);
-
-//Send the proper header information along with the request
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    http.onreadystatechange = function () {//Call a function when the state changes.
-      if (http.readyState == 4 && http.status == 200) {
-        alert(http.responseText);
-      }
-    };
-    http.send(params);
+  /**
+   * 文章展开
+   * @param {MouseEvent} event
+   */
+  public clickExpend(event: MouseEvent): void {
+    event.stopPropagation();
+    this.articleDetailObj.bodyHasExpend = true;
+    this.articleDetailObj.newBody = this.articleDetailObj.body;
   }
+
+  /**
+   * 文章收起
+   * @param {MouseEvent} event
+   */
+  public clickUnExpend(event: MouseEvent): void {
+    event.stopPropagation();
+    this.articleDetailObj.bodyHasExpend = false;
+    this.articleDetailObj.newBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
+  }
+
 
 }
