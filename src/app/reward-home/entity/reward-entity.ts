@@ -183,3 +183,10 @@ export interface UserInfoEntity {
   encUserId: string,
   userId: string
 }
+
+
+/**
+ * 下载地址
+ * @type {string}
+ */
+export const DOWNLOAD_URL: string = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.mysteel.android.steelphone';

@@ -3,7 +3,7 @@ import {TypeService} from '../../shared/service/type.service';
 import {RewardModelService} from '../service/reward-model.service';
 import {DateFormatService} from '../../shared/service/date-format.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ReplyEntity, RewardDetailEntity, UserInfoEntity} from '../entity/reward-entity';
+import {DOWNLOAD_URL, ReplyEntity, RewardDetailEntity, UserInfoEntity} from '../entity/reward-entity';
 import {EscapeHtmlService} from '../../shared/service/escape-html.service';
 import {DialogService} from '../../shared/service/dialog.service';
 import {promise} from 'selenium-webdriver';
@@ -17,9 +17,7 @@ import {StorageService} from '../../shared/service/storage.service';
   styleUrls: ['./reword-detail.component.scss']
 })
 export class RewordDetailComponent implements OnInit {
-  public titStr: string;
-  public newStr: string;
-  public showMore: boolean = false;
+  public downLoadUrl: string = DOWNLOAD_URL;
   public commentValue: string;
   //评论最大字数
   public commentValMaxLen: number = 500;
@@ -31,6 +29,7 @@ export class RewordDetailComponent implements OnInit {
   public allReplyList: ReplyEntity[] = [];
   private pageNum: number = 1;
   private currentReplyPeople: string = '';
+  public currentReplyPeopleName: string = '说说我的想法';
 
   @ViewChild(PKComponent) PKComponent: PKComponent;
   public hasInit: boolean = false;
@@ -40,6 +39,7 @@ export class RewordDetailComponent implements OnInit {
   public userId: string;
   public subStrLen: number = 60;
   public subStrLenBody: number = 100;
+
 
   constructor(public typeService: TypeService,
               public escapeHtmlService: EscapeHtmlService,
@@ -253,6 +253,7 @@ export class RewordDetailComponent implements OnInit {
    */
   public clickPraise(event: MouseEvent, reply: ReplyEntity): void {
     event.stopPropagation();
+    this.checkIsToDownload();
     if (!this.showLoading) {
       this.showLoading = true;
       this.userService.doLogin().then(() => {
@@ -286,7 +287,8 @@ export class RewordDetailComponent implements OnInit {
    * @param ipt
    */
   public async sendComment(event: Event, ipt: HTMLElement): Promise<any> {
-    let content = this.commentValue.replace(/^[@][\w\u4e00-\u9fa5]+[\s]/, '');
+    this.checkIsToDownload();
+    let content = this.commentValue;
     if (content && content.trim()) {
       //发送按钮的字数需要再次确认
       let countLen = this.typeService.getStringLocaleLen(content);
@@ -294,7 +296,7 @@ export class RewordDetailComponent implements OnInit {
         content = this.typeService.localeSubString(content, 0, this.commentValMaxLen);
       }
 
-      let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
+      // let replyId = /^[@][\w\u4e00-\u9fa5]+[\s]/.test(this.commentValue) ? this.currentReplyPeople : '';
       // if (this.topicId === '') {
       //   this.topicId = await this.getTopicId();
       // }
@@ -309,15 +311,17 @@ export class RewordDetailComponent implements OnInit {
           objectId: this.articleDetailObj.id,
           objectTitle: this.articleDetailObj.title,
           content: content,
-          replyIds: replyId,
+          replyIds: this.currentReplyPeople,
           userId: 894671
         };
         // console.log('form', formData);
-        const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${replyId}`;
+        const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
         this.rewardModelService.doComment(params).subscribe(data => {
           this.allReplyList = [];
           this.wonderReplyList = [];
           this.pageNum = 1;
+          this.currentReplyPeople = '';
+          this.currentReplyPeopleName = '说说我的想法';
           this.commentValue = '';
           ipt['value'] = '';
           ipt.focus();
@@ -360,9 +364,12 @@ export class RewordDetailComponent implements OnInit {
 
 
   public clickCommentReply(event: MouseEvent, ipt: HTMLElement, reply: ReplyEntity): void {
+    this.checkIsToDownload();
     ipt.focus();
-    this.commentValue = `@${reply.name} `;
+    this.commentValue = '';
+    ipt['value'] = '';
     this.currentReplyPeople = reply.id;
+    this.currentReplyPeopleName = `回复${reply.name}:`;
   }
 
   /**
@@ -436,5 +443,10 @@ export class RewordDetailComponent implements OnInit {
     this.articleDetailObj.newBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
   }
 
+  public checkIsToDownload():void {
+    if (!this.userService.checkHasInstallApp()) {
+      window.location.href = this.downLoadUrl;
+    }
+  }
 
 }

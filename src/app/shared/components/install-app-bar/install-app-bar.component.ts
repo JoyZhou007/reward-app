@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../../service/user.service';
+import {DOWNLOAD_URL} from '../../../reward-home/entity/reward-entity';
 
 @Component({
   selector: 'app-install-app-bar',
@@ -9,8 +10,9 @@ import {UserService} from '../../service/user.service';
 export class InstallAppBarComponent implements OnInit {
 
   @Input() btnText: string;
+  public downUrl: string = DOWNLOAD_URL;
 
-  constructor(public userService:UserService) {
+  constructor(public userService: UserService) {
   }
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RewardDetailEntity, UserInfoEntity, VoteEntity} from '../entity/reward-entity';
+import {DOWNLOAD_URL, RewardDetailEntity, UserInfoEntity, VoteEntity} from '../entity/reward-entity';
 import {RewardModelService} from '../service/reward-model.service';
 import {DialogService} from '../../shared/service/dialog.service';
 import {UserService} from '../../shared/service/user.service';
@@ -12,6 +12,7 @@ import {UserService} from '../../shared/service/user.service';
 export class PKComponent implements OnInit {
   public voteList: VoteEntity[] = [];
   @Output() public outFresh = new EventEmitter<any>();
+  private downLoadUrl: string = DOWNLOAD_URL;
 
   @Input() set setData(data: any) {
     if (data && data.length) {
@@ -45,6 +46,7 @@ export class PKComponent implements OnInit {
 
   public clickVote(event: MouseEvent, voteObj: VoteEntity): void {
     event.stopPropagation();
+    this.checkIsToDownload();
     if (!this.articleDetailObj.showEnd) {
       if (this.articleDetailObj.articleStandId === '') {
         this.userService.doLogin().then((userInfo: UserInfoEntity) => {
@@ -76,6 +78,7 @@ export class PKComponent implements OnInit {
 
   public clickTip(event: MouseEvent): void {
     event.stopPropagation();
+    this.checkIsToDownload();
     if (this.articleDetailObj.showEnd) {
       this.dialogService.openTipDialog({
         content: '投票已结束'
@@ -84,6 +87,13 @@ export class PKComponent implements OnInit {
       this.dialogService.openTipDialog({
         content: '已投票'
       });
+    }
+  }
+
+
+  public checkIsToDownload(): void {
+    if (!this.userService.checkHasInstallApp()) {
+      window.location.href = this.downLoadUrl;
     }
   }
 }
