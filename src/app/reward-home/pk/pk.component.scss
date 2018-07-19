@@ -12,7 +12,7 @@
     .icon-square {
       display: inline-block;
       width: rem(5);
-      height: rem(20);
+      height: rem(16);
       margin-right: rem(5);
       background-color: $blue-normal;
     }
@@ -103,7 +103,7 @@
         top: 50%;
         transform: translateY(-50%);
         .option,.rate{
-          font-size: rem(12);
+          font-size: rem(14);
           line-height: rem(25);
           color: $white;
         }
@@ -115,7 +115,7 @@
         transform: translateY(-50%);
         text-align: right;
         .option,.rate{
-          font-size: rem(12);
+          font-size: rem(14);
           line-height: rem(25);
           color: $white;
         }

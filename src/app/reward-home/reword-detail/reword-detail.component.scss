@@ -193,7 +193,7 @@
         .icon-square {
           display: inline-block;
           width: rem(5);
-          height: rem(20);
+          height: rem(16);
           margin-right: rem(5);
           background-color: $blue-normal;
         }
@@ -326,6 +326,10 @@
       .all-reply {
         border-bottom: rem(1) solid #eee;
         margin-bottom: rem(25);
+        .all-reply-tit{
+          padding-top: rem(10);
+          border-top: rem(1) solid #eee;
+        }
       }
     }
 
