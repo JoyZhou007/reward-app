@@ -272,6 +272,8 @@ export class RewordDetailComponent implements OnInit {
         this.showLoading = false;
         resolve(data);
 
+      }, error => {
+        this.showLoading = false;
       });
     });
   }
@@ -346,21 +348,28 @@ export class RewordDetailComponent implements OnInit {
           userId: 894671
         };
         // console.log('form', formData);
-        const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
-        this.rewardModelService.doComment(params).subscribe(data => {
-          this.allReplyList = [];
-          this.wonderReplyList = [];
-          this.pageNum = 1;
-          this.currentReplyPeople = '';
-          this.currentReplyPeopleName = '说说我的想法';
-          this.commentValue = '';
-          ipt['value'] = '';
-          ipt.focus();
-          ipt.blur();
-          clearTimeout(this.scrollTimer);
+        console.log('Laon', this.showLoading);
+        if (!this.showLoading) {
           this.showLoading = true;
-          this.getReplyList(true);
-        });
+          const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
+          this.rewardModelService.doComment(params).subscribe(data => {
+            this.allReplyList = [];
+            this.wonderReplyList = [];
+            this.pageNum = 1;
+            this.currentReplyPeople = '';
+            this.currentReplyPeopleName = '说说我的想法';
+            this.commentValue = '';
+            ipt['value'] = '';
+            ipt.focus();
+            ipt.blur();
+            clearTimeout(this.scrollTimer);
+
+            this.getReplyList(true);
+          }, error => {
+            this.showLoading = false;
+          });
+        }
+
       });
 
 
@@ -482,8 +491,8 @@ export class RewordDetailComponent implements OnInit {
   }
 
   public focusCheck(): void {
-    if(this.userService.checkHasInstallApp()){
-      this.checkDoLogin()
+    if (this.userService.checkHasInstallApp()) {
+      this.checkDoLogin();
     } else {
       this.checkIsToDownload();
     }
