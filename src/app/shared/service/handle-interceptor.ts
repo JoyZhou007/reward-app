@@ -18,7 +18,7 @@ export class HandleInterceptor implements HttpInterceptor {
           },
           // Operation failed; error is an HttpErrorResponse
           error => {
-            console.log('error', error);
+            // console.log('error', error);
           }
         ),
         // Log when response observable either completes or errors
