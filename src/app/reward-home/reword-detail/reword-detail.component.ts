@@ -73,7 +73,7 @@ export class RewordDetailComponent implements OnInit {
         });
 
         setTimeout(() => {
-          console.log('定时器')
+          console.log('定时器');
           this.activatedRoute.paramMap.subscribe(next => {
             this.articleId = next.get('id');
 
@@ -86,8 +86,6 @@ export class RewordDetailComponent implements OnInit {
             });
           });
         }, 1500);
-
-
 
 
       });
@@ -348,17 +346,16 @@ export class RewordDetailComponent implements OnInit {
           channlId: this.articleDetailObj.channelId,
           objectType: this.articleDetailObj.type,
           objectId: this.articleDetailObj.id,
-          objectTitle: this.articleDetailObj.title,
+          objectTitle: encodeURIComponent(this.articleDetailObj.title),
           content: content,
           replyIds: this.currentReplyPeople,
-          userId: 894671
+          userId: this.userId
         };
-        // console.log('form', formData);
-        console.log('Laon', this.showLoading);
+        console.log('form', formData);
         if (!this.showLoading) {
           this.showLoading = true;
           const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
-          this.rewardModelService.doComment(params).subscribe(data => {
+          this.rewardModelService.doComment(formData).subscribe(data => {
             this.allReplyList = [];
             this.wonderReplyList = [];
             this.pageNum = 1;

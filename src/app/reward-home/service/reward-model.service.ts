@@ -71,12 +71,12 @@ export class RewardModelService {
    * 评论
    * @returns {Observable<any>}
    */
-  // public doComment(data: any): Observable<any> {
-  //   return this.httpService.get(`/article/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyIds}`);
-  // }
   public doComment(data: any): Observable<any> {
-    return this.httpService.post('/article/reply/create.ms', data);
+    return this.httpService.get(`/article/reply/create.ms?userId=${data.userId}&topicId=${data.topicId}&channlId=${data.channlId}&objectType=${data.objectType}&objectId=${data.objectId}&objectTitle=${data.objectTitle}&content=${data.content}&replyIds=${data.replyIds}`);
   }
+  // public doComment(data: any): Observable<any> {
+  //   return this.httpService.post('/article/reply/create.ms', data);
+  // }
 
   /**
    * 投票
