@@ -54,7 +54,7 @@ export class RewordDetailComponent implements OnInit {
     this.pageNum = 1;
 
 
-    if(this.userService.checkHasInstallApp()){
+    if (this.userService.checkHasInstallApp()) {
       this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
 
         this.userId = this.storageService.getStorageValue('userId');
@@ -63,6 +63,14 @@ export class RewordDetailComponent implements OnInit {
         //   .subscribe((newValue) => {
         //     this.userId = newValue;
         //   });
+        this.activatedRoute.queryParamMap.subscribe(data => {
+          this.userId = data.get('userId');
+          if (this.userId) {
+            this.storageService.setStorageValue('userId', this.userId);
+          }
+          console.log('userId?*****************', this.userId,'param',data);
+        });
+
         this.activatedRoute.paramMap.subscribe(next => {
           this.articleId = next.get('id');
 
@@ -93,7 +101,6 @@ export class RewordDetailComponent implements OnInit {
     }
 
 
-
   }
 
   ngOnInit() {
@@ -110,6 +117,7 @@ export class RewordDetailComponent implements OnInit {
   public getDetail(isGetReply: boolean = true): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.userId = this.storageService.getStorageValue('userId');
+      console.log('userId????', this.userId);
       let formData;
       if (this.userId) {
         formData = {
@@ -214,7 +222,7 @@ export class RewordDetailComponent implements OnInit {
           let replyObj = ReplyEntity.init();
           Object.assign(replyObj, value);
           // replyObj.content = this.escapeHtmlService.unescapeHtml(replyObj.content);
-          replyObj.content= decodeURIComponent(replyObj.content)
+          replyObj.content = decodeURIComponent(replyObj.content);
           if (replyObj.content.length > this.subStrLen) {
             replyObj.showSimpleContent = true;
             replyObj.simpleContent = this.typeService.substring(replyObj.content, this.subStrLen);
@@ -324,35 +332,35 @@ export class RewordDetailComponent implements OnInit {
       // }
 
       this.userService.doLogin().then(() => {
-      this.userId = this.storageService.getStorageValue('userId');
-      // content = this.escapeHtmlService.escapeHtml(content);
-      content = encodeURIComponent(content);
-      let formData = {
-        topicId: this.articleDetailObj.topicId,
-        channlId: this.articleDetailObj.channelId,
-        objectType: this.articleDetailObj.type,
-        objectId: this.articleDetailObj.id,
-        objectTitle: this.articleDetailObj.title,
-        content: content,
-        replyIds: this.currentReplyPeople,
-        userId: 894671
-      };
-      // console.log('form', formData);
-      const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
-      this.rewardModelService.doComment(params).subscribe(data => {
-        this.allReplyList = [];
-        this.wonderReplyList = [];
-        this.pageNum = 1;
-        this.currentReplyPeople = '';
-        this.currentReplyPeopleName = '说说我的想法';
-        this.commentValue = '';
-        ipt['value'] = '';
-        ipt.focus();
-        ipt.blur();
-        clearTimeout(this.scrollTimer);
-        this.showLoading = true;
-        this.getReplyList(true);
-      });
+        this.userId = this.storageService.getStorageValue('userId');
+        // content = this.escapeHtmlService.escapeHtml(content);
+        content = encodeURIComponent(content);
+        let formData = {
+          topicId: this.articleDetailObj.topicId,
+          channlId: this.articleDetailObj.channelId,
+          objectType: this.articleDetailObj.type,
+          objectId: this.articleDetailObj.id,
+          objectTitle: this.articleDetailObj.title,
+          content: content,
+          replyIds: this.currentReplyPeople,
+          userId: 894671
+        };
+        // console.log('form', formData);
+        const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
+        this.rewardModelService.doComment(params).subscribe(data => {
+          this.allReplyList = [];
+          this.wonderReplyList = [];
+          this.pageNum = 1;
+          this.currentReplyPeople = '';
+          this.currentReplyPeopleName = '说说我的想法';
+          this.commentValue = '';
+          ipt['value'] = '';
+          ipt.focus();
+          ipt.blur();
+          clearTimeout(this.scrollTimer);
+          this.showLoading = true;
+          this.getReplyList(true);
+        });
       });
 
 

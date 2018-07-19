@@ -34,12 +34,18 @@ export class PKComponent implements OnInit {
 
   private initTplData(data: Array<any>) {
     this.voteList = [];
-    data.forEach(val => {
+    let sum = 0;
+    data.forEach((val, index, array) => {
       const tplObj = VoteEntity.init();
       Object.assign(tplObj, val);
       tplObj.width = parseInt(tplObj.supportRate);
-      tplObj.supportVal = Math.round(Number(tplObj.supportRate.split('%')[0]));
-      tplObj.hasVote = tplObj.id === this.articleDetailObj.articleStandId;
+      // tplObj.supportVal = Math.round(Number(tplObj.supportRate.split('%')[0]));
+      // if (index !== array.length - 1) {
+      //   sum += tplObj.supportVal;
+      // } else {
+      //   tplObj.supportVal = 100 - sum;
+      // }
+      tplObj.hasVote = tplObj.id == this.articleDetailObj.articleStandId;
       this.voteList.push(tplObj);
     });
   }
