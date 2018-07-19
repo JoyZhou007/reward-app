@@ -19,6 +19,7 @@ export class RewardHomeComponent implements OnInit {
   public hasInit: boolean = false;
   public userId: string;
   private subStrLen: number = 55;
+  public showLoading: boolean = false;
 
   constructor(public router: Router,
               public render: Renderer2,
@@ -75,44 +76,47 @@ export class RewardHomeComponent implements OnInit {
           pageNO: this.pageNum,
         };
       }
+      if (!this.showLoading) {
+        this.showLoading = true;
+        this.rewardModelService.getList(formData).subscribe(data => {
+          let articles = [...data.articles];
+          let currentTime = data.currentTime;
+          if (!articles.length) {
+            if (this.pageNum !== 1) {
+              // this.dialogService.openTipDialog({
+              //   content: '已经是最后一页'
+              // });
+            }
+            this.pageNum = -1;
+          } else {
+            articles.forEach(value => {
+              let tplObj = RewardListEntity.init();
+              tplObj.isDoing = (value.articleTime - currentTime) > 0;
 
-      this.rewardModelService.getList(formData).subscribe(data => {
-        let articles = [...data.articles];
-        let currentTime = data.currentTime;
-        if (!articles.length) {
-          if (this.pageNum !== 1) {
-            // this.dialogService.openTipDialog({
-            //   content: '已经是最后一页'
-            // });
+              const countdownTime = parseInt(value.articleTime) + 5 * 24 * 60 * 60 * 1000;
+              let gap = countdownTime - parseInt(currentTime);
+              if (gap > 0 && gap < 5 * 24 * 60 * 60 * 1000) {
+                tplObj.isDoing = true;
+              } else if (gap > 5 * 24 * 60 * 60 * 1000) {
+                tplObj.isDoing = false;
+              } else if (gap < 0) {
+                tplObj.isDoing = false;
+              }
+              Object.assign(tplObj, value);
+              if (tplObj.content.length > this.subStrLen) {
+                tplObj.showSimpleContent = true;
+                tplObj.simpleContent = this.typeService.substring(tplObj.content, this.subStrLen, '...');
+              }
+              this.topicList.push(tplObj);
+            });
           }
-          this.pageNum = -1;
-        } else {
-          articles.forEach(value => {
-            let tplObj = RewardListEntity.init();
-            tplObj.isDoing = (value.articleTime - currentTime) > 0;
+          this.showLoading = false;
+          resolve(data);
+        }, error => {
+          this.showLoading = false;
+        });
+      }
 
-            const countdownTime = parseInt(value.articleTime) + 5 * 24 * 60 * 60 * 1000;
-            let gap = countdownTime - parseInt(currentTime);
-            if (gap > 0 && gap < 5 * 24 * 60 * 60 * 1000) {
-              tplObj.isDoing = true;
-            } else if (gap > 5 * 24 * 60 * 60 * 1000) {
-              tplObj.isDoing = false;
-            } else if (gap < 0) {
-              tplObj.isDoing = false;
-            }
-            Object.assign(tplObj, value);
-            if (tplObj.content.length > this.subStrLen) {
-              tplObj.showSimpleContent = true;
-              tplObj.simpleContent = this.typeService.substring(tplObj.content, this.subStrLen ,'...');
-            }
-            this.topicList.push(tplObj);
-          });
-        }
-
-        resolve(data);
-      }, error => {
-
-      });
     });
 
   }
@@ -120,7 +124,7 @@ export class RewardHomeComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   doSomething(event) {
-    if (this.hasInit) {
+    if (this.hasInit && !this.showLoading) {
       if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
         // you're at the bottom of the page
         console.log('Bottom of page');
