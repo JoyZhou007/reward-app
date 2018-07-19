@@ -68,7 +68,7 @@ export class RewordDetailComponent implements OnInit {
           if (this.userId) {
             this.storageService.setStorageValue('userId', this.userId);
           }
-          console.log('userId?*****************', this.userId,'param',data);
+          console.log('userId?*****************', this.userId, 'param', data);
         });
 
         this.activatedRoute.paramMap.subscribe(next => {
@@ -478,6 +478,14 @@ export class RewordDetailComponent implements OnInit {
     if (!this.userService.checkHasInstallApp()) {
       window.location.href = this.downLoadUrl;
       return;
+    }
+  }
+
+  public focusCheck(): void {
+    if(this.userService.checkHasInstallApp()){
+      this.checkDoLogin()
+    } else {
+      this.checkIsToDownload();
     }
   }
 

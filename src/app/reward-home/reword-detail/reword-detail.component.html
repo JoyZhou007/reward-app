@@ -75,7 +75,7 @@
         <div class="avatar"><img src="./assets/icons/icon/avatar.png" alt=""></div>
         <textarea class="ipt-btn" type="text" [placeholder]="currentReplyPeopleName" #ipt
                   (input)="checkDoLogin()"
-                  (focus)="checkDoLogin()"
+                  (focus)="focusCheck()"
                   appTextareaAutoHeight [appMaxLength]="commentValMaxLen"
                   [(ngModel)]="commentValue" (keyup.enter)="sendComment($event,ipt)"> </textarea>
         <span class="btn-send"
