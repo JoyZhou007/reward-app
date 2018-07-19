@@ -57,6 +57,7 @@ export class RewordDetailComponent implements OnInit {
     if (this.userService.checkHasInstallApp()) {
       this.userService.getUserInfo().then((userInfo: UserInfoEntity) => {
 
+
         this.userId = this.storageService.getStorageValue('userId');
 
         // this.storageService.localStorage.observe('userId')
@@ -71,17 +72,22 @@ export class RewordDetailComponent implements OnInit {
           console.log('userId?*****************', this.userId, 'param', data);
         });
 
-        this.activatedRoute.paramMap.subscribe(next => {
-          this.articleId = next.get('id');
+        setTimeout(() => {
+          console.log('定时器')
+          this.activatedRoute.paramMap.subscribe(next => {
+            this.articleId = next.get('id');
 
-          this.getDetail().then(() => {
-            this.showLoading = false;
-            // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
-            this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
-            //放在title后面
-            this.initScript(this.articleId);
+            this.getDetail().then(() => {
+              this.showLoading = false;
+              // this.storageService.setStorageValue('articleTitle', this.articleDetailObj.title);
+              this.render.setAttribute(document.body, 'data-articleTitle', this.articleDetailObj.title);
+              //放在title后面
+              this.initScript(this.articleId);
+            });
           });
-        });
+        }, 1500);
+
+
 
 
       });
@@ -117,7 +123,7 @@ export class RewordDetailComponent implements OnInit {
   public getDetail(isGetReply: boolean = true): Promise<any> {
     return new Promise<any>(((resolve, reject) => {
       this.userId = this.storageService.getStorageValue('userId');
-      console.log('userId????', this.userId);
+      console.log('get Detail user id', this.userId);
       let formData;
       if (this.userId) {
         formData = {
