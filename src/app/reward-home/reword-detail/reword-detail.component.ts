@@ -351,7 +351,7 @@ export class RewordDetailComponent implements OnInit {
         console.log('Laon', this.showLoading);
         if (!this.showLoading) {
           this.showLoading = true;
-          const params = `userId=${894671}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
+          const params = `userId=${this.userId}&topicId=${this.articleDetailObj.topicId}&channlId=${this.articleDetailObj.channelId}&objectType=${this.articleDetailObj.type}&objectId=${this.articleDetailObj.id}&objectTitle=${this.articleDetailObj.title}&content=${content}&replyIds=${this.currentReplyPeople}`;
           this.rewardModelService.doComment(params).subscribe(data => {
             this.allReplyList = [];
             this.wonderReplyList = [];
