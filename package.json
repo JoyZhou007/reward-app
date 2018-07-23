@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --disable-host-check --open --host 0.0.0.0 --proxy-config proxy-prod.conf.json --hmr",
-    "build": "ng build --service-worker --prod --build-optimizer --base-href=/activity/xswd/",
+    "build": "ng build  --prod --build-optimizer --base-href=/activity/xswd/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
