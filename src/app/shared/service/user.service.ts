@@ -66,10 +66,10 @@ export class UserService {
         } else { //新控件
           window['webkit'].messageHandlers.getUserInfo.postMessage('false');
           this.storageService.setStorageValue('doLogin', 0);
-          resolve('');
+          resolve('')
         }
       } else {
-        resolve('');
+        resolve('')
       }
     });
   }
@@ -112,7 +112,7 @@ export class UserService {
    * @returns {boolean}
    */
   public checkHasInstallApp() {
-    return window['mysteeljs'] || (window['webkit'] && window['webkit'].messageHandlers.getUserInfo);
+    return window['mysteeljs'] || (typeof window['webkit'] != 'undefined' && typeof window['webkit'].messageHandlers.getUserInfo != 'undefined');
   }
 
 }
