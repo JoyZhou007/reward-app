@@ -40,7 +40,7 @@ registerLocaleData(zh);
       appRoutes,
     ),
     SharedModule.forRoot(),
-    ServiceWorkerModule.register('/activity/xswd/ngsw-worker.js', { enabled: environment.production }),
+    // ServiceWorkerModule.register('/activity/xswd/ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     HttpClientModule,
     NgZorroAntdModule,
