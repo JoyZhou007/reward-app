@@ -85,7 +85,7 @@ export class RewordDetailComponent implements OnInit {
               this.initScript(this.articleId);
             });
           });
-        }, 1500);
+        }, 1000);
 
 
       });
