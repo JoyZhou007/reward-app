@@ -5,7 +5,7 @@ var articleTitle = document.body.getAttribute('data-articleTitle');
 var shareData = {
   title: articleTitle, // 分享标题
   desc: '【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～', // 分享描述
-  link: "https://m.mysteel.com/activity/xswd/reward-detail/" + articleId, // 分享链接
+  link: "https://m.mysteel.com/activity/xswd/#/reward-detail/" + articleId, // 分享链接
   imgUrl: 'https://m.steelphone.com/xswd.png', // 分享图标
   success: function (msg) {
     //console.log(msg);

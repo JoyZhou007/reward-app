@@ -37,7 +37,9 @@ registerLocaleData(zh);
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(
-      appRoutes,
+      appRoutes,{
+        useHash: true
+      }
     ),
     SharedModule.forRoot(),
     // ServiceWorkerModule.register('/activity/xswd/ngsw-worker.js', { enabled: environment.production }),
