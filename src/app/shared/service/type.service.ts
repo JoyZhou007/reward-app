@@ -36,7 +36,7 @@ export class TypeService {
   //   return newStr;
   // }
 
-  public substring(str: string, len: number, flow: string='') {
+  public substring(str: string, len: number, flow: string = '') {
     return str.substr(0, len) + flow;
   }
 
@@ -180,5 +180,14 @@ export class TypeService {
       }
     }
     return returnStr;
+  }
+
+  /**
+   * 数组去重
+   * @param a
+   * @returns {any[]}
+   */
+  public uniq(a: Array<any>): any[] {
+    return Array.from(new Set(a));
   }
 }
