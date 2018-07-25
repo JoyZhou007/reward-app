@@ -164,7 +164,11 @@ export class RewordDetailComponent implements OnInit {
 
   public clickGoToWin(event: MouseEvent): void {
     event.stopPropagation();
-    this.router.navigate(['/winning', this.articleId]);
+    this.router.navigate(['/winning', this.articleId],{
+      queryParams:{
+        id: this.articleId
+      }
+    });
   }
 
   /**

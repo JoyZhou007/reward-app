@@ -18,7 +18,7 @@ export const appRoutes: Routes = [
     component: RewardHomeComponent
   },
   {
-    path: 'winning/:id',
+    path: 'winning',
     component: WinningComponent
   },
   {

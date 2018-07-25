@@ -19,7 +19,7 @@ export class WinningComponent implements OnInit {
               public render: Renderer2,
               public rewardModelService: RewardModelService,
               public activatedRoute: ActivatedRoute) {
-    this.activatedRoute.paramMap.subscribe(next => {
+    this.activatedRoute.queryParamMap.subscribe(next => {
       this.articleId = next.get('id');
       this.initScript(this.articleId);
       this.getWinner();
