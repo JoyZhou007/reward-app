@@ -74,7 +74,7 @@ export class RewordDetailComponent implements OnInit {
 
         setTimeout(() => {
           console.log('定时器');
-          this.activatedRoute.paramMap.subscribe(next => {
+          this.activatedRoute.queryParamMap.subscribe(next => {
             this.articleId = next.get('id');
 
             this.getDetail().then(() => {
@@ -91,7 +91,7 @@ export class RewordDetailComponent implements OnInit {
       });
 
     } else {
-      this.activatedRoute.paramMap.subscribe(next => {
+      this.activatedRoute.queryParamMap.subscribe(next => {
         this.articleId = next.get('id');
 
         this.getDetail().then(() => {

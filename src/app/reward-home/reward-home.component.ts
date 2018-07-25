@@ -58,7 +58,11 @@ export class RewardHomeComponent implements OnInit {
   public clickOpenDetail(event: MouseEvent, articleObj: any): void {
     event.stopPropagation();
     const id = articleObj.id;
-    this.router.navigate(['reward-detail', id]);
+    this.router.navigate(['reward-detail'], {
+      queryParams: {
+        id
+      }
+    });
   }
 
   private getList(): Promise<any> {

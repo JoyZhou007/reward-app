@@ -10,7 +10,7 @@ export const appRoutes: Routes = [
     component: RewardHomeComponent
   },
   {
-    path: 'reward-detail/:id',
+    path: 'reward-detail',
     component: RewordDetailComponent
   },
   {
