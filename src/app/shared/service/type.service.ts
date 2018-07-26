@@ -190,4 +190,13 @@ export class TypeService {
   public uniq(a: Array<any>): any[] {
     return Array.from(new Set(a));
   }
+
+  /**
+   * 判断奇数
+   * @param {number} number
+   * @returns {boolean}
+   */
+  public isOddNumber(number: number): boolean {
+    return !!(number % 2);
+  }
 }
