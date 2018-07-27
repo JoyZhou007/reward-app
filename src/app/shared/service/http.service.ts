@@ -6,15 +6,13 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
-  // public publicPath: string = '/myapp';
-  public publicPath: string = '/activity/app';
-  // public publicPath: string = '';
+
 
   constructor(public http: HttpClient) {
   }
 
   public get(api: string): Observable<any> {
-    return this.http.get(this.publicPath + api);
+    return this.http.get(api);
   }
 
   public post(api: string, data: any, options?: any): Observable<any> {
@@ -26,6 +24,6 @@ export class HttpService {
         })
       };
     }
-    return this.http.post(this.publicPath + api, data, options);
+    return this.http.post(api, data, options);
   }
 }
