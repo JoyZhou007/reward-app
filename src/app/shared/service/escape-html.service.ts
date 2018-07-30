@@ -8,21 +8,30 @@ export class EscapeHtmlService {
   constructor() {
   }
 
-  public escapeHtml(unsafe) {
-    return unsafe
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+  escapeHtml(text: string) {
+    let map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    return text.replace(/([&]+(?![lt;]|[gt;]|[amp;]|[quot;]|[#039;]))|[<>"']/g, function (m) {
+      return map[m];
+    });
   }
 
-  public unescapeHtml(safe) {
-    return safe
-      .replace('&amp;', /&/g)
-      .replace('&lt;', /</g)
-      .replace('&gt;', />/g)
-      .replace('&quot;', /"/g)
-      .replace('&#039;', /'/g);
+
+  public unescapeHtml(text) {
+    let reservedMap = {
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&#039;': "'"
+    };
+    return text.replace(/(&amp;)|(&lt;)|(&gt;)|(&quot;)|(&#039;)/g, function (m) {
+      return reservedMap[m];
+    });
   }
 }

@@ -146,6 +146,7 @@ export class RewordDetailComponent implements OnInit {
           index++;
           return `<img src="${imgList[index].src}" width="100%"/>`;
         });
+        this.articleDetailObj.body = this.escapeHtmlService.unescapeHtml(this.articleDetailObj.body);
         if (this.articleDetailObj.body.length > this.subStrLenBody) {
           this.articleDetailObj.showSimpleBody = true;
           this.articleDetailObj.newBody = this.typeService.substring(this.articleDetailObj.body, this.subStrLenBody);
@@ -164,8 +165,8 @@ export class RewordDetailComponent implements OnInit {
 
   public clickGoToWin(event: MouseEvent): void {
     event.stopPropagation();
-    this.router.navigate(['/winning'],{
-      queryParams:{
+    this.router.navigate(['/winning'], {
+      queryParams: {
         id: this.articleId
       }
     });
