@@ -2,10 +2,33 @@
 // var articleTitle = window.localStorage.getItem('articleTitle');
 var articleId = document.body.getAttribute('data-articleId');
 var articleTitle = document.body.getAttribute('data-articleTitle');
+
+var url = location.href;
+var fr = '';
+if (url.indexOf('fr=') !== -1 && url.indexOf('?') !== -1) {
+  var params = url.split('?')[1];
+  if (params) {
+    var paramsArr = params.split('&');
+    paramsArr.forEach((value, index, array) => {
+      if (value.indexOf('fr')!==-1) {
+        fr = value.split('=')[1];
+      }
+    })
+  }
+}
+console.log('fr', fr)
+var link = '';
+if (fr !== '') {
+  link = "https://m.mysteel.com/activity/xswd/#/reward-detail?id=" + articleId + '&fr=' + fr;
+} else {
+  link = "https://m.mysteel.com/activity/xswd/#/reward-detail?id=" + articleId;
+}
+
+
 var shareData = {
   title: articleTitle, // 分享标题
   desc: '【我的钢铁】术业有专攻，英雄所见略有不同，说出你的观点，现金红包等着你～', // 分享描述
-  link: "https://m.mysteel.com/activity/xswd/#/reward-detail?id=" + articleId, // 分享链接
+  link: link, // 分享链接
   imgUrl: 'https://m.steelphone.com/xswd.png', // 分享图标
   success: function (msg) {
     //console.log(msg);

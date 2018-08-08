@@ -1,8 +1,29 @@
+var url = location.href;
+var fr = '';
+if (url.indexOf('fr=') !== -1 && url.indexOf('?') !== -1) {
+  var params = url.split('?')[1];
+  if (params) {
+    var paramsArr = params.split('&');
+    paramsArr.forEach((value, index, array) => {
+      if (value.indexOf('fr')!==-1) {
+        fr = value.split('=')[1];
+      }
+    })
+  }
+}
+console.log('fr', fr)
+var link = '';
+if (fr !== '') {
+  link = 'https://m.mysteel.com/activity/xswd/#/?fr=' + fr;
+} else {
+  link = 'https://m.mysteel.com/activity/xswd/#/';
+}
 
-var shareData={
+
+var shareData = {
   title: '“悬赏问答”全新上线，往期精彩内容大集锦', // 分享标题
   desc: '每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧', // 分享描述
-  link: 'https://m.mysteel.com/activity/xswd', // 分享链接
+  link: link, // 分享链接
   imgUrl: 'https://m.steelphone.com/xswd.png', // 分享图标
   success: function (msg) {
     //console.log(msg);

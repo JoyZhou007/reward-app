@@ -1,10 +1,33 @@
 // var articleId = window.localStorage.getItem('articleId');
 // var articleTitle = window.localStorage.getItem('articleTitle');
 var articleId = document.body.getAttribute('data-articleId');
-var shareData={
+
+
+var url = location.href;
+var fr = '';
+if (url.indexOf('fr=') !== -1 && url.indexOf('?') !== -1) {
+  var params = url.split('?')[1];
+  if (params) {
+    var paramsArr = params.split('&');
+    paramsArr.forEach((value, index, array) => {
+      if (value.indexOf('fr')!==-1) {
+        fr = value.split('=')[1];
+      }
+    })
+  }
+}
+console.log('fr', fr)
+var link = '';
+if (fr !== '') {
+  link = "https://m.mysteel.com/activity/xswd/#/winning?id=" + articleId + '&fr=' + fr;
+} else {
+  link = "https://m.mysteel.com/activity/xswd/#/winning?id=" + articleId;
+}
+
+var shareData = {
   title: '悬赏问答”获奖名单新鲜出炉，赶快来认领你的现金红包！', // 分享标题
   desc: '【我的钢铁】每周一个行业热门话题，畅聊不停，评论即有机会赢现金红包，赶紧来参加吧', // 分享描述
-  link: "https://m.mysteel.com/activity/xswd/#/winning?id=" + articleId, // 分享链接
+  link: link, // 分享链接
   imgUrl: 'https://m.steelphone.com/xswd.png', // 分享图标
   success: function (msg) {
     //console.log(msg);
@@ -30,7 +53,6 @@ if (window.mysteeljs || window.webkit) {
     window.webkit.messageHandlers.share.postMessage(shareData);
   }
 }
-
 
 
 wx.ready(function () {
