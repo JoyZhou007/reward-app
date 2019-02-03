@@ -42,7 +42,7 @@ registerLocaleData(zh);
       }
     ),
     SharedModule.forRoot(),
-    // ServiceWorkerModule.register('/activity/xswd/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule,
     HttpClientModule,
     NgZorroAntdModule,
