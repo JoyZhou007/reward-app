@@ -1,6 +1,6 @@
 # RewardApp
 
-Run `npm i` .
+Run `npm i ` .
 
 ## Development server
 
